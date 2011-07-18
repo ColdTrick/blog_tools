@@ -55,4 +55,5 @@
 	register_elgg_event_handler("init", "system", "blog_tools_init");	
 
 	// register actions
-	register_action("blog_tools/toggle_metadata", false, dirname(__FILE__) . "/actions/toggle_metadata.php");
+	register_action("blog_tools/toggle_metadata", false, dirname(__FILE__) . "/actions/toggle_metadata.php", true);
+	register_action("blog_tools/transfer", false, dirname(__FILE__) . "/actions/transfer.php", true);

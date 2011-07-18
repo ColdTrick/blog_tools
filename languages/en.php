@@ -17,10 +17,13 @@
 		
 		'blog_tools:action:toggle_metadata:error' => "An unknown error occured while editing the entity, please try agian",
 		'blog_tools:action:toggle_metadata:success' => "The entity was successfully edited",
+		
+		
+		'blog_tools:action:transfer:error:owner' => "You can't transfer the blog to the same user",
+		'blog_tools:action:transfer:error:transfer' => "An unknown error occured while transfering the blog, please try again",
+		'blog_tools:action:transfer:success' => "Blog successfully transfered",
+		
 		'' => "",
-		'' => "",
-	
-	
 	);
 	
 	add_translation("en", $english);

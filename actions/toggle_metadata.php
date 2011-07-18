@@ -1,13 +1,13 @@
 <?php
 
-	gatekeeper();
+	admin_gatekeeper();
 	
 	$guid = (int) get_input("guid");
 	$metadata = get_input("metadata");
 	
 	if(!empty($guid) && !empty($metadata)){
 		if($entity = get_entity($guid)){
-			if($entity->canEdit()){
+			if($entity->canEdit() && ($entity->getSubtype() == "blog")){
 				$old = $entity->$metadata;
 				
 				if(empty($entity->$metadata)){
