@@ -48,7 +48,7 @@
 		}
 		
 		// Include the standard profile index
-		include(dirname(__FILE__) . "/icon.php");
+		include(dirname(__FILE__) . "/pages/icon.php");
 	}
 
 	// register default elgg events
