@@ -12,6 +12,7 @@
 				}
 				
 				echo "&nbsp;&nbsp;&nbsp;&nbsp;" . elgg_view("output/url", array("href" => $vars["url"] . "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured", "text" => $text, "is_action" => true));
+				echo "&nbsp;&nbsp;&nbsp;&nbsp;" . elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/transfer/" . $entity->getGUID(), "text" => elgg_echo("blog_tools:transfer"), "class" => "blog_tools_fancybox"));
 			}
 		}
 	}

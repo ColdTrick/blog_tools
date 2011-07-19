@@ -6,9 +6,17 @@
 		'blog_tools:toggle:feature' => "Feature",
 		'blog_tools:toggle:unfeature' => "Unfeature",
 		'blog_tools:no_blogs' => "No blogs found",
+		'blog_tools:transfer' => "Transfer owner",
 		
 		// widget
 		'blog_tools:widget:featured' => "Show only featured blogs?",
+		
+		// views
+		// transfer owner
+		'blog_tools:transfer:title' => "Transfer owner of: %s",
+		'blog_tools:transfer:description' => "Here you can transfer the ownership of the blog. Type the name (or username) of the new owner and select him/her from the list. Then click on Transfer and the blog will be transfered.",
+		'blog_tools:transfer:form:new_owner' => "Type the name of the new owner",
+		'blog_tools:transfer:form:submit' => "Transfer",
 		
 		// actions
 		'blog_tools:action:error:input' => "Incorrect input to perform this action",

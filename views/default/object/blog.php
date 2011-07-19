@@ -46,7 +46,7 @@
 	<div class="blog_post">
 		<?php 
 			if($vars["entity"]->icontime && ($vars['full'] != "yes")){
-				echo "<div style='float: left; margin: 5px; padding: 5px; border: 1px solid #CECECE;'><img src='" . $vars["entity"]->getIcon("medium") . "'></div>"; 
+				echo "<div class='blog_tools_blog_image'><img src='" . $vars["entity"]->getIcon("medium") . "'></div>"; 
 			}
 		?>
 		<h3><a href="<?php echo $url; ?>"><?php echo $vars['entity']->title; ?></a></h3>
@@ -121,33 +121,32 @@
 			<?php
 	
 				if ($canedit) {
+					echo elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/edit/" . $vars["entity"]->getGUID(), "text" => elgg_echo("edit")));
 					
-				?>
-					<a href="<?php echo $vars['url']; ?>pg/blog/edit/<?php echo $vars['entity']->getGUID(); ?>"><?php echo elgg_echo("edit"); ?></a>  &nbsp;
-					<?php
+					echo "&nbsp;&nbsp;&nbsp;&nbsp;";
 					
-						echo elgg_view("output/confirmlink", array(
-							'href' => $vars['url'] . "action/blog/delete?blogpost=" . $vars['entity']->getGUID(),
-							'text' => elgg_echo('delete'),
-							'confirm' => elgg_echo('deleteconfirm'),
-						));
-	
-						// Allow the menu to be extended
-						echo elgg_view("editmenu",array('entity' => $vars['entity']));
-					
-					?>
-				<?php
+					echo elgg_view("output/confirmlink", array(
+						'href' => $vars['url'] . "action/blog/delete?blogpost=" . $vars['entity']->getGUID(),
+						'text' => elgg_echo('delete'),
+						'confirm' => elgg_echo('deleteconfirm'),
+					));
+
+					// Allow the menu to be extended
+					echo elgg_view("editmenu",array('entity' => $vars['entity']));
 				}
-			
 			?>
 			</p>
+			<?php 
+				if($vars["full"]){
+					// Add This view
+					echo elgg_view("addthis/extend");
+				}
+			?>
 		</div>
-		</div>
+	</div>
 
 <?php
 				
 			}
 
 		}
-
-?>
