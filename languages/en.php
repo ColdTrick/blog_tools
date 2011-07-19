@@ -18,6 +18,22 @@
 		'blog_tools:transfer:form:new_owner' => "Type the name of the new owner",
 		'blog_tools:transfer:form:submit' => "Transfer",
 		
+		// settings
+		'blog_tools:settings:listing:image_align' => "Blog listing image align",
+		'blog_tools:settings:listing:image_size' => "Blog listing image size",
+		
+		'blog_tools:settings:full:image_align' => "Blog full view image align",
+		'blog_tools:settings:full:image_size' => "Blog full view image size",
+		
+		'blog_tools:settings:align:none' => "No image",
+		'blog_tools:settings:align:left' => "Left",
+		'blog_tools:settings:align:right' => "Right",
+		
+		'blog_tools:settings:size:tiny' => "Tiny (16x16)",
+		'blog_tools:settings:size:small' => "Small (40x40)",
+		'blog_tools:settings:size:medium' => "Medium (100x100)",
+		'blog_tools:settings:size:large' => "Large (200x200)",
+		
 		// actions
 		'blog_tools:action:error:input' => "Incorrect input to perform this action",
 		'blog_tools:action:error:guid' => "The given GUID didn't result in an entity",
