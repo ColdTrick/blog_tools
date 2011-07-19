@@ -32,11 +32,11 @@
 	}
 	
 	if(empty($full_align)) {
-		$full_align = "left";
+		$full_align = "right";
 	}
 	
 	if(empty($full_size)) {
-		$full_size = "medium";
+		$full_size = "large";
 	}
 ?>
 <div>
