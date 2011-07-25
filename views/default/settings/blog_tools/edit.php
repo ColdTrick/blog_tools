@@ -16,6 +16,11 @@
 		"large" => elgg_echo("blog_tools:settings:size:large"),
 	);
 	
+	$strapline_options = array(
+		"default" => elgg_echo("blog_tools:settings:strapline:default"),
+		"time" => elgg_echo("blog_tools:settings:strapline:time")
+	);
+	
 	// get settings
 	$listing_align = $plugin->listing_align;
 	$listing_size = $plugin->listing_size;
@@ -39,6 +44,12 @@
 		$full_size = "large";
 	}
 ?>
+<div>
+	<?php 
+		echo elgg_echo("blog_tools:settings:listing:strapline");
+		echo "&nbsp;" . elgg_view("input/pulldown", array("internalname" => "params[listing_strapline]", "options_values" => $strapline_options, "value" => $plugin->listing_strapline));
+	?>
+</div>
 <div>
 	<?php 
 		echo elgg_echo("blog_tools:settings:listing:image_align");

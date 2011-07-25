@@ -35,9 +35,16 @@
 				}
 			}
 			
+			$icon_class = "";
+			$info_class = "";
+			
 			// show icon
 			if(!empty($entity->icontime) && ($icon_align != "none")) {
 				$show_icon = true;
+				
+				if($icon_align == "right"){
+					$icon_class = "blog_tools_blog_image_right";
+				}
 			} else {
 				$show_icon = false;
 			}
@@ -67,23 +74,11 @@
 <div class="contentWrapper singleview">
 	
 	<div class="blog_post">
-		<?php 
-			$icon_class = "";
-			$info_class = "";
-			
-			if($show_icon){
-				if($icon_align == "right"){
-					$icon_class = "blog_tools_blog_image_right";
-					$info_class = "blog_tools_blog_info_right";
-				}
-				echo "<div class='blog_tools_blog_image " . $icon_class . "'><img src='" . $vars["entity"]->getIcon($icon_size) . "'></div>";
-			}
-		?>
 		<h3><?php echo elgg_view("output/url", array("href" => $url, "text" => $entity->title)); ?></h3>
 		<?php 
-			if($full_view){ 
+			if($full_view || (!$full_view && (get_plugin_setting("listing_strapline", "blog_tools") != "time"))){ 
 		?>
-			<div class="blog_tools_info_wrapper <?php echo $info_class; ?>">
+			<div class="blog_tools_info_wrapper">
 				<div class="blog_post_icon">
 			    <?php
 			        echo elgg_view("profile/icon",array('entity' => $owner, 'size' => 'tiny'));
@@ -128,11 +123,16 @@
 					}
 				
 				?>
+				<div class="clearfloat"></div>
 			</div>
 		<?php
-		}
-		?>
+			}
 			
+			// blog icon
+			if($show_icon){
+				echo "<div class='blog_tools_blog_image " . $icon_class . "'><img src='" . $vars["entity"]->getIcon($icon_size) . "'></div>";
+			}
+		?>
 		<!-- display the actual blog post -->
 		<?php
 			// see if we need to display the full post or just an excerpt
@@ -140,7 +140,11 @@
 				echo $entity->description;
 				echo "<div class='clearfloat'></div>";
 			} else {
-				$body = date("F j, Y", $entity->time_created) . " - ";
+				$body = "";
+				if(get_plugin_setting("listing_strapline", "blog_tools") == "time"){
+					$body .= date("F j, Y", $entity->time_created) . " - ";
+				}
+				// show an expert of the blog
 				$body .= elgg_get_excerpt($entity->description, 450);
 				
 				// add a "read more" link if cropped.

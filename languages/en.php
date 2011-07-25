@@ -34,6 +34,11 @@
 		'blog_tools:settings:size:medium' => "Medium (100x100)",
 		'blog_tools:settings:size:large' => "Large (200x200)",
 		
+		'blog_tools:settings:listing:strapline' => "Show strapline in listing",
+		'blog_tools:settings:strapline:default' => "Default (owner and tags)",
+		'blog_tools:settings:strapline:time' => "Time only",
+		
+		
 		// actions
 		'blog_tools:action:error:input' => "Incorrect input to perform this action",
 		'blog_tools:action:error:guid' => "The given GUID didn't result in an entity",
