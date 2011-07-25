@@ -52,7 +52,16 @@
 		'blog_tools:action:transfer:error:transfer' => "An unknown error occured while transfering the blog, please try again",
 		'blog_tools:action:transfer:success' => "Blog successfully transfered",
 		
-		'' => "",
+		// widget
+		'blog_tools:widgets:index_blog:name' => "Blogs",
+		'blog_tools:widgets:index_blog:description' => "Show the latest blogs on your community",
+		
+		'blog_tools:widgets:index_blog:blog_count' => "How many blogs to show",
+		'blog_tools:widgets:index_blog:view_mode' => "How to view the blogs",
+		'blog_tools:widgets:index_blog:view_mode:list' => "List",
+		'blog_tools:widgets:index_blog:view_mode:preview' => "Preview",
+		
+		'blog_tools:widgets:index_blog:no_result' => "No blogs were found",
 	);
 	
 	add_translation("en", $english);

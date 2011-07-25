@@ -29,13 +29,8 @@
 	if($content = elgg_list_entities_from_metadata($options)){
 		echo $content;
 		
-		if($widget->context != "index"){
-			$blogurl = $vars["url"] . "pg/blog/owner/" . $widget->getOwnerEntity()->username;
-		} else {
-			$blogurl = $vars["url"] . "pg/blog/all/";
-		}
 		echo "<div class='widget_more_wrapper'>";
-		echo elgg_view("output/url", array("href" => $blogurl, "text" => elgg_echo("blog:moreblogs")));
+		echo elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/owner/" . $widget->getOwnerEntity()->username, "text" => elgg_echo("blog:moreblogs")));
 		echo "</div>";
 	} else {
 		echo elgg_view("page_elements/contentwrapper", array("body" => elgg_echo("blog_tools:no_blogs")));
