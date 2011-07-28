@@ -6,7 +6,7 @@
 	 * @package ElggBlog
 	 * @uses $entity Optionally, the blog post to view
 	 */
-		if (isset($vars["entity"]) && ($vars["entity"] instanceof ElggObject)) {
+		if (isset($vars["entity"])) {
 			$entity = $vars["entity"];
 			$full_view = $vars["full"];
 			
@@ -56,7 +56,7 @@
 				$comments_on = true;
 			}
 			
-			if ((get_context() == "search")) {
+			if ((get_context() == "search") && ($entity instanceof ElggObject)) {
 				
 				//display the correct layout depending on gallery or list view
 				if (get_input('search_viewtype') == "gallery") {
@@ -67,14 +67,20 @@
 				}
 			} else {
 			
-				$url = $entity->getURL();
-				$owner = $entity->getOwnerEntity();
-				$canedit = $entity->canEdit();
+				if($entity instanceof ElggObject){
+					$url = $entity->getURL();
+					$owner = $entity->getOwnerEntity();
+					$canedit = $entity->canEdit();
+				} else {
+					$url = 'javascript:history.go(-1);';
+					$owner = $vars['user'];
+					$canedit = false;
+				}
 ?>
 <div class="contentWrapper singleview">
 	
 	<div class="blog_post">
-		<h3><?php echo elgg_view("output/url", array("href" => $url, "text" => $entity->title)); ?></h3>
+		<h3><a href="<?php echo $url; ?>"><?php echo $entity->title; ?></a></h3>
 		<?php 
 			if($full_view || (!$full_view && (get_plugin_setting("listing_strapline", "blog_tools") != "time"))){ 
 		?>
@@ -95,8 +101,8 @@
 						echo "&nbsp;" . elgg_echo('by');
 						echo "&nbsp;" . elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/owner/" . $owner->username, "text" => $owner->name));
 						
-						if($comments_on){
-				        	//get the number of comments
+						if($comments_on && ($entity instanceof ElggObject)){
+				        	// get the number of comments
 				    		$num_comments = elgg_count_comments($entity);
 				    		
 				    		echo "&nbsp;" . elgg_view("output/url", array("href" => $url, "text" => elgg_echo("comments") . " (" . $num_comments . ")"));
@@ -161,7 +167,7 @@
 		
 		<?php
 			if ($canedit) {
-				// display edit options if it is the blog post owner
+// 				display edit options if it is the blog post owner
 				echo "<p class='options'>";
 				 
 				echo elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/edit/" . $vars["entity"]->getGUID(), "text" => elgg_echo("edit")));
@@ -174,13 +180,13 @@
 					'confirm' => elgg_echo('deleteconfirm'),
 				));
 
-				// Allow the menu to be extended
+// 				Allow the menu to be extended
 				echo elgg_view("editmenu",array('entity' => $entity));
 				
 				echo "</p>";
 			}
 
-			if($full_view){
+			if($full_view && ($entity instanceof ElggObject)){
 				// Add This view
 				echo elgg_view("addthis/extend");
 			}
