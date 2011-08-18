@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin_manifest>
 	<field key="author" value="ColdTrick IT Solutions" />
-	<field key="version" value="1.1" />
+	<field key="version" value="1.1.1" />
 	<field key="description" value="Adds a image to a blog" />
 	<field key="website" value="http://www.coldtrick.com/" />
 	<field key="licence" value="GNU Public License version 2" />
@@ -12,7 +12,7 @@
 =====================
 Version history
 =====================
-x.x:
+1.1.1 (2011-08-18):
 	- fixed: broken preview mode
 	- fixed: preview/draft not cleaning up correctly in edit mode
 
