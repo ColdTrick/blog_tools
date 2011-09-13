@@ -6,31 +6,40 @@
 	 * @package ElggBlog
 	 * @uses $entity Optionally, the blog post to view
 	 */
-		if (isset($vars["entity"])) {
+		$context = get_context();
+		if (isset($vars["entity"])) 
+		{
 			$entity = $vars["entity"];
 			$full_view = $vars["full"];
 			
 			// get icon settings
-			if($full_view){
+			if($full_view)
+			{
 				$icon_align = get_plugin_setting("full_align", "blog_tools");
 				$icon_size = get_plugin_setting("full_size", "blog_tools");
 				
-				if(empty($icon_align)){
+				if(empty($icon_align))
+				{
 					$icon_align = "right";
 				}
 				
-				if(empty($icon_size)){
+				if(empty($icon_size))
+				{
 					$icon_size = "large";
 				}
-			} else {
+			} 
+			else 
+			{
 				$icon_align = get_plugin_setting("listing_align", "blog_tools");
 				$icon_size = get_plugin_setting("listing_size", "blog_tools");
 				
-				if(empty($icon_align)){
+				if(empty($icon_align))
+				{
 					$icon_align = "left";
 				}
 				
-				if(empty($icon_size)){
+				if(empty($icon_size))
+				{
 					$icon_size = "small";
 				}
 			}
@@ -56,7 +65,7 @@
 				$comments_on = true;
 			}
 			
-			if ((get_context() == "search") && ($entity instanceof ElggObject)) {
+			if (($context == "search") && ($entity instanceof ElggObject)) {
 				
 				//display the correct layout depending on gallery or list view
 				if (get_input('search_viewtype') == "gallery") {
@@ -76,6 +85,9 @@
 					$owner = $vars['user'];
 					$canedit = false;
 				}
+				
+			
+				echo "<div id='widget_blog_item_" . $entity->getGUID() . "'>";
 ?>
 <div class="contentWrapper singleview">
 	
@@ -146,6 +158,7 @@
 				echo $entity->description;
 				echo "<div class='clearfloat'></div>";
 			} else {
+				
 				$body = "";
 				if(get_plugin_setting("listing_strapline", "blog_tools") == "time"){
 					$body .= date("F j, Y", $entity->time_created) . " - ";
@@ -159,6 +172,7 @@
 				}
 				
 				echo $body;
+				
 				echo "<div class='clearfloat'></div>";
 			}
 		
@@ -193,9 +207,9 @@
 		?>
 	</div>
 </div>
+</div>
 
-<?php
-				
+<?php	
 		}
 
 	}
