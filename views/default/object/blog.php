@@ -7,39 +7,31 @@
 	 * @uses $entity Optionally, the blog post to view
 	 */
 		$context = get_context();
-		if (isset($vars["entity"])) 
-		{
+		if (isset($vars["entity"])) {
 			$entity = $vars["entity"];
 			$full_view = $vars["full"];
 			
 			// get icon settings
-			if($full_view)
-			{
+			if($full_view) {
 				$icon_align = get_plugin_setting("full_align", "blog_tools");
 				$icon_size = get_plugin_setting("full_size", "blog_tools");
 				
-				if(empty($icon_align))
-				{
+				if(empty($icon_align)) {
 					$icon_align = "right";
 				}
 				
-				if(empty($icon_size))
-				{
+				if(empty($icon_size)) {
 					$icon_size = "large";
 				}
-			} 
-			else 
-			{
+			} else {
 				$icon_align = get_plugin_setting("listing_align", "blog_tools");
 				$icon_size = get_plugin_setting("listing_size", "blog_tools");
 				
-				if(empty($icon_align))
-				{
+				if(empty($icon_align)) {
 					$icon_align = "left";
 				}
 				
-				if(empty($icon_size))
-				{
+				if(empty($icon_size)) {
 					$icon_size = "small";
 				}
 			}
@@ -86,10 +78,11 @@
 					$canedit = false;
 				}
 				
-			
-				echo "<div id='widget_blog_item_" . $entity->getGUID() . "'>";
+				if($context == "slider"){
+					$blog_id = "id='blog_tools_blog_" . $entity->getGUID() . "'";
+				}
 ?>
-<div class="contentWrapper singleview">
+<div <?php echo $blog_id; ?> class="contentWrapper singleview">
 	
 	<div class="blog_post">
 		<h3><a href="<?php echo $url; ?>"><?php echo $entity->title; ?></a></h3>
@@ -207,8 +200,6 @@
 		?>
 	</div>
 </div>
-</div>
-
 <?php	
 		}
 

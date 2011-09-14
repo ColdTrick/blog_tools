@@ -60,6 +60,7 @@
 		'blog_tools:widgets:index_blog:view_mode' => "How to view the blogs",
 		'blog_tools:widgets:index_blog:view_mode:list' => "List",
 		'blog_tools:widgets:index_blog:view_mode:preview' => "Preview",
+		'blog_tools:widgets:index_blog:view_mode:slider' => "Slider",
 		
 		'blog_tools:widgets:index_blog:no_result' => "No blogs were found",
 	);

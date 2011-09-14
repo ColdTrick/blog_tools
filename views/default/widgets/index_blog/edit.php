@@ -14,8 +14,8 @@
 	);
 	
 	$noyes_options = array(
-			"no" => elgg_echo("option:no"),
-			"yes" => elgg_echo("option:yes")
+		"no" => elgg_echo("option:no"),
+		"yes" => elgg_echo("option:yes")
 	);
 
 ?>

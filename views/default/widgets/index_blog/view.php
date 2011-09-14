@@ -10,13 +10,10 @@
 
 	// backup context and set
 	$old_context = get_context();
-	if($widget->view_mode != "preview"){
-		set_context("search");
-	}
-	
-	if($widget->view_mode == 'slider')
-	{
+	if($widget->view_mode == 'slider') {
 		set_context("slider");
+	} elseif($widget->view_mode != "preview"){
+		set_context("search");
 	}
 	
 	$options = array(
@@ -28,64 +25,60 @@
 		"view_type_toggle" => false
 	);
 	
-	if($widget->show_featured == "yes")
-	{
+	if($widget->show_featured == "yes") {
 		$options["metadata_name_value_pairs"] = array("featured" => true);
 	}
 	
 	
-	if($blogs = elgg_list_entities_from_metadata($options))
-	{
-		if(get_context() == 'slider')
-		{
-			$blog_entities =  elgg_get_entities_from_metadata($options);
+	if($blogs = elgg_list_entities_from_metadata($options)) {
+		if($widget->view_mode == 'slider') {
+			$blog_entities = elgg_get_entities_from_metadata($options);
 			
-			echo '<div class="contentWrapper">
-						<div id="widget_blog_items_container">'; 
-					echo $blogs;						
-				echo "</div>";
+			echo "<div class='widget_more_wrapper'>";
 			
-			echo "<div id='widget_blog_items_navigator'>";
+			echo "<div id='blog_tools_widget_items_container_" . $widget->getGUID() . "' class='blog_tools_widget_items_container'>"; 
+			echo $blogs;						
+			echo "</div>";
 			
-				foreach($blog_entities as $key => $blog)
-				{
-					echo "<span rel='widget_blog_item_" . $blog->getGUID() . "'>" . ($key + 1). "</span>";
-				}
-				
+			echo "<div id='blog_tools_widget_items_navigator_" . $widget->getGUID() . "' class='blog_tools_widget_items_navigator'>";
+			
+			foreach($blog_entities as $key => $blog) {
+				echo "<span rel='blog_tools_blog_" . $blog->getGUID() . "'>" . ($key + 1). "</span>";
+			}
+			
+			echo "</div>";
+			
 			?>
-			</div>
 			<script type="text/javascript">
-				function rotateBlogItems(){
-					if($("#widget_blog_items_navigator .active").next().length === 0){
-						$("#widget_blog_items_navigator>span:first").click();
+				function rotateBlogItems<?php echo $widget->getGUID(); ?>(){
+					if($("#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> .active").next().length === 0){
+						$("#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?>>span:first").click();
 					} else {
-						$("#widget_blog_items_navigator .active").next().click();
+						$("#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> .active").next().click();
 					}
 				}
 			
 				$(document).ready(function(){
-					$("#widget_blog_items_navigator>span:first").addClass("active");
-					var active = $("#widget_blog_items_navigator>span:first").attr("rel");
-					$("#" + active).show();
+					$("#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?>>span:first").addClass("active");
+					var active = $("#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?>>span:first").attr("rel");
+					$("#blog_tools_widget_items_container_<?php echo $widget->getGUID(); ?> #" + active).show();
 	
-					$("#widget_blog_items_navigator span").click(function(){
-						$("#widget_blog_items_navigator span.active").removeClass("active");
+					$("#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> span").click(function(){
+						$("#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> span.active").removeClass("active");
 						$(this).addClass("active");
 	
-						$("#widget_blog_items_container>div").hide();
+						$("#blog_tools_widget_items_container_<?php echo $widget->getGUID(); ?>>div").hide();
 						var active = $(this).attr("rel");
-						$("#" + active).show();
+						$("#blog_tools_widget_items_container_<?php echo $widget->getGUID(); ?> #" + active).show();
 					});
 					
-					setInterval (rotateBlogItems, 10000);
-		
+					setInterval (rotateBlogItems<?php echo $widget->getGUID(); ?>, 10000);
 				});
 			</script>
-			</div>
-			<?php 
-		}
-		else
-		{
+			<?php
+			echo "</div>"; // end widget_more_wrapper
+			
+		} else {
 			echo $blogs;
 		}
 	} else {

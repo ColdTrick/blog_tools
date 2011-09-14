@@ -30,30 +30,33 @@
 	margin: 0 5px 0 0;
 }
 
-#widget_blog_items_container > div {
+.blog_tools_widget_items_container > div {
 	display: none;
 }
-#widget_blog_items_navigator {
+
+.blog_tools_widget_items_container .groupicon {
+	float: left;
+	margin-right: 20px;
+}
+
+.blog_tools_widget_items_navigator {
 	border-top: 1px dotted #CCCCCC;
 	padding-top: 5px;
 	text-align: center;
 }
-#widget_blog_items_navigator > span {
+
+.blog_tools_widget_items_navigator > span {
 	border: 1px solid #CCCCCC;
 	cursor: pointer;
 	padding: 2px 4px;
 	margin: 0 2px;
 }
 
-#widget_blog_items_navigator > span.active,
-#widget_blog_items_navigator > span:hover {
+.blog_tools_widget_items_navigator > span.active,
+.blog_tools_widget_items_navigator > span:hover {
 	background: #CCCCCC;
 }
 
-#widget_blog_items_navigator > span.active {
+.blog_tools_widget_items_navigator > span.active {
 	cursor: auto;
-}
-#widget_blog_items_container .groupicon{
-	float: left;
-	margin-right: 20px;
 }
