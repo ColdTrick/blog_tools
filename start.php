@@ -38,6 +38,8 @@
 	// register default elgg events
 	register_elgg_event_handler("init", "system", "blog_tools_init");	
 
+	register_elgg_event_handler("delete", "object", "blog_tools_delete_handler");
+	
 	// register actions
 	register_action("blog_tools/toggle_metadata", false, dirname(__FILE__) . "/actions/toggle_metadata.php", true);
 	register_action("blog_tools/transfer", false, dirname(__FILE__) . "/actions/transfer.php", true);

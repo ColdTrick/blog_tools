@@ -64,7 +64,7 @@
 				$remove_icon = get_input("remove_icon");
 				
 				if($remove_icon && ($remove_icon[0] == "remove")){
-					
+					$sizes = array("tiny", "small", "medium", "large");
 					$prefix = "blogs/" . $blog->getGUID();
 					
 					$filehandler = new ElggFile();
@@ -74,17 +74,10 @@
 					if($filehandler->exists()){
 						$filehandler->delete();
 						
-						$filehandler->setFilename($prefix . "tiny.jpg");
-						$filehandler->delete();
-						
-						$filehandler->setFilename($prefix . "small.jpg");
-						$filehandler->delete();
-						
-						$filehandler->setFilename($prefix . "medium.jpg");
-						$filehandler->delete();
-						
-						$filehandler->setFilename($prefix . "large.jpg");
-						$filehandler->delete();
+						foreach($sizes as $size){
+							$filehandler->setFilename($prefix . $size . ".jpg");
+							$filehandler->delete();
+						}
 						
 						unset($blog->icontime);
 					}
