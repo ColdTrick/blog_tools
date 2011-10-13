@@ -1,6 +1,7 @@
 <?php
 
 	require_once(dirname(__FILE__) . "/lib/functions.php");
+	require_once(dirname(__FILE__) . "/lib/hooks.php");
 	require_once(dirname(__FILE__) . "/lib/page_handlers.php");
 
 	function blog_tools_init(){
@@ -30,29 +31,6 @@
 			add_widget_type("index_blog", elgg_echo("blog_tools:widgets:index_blog:name"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
 			if(is_callable("add_widget_title_link")){
 				add_widget_title_link("index_blog", "[BASEURL]pg/blog/all/");
-			}
-		}
-	}
-	
-	function blog_tools_icon_hook($hook, $entity_type, $returnvalue, $params) {
-		global $CONFIG;
-
-		if ((!$returnvalue) && ($hook == "entity:icon:url") && ($params["entity"]->getSubtype() == "blog")) {
-			$entity = $params["entity"];
-			$size = $params["size"];
-
-			if ($icontime = $entity->icontime) {
-				$icontime = "{$icontime}";
-			
-				$filehandler = new ElggFile();
-				$filehandler->owner_guid = $entity->getOwner();
-				$filehandler->setFilename("blogs/" . $entity->getGUID() . $size . ".jpg");
-	
-				if ($filehandler->exists()) {
-					$url = $CONFIG->wwwroot . "pg/blogicon/{$entity->getGUID()}/$size/$icontime.jpg";
-					
-					return $url;
-				}
 			}
 		}
 	}

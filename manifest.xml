@@ -14,6 +14,7 @@ Version history
 =====================
 x.x :
 	- added: widget slider view (#4)
+	- changed: moved some functions
 	
 1.1.1 (2011-08-18):
 	- fixed: broken preview mode
