@@ -2,8 +2,9 @@
 
 	require_once(dirname(__FILE__) . "/lib/functions.php");
 	require_once(dirname(__FILE__) . "/lib/hooks.php");
+	require_once(dirname(__FILE__) . "/lib/events.php");
 	require_once(dirname(__FILE__) . "/lib/page_handlers.php");
-
+	
 	function blog_tools_init(){
 		
 		if(is_plugin_enabled("blog")){
