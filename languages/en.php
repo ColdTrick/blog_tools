@@ -12,6 +12,11 @@
 		'blog_tools:widget:featured' => "Show only featured blogs?",
 		
 		// views
+		// blog edit
+		'blog_tools:label:icon:exists' => "Upload icon (leave empty to keep current icon)",
+		'blog_tools:label:icon:new' => "Upload icon",
+		'blog_tools:label:icon:remove' => "Remove icon",
+	
 		// transfer owner
 		'blog_tools:transfer:title' => "Transfer owner of: %s",
 		'blog_tools:transfer:description' => "Here you can transfer the ownership of the blog. Type the name (or username) of the new owner and select him/her from the list. Then click on Transfer and the blog will be transfered.",

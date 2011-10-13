@@ -1,8 +1,6 @@
 <?php
 
 	function blog_tools_icon_handler($page) {
-		global $CONFIG;
-	
 		// The username should be the file we"re getting
 		if (isset($page[0])) {
 			set_input("guid",$page[0]);
@@ -18,6 +16,18 @@
 	function blog_tools_blog_page_handler($page, $handler){
 	
 		switch($page[0]){
+			case "add":
+			case "edit":
+				set_input("page_type", $page[0]);
+				if(isset($page[1])){
+					set_input("guid", $page[1]);
+				}
+				if(isset($page[2])){
+					set_input("revision", $page[2]);
+				}
+				
+				include(dirname(dirname(__FILE__)) . "/pages/edit.php");
+				break;
 			case "transfer":
 				if(isset($page[1])){
 					set_input("guid", $page[1]);
@@ -34,11 +44,11 @@
 	function blog_tools_livesearch_page_handler($page, $handler){
 		global $CONFIG;
 		
-		if(!isloggedin()){
+		if(!elgg_is_logged_in()){
 			exit();
 		}
 		
-		if(!($q = get_input("q"))){
+		if(!($q = get_input("term"))){
 			exit();
 		}
 		

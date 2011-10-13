@@ -47,30 +47,30 @@
 <div>
 	<?php 
 		echo elgg_echo("blog_tools:settings:listing:strapline");
-		echo "&nbsp;" . elgg_view("input/pulldown", array("internalname" => "params[listing_strapline]", "options_values" => $strapline_options, "value" => $plugin->listing_strapline));
+		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[listing_strapline]", "options_values" => $strapline_options, "value" => $plugin->listing_strapline));
 	?>
 </div>
 <div>
 	<?php 
 		echo elgg_echo("blog_tools:settings:listing:image_align");
-		echo "&nbsp;" . elgg_view("input/pulldown", array("internalname" => "params[listing_align]", "options_values" => $align_options, "value" => $listing_align));
+		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[listing_align]", "options_values" => $align_options, "value" => $listing_align));
 	?>
 </div>
 <div>
 	<?php 
 		echo elgg_echo("blog_tools:settings:listing:image_size");
-		echo "&nbsp;" . elgg_view("input/pulldown", array("internalname" => "params[listing_size]", "options_values" => $size_options, "value" => $listing_size));
+		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[listing_size]", "options_values" => $size_options, "value" => $listing_size));
 	?>
 </div>
 <div>
 	<?php 
 		echo elgg_echo("blog_tools:settings:full:image_align");
-		echo "&nbsp;" . elgg_view("input/pulldown", array("internalname" => "params[full_align]", "options_values" => $align_options, "value" => $full_align));
+		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[full_align]", "options_values" => $align_options, "value" => $full_align));
 	?>
 </div>
 <div>
 	<?php 
 		echo elgg_echo("blog_tools:settings:full:image_size");
-		echo "&nbsp;" . elgg_view("input/pulldown", array("internalname" => "params[full_size]", "options_values" => $size_options, "value" => $full_size));
+		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[full_size]", "options_values" => $size_options, "value" => $full_size));
 	?>
 </div>

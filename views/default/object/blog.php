@@ -1,206 +1,153 @@
 <?php
-
 	/**
-	 * Elgg blog individual post view
-	 * 
-	 * @package ElggBlog
-	 * @uses $entity Optionally, the blog post to view
+	 * View for blog objects
+	 *
+	 * @package Blog
 	 */
-		$context = get_context();
-		if (isset($vars["entity"])) {
-			$entity = $vars["entity"];
-			$full_view = $vars["full"];
-			
-			// get icon settings
-			if($full_view) {
-				$icon_align = get_plugin_setting("full_align", "blog_tools");
-				$icon_size = get_plugin_setting("full_size", "blog_tools");
-				
-				if(empty($icon_align)) {
-					$icon_align = "right";
-				}
-				
-				if(empty($icon_size)) {
-					$icon_size = "large";
-				}
-			} else {
-				$icon_align = get_plugin_setting("listing_align", "blog_tools");
-				$icon_size = get_plugin_setting("listing_size", "blog_tools");
-				
-				if(empty($icon_align)) {
-					$icon_align = "left";
-				}
-				
-				if(empty($icon_size)) {
-					$icon_size = "small";
-				}
-			}
-			
-			$icon_class = "";
-			$info_class = "";
-			
-			// show icon
-			if(!empty($entity->icontime) && ($icon_align != "none")) {
-				$show_icon = true;
-				
-				if($icon_align == "right"){
-					$icon_class = "blog_tools_blog_image_right";
-				}
-			} else {
-				$show_icon = false;
-			}
-			
-			//display comments link?
-			if ($entity->comments_on == 'Off') {
-				$comments_on = false;
-			} else {
-				$comments_on = true;
-			}
-			
-			if (($context == "search") && ($entity instanceof ElggObject)) {
-				
-				//display the correct layout depending on gallery or list view
-				if (get_input('search_viewtype') == "gallery") {
-					//display the gallery view
-            		echo elgg_view("blog/gallery", $vars);
-				} else {
-					echo elgg_view("blog/listing", $vars);
-				}
-			} else {
-			
-				if($entity instanceof ElggObject){
-					$url = $entity->getURL();
-					$owner = $entity->getOwnerEntity();
-					$canedit = $entity->canEdit();
-				} else {
-					$url = 'javascript:history.go(-1);';
-					$owner = $vars['user'];
-					$canedit = false;
-				}
-				
-				if($context == "slider"){
-					$blog_id = "id='blog_tools_blog_" . $entity->getGUID() . "'";
-				}
-?>
-<div <?php echo $blog_id; ?> class="contentWrapper singleview">
 	
-	<div class="blog_post">
-		<h3><a href="<?php echo $url; ?>"><?php echo $entity->title; ?></a></h3>
-		<?php 
-			if($full_view || (!$full_view && (get_plugin_setting("listing_strapline", "blog_tools") != "time"))){ 
-		?>
-			<div class="blog_tools_info_wrapper">
-				<div class="blog_post_icon">
-			    <?php
-			        echo elgg_view("profile/icon",array('entity' => $owner, 'size' => 'tiny'));
-				?>
-		    	</div>
-		    	
-				<p class="strapline">
-					<?php
-		                
-						echo sprintf(elgg_echo("blog:strapline"),
-										date("F j, Y", $entity->time_created)
-						);
-						
-						echo "&nbsp;" . elgg_echo('by');
-						echo "&nbsp;" . elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/owner/" . $owner->username, "text" => $owner->name));
-						
-						if($comments_on && ($entity instanceof ElggObject)){
-				        	// get the number of comments
-				    		$num_comments = elgg_count_comments($entity);
-				    		
-				    		echo "&nbsp;" . elgg_view("output/url", array("href" => $url, "text" => elgg_echo("comments") . " (" . $num_comments . ")"));
-				    	}
-			    	?>
-				</p>
-				<!-- display tags -->
-				<?php
+	$full = elgg_extract('full_view', $vars, FALSE);
+	$blog = elgg_extract('entity', $vars, FALSE);
 	
-					$tags = elgg_view('output/tags', array('tags' => $entity->tags));
-					if (!empty($tags)) {
-						echo '<p class="tags">' . $tags . '</p>';
-					}
-				
-					$categories = elgg_view('categories/view', $vars);
-					if (!empty($categories)) {
-						$cat_class = "";
-						if(!empty($tags)){
-							echo ",&nbsp;";
-						} else {
-							$cat_class = "blog_tools_categories_no_tags";
-						}
-						echo "<p class='categories " . $cat_class . "'>" . $categories . "</p>";
-					}
-				
-				?>
-				<div class="clearfloat"></div>
-			</div>
-		<?php
-			}
-			
-			// blog icon
-			if($show_icon){
-				echo "<div class='blog_tools_blog_image " . $icon_class . "'><img src='" . $vars["entity"]->getIcon($icon_size) . "'></div>";
-			}
-		?>
-		<!-- display the actual blog post -->
-		<?php
-			// see if we need to display the full post or just an excerpt
-			if ($full_view) {
-				echo $entity->description;
-				echo "<div class='clearfloat'></div>";
-			} else {
-				
-				$body = "";
-				if(get_plugin_setting("listing_strapline", "blog_tools") == "time"){
-					$body .= date("F j, Y", $entity->time_created) . " - ";
-				}
-				// show an expert of the blog
-				$body .= elgg_get_excerpt($entity->description, 450);
-				
-				// add a "read more" link if cropped.
-				if (elgg_substr($body, -3, 3) == '...') {
-					$body .= "&nbsp;" . elgg_view("output/url", array("href" => $entity->getURL(), "text" => strtolower(elgg_echo('more'))));
-				}
-				
-				echo $body;
-				
-				echo "<div class='clearfloat'></div>";
-			}
-		
-		?>
-		<div class="clearfloat"></div>			
-		
-		<?php
-			if ($canedit) {
-// 				display edit options if it is the blog post owner
-				echo "<p class='options'>";
-				 
-				echo elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/edit/" . $vars["entity"]->getGUID(), "text" => elgg_echo("edit")));
-				
-				echo "&nbsp;&nbsp;&nbsp;&nbsp;";
-				
-				echo elgg_view("output/confirmlink", array(
-					'href' => $vars['url'] . "action/blog/delete?blogpost=" . $entity->getGUID(),
-					'text' => elgg_echo('delete'),
-					'confirm' => elgg_echo('deleteconfirm'),
-				));
-
-// 				Allow the menu to be extended
-				echo elgg_view("editmenu",array('entity' => $entity));
-				
-				echo "</p>";
-			}
-
-			if($full_view && ($entity instanceof ElggObject)){
-				// Add This view
-				echo elgg_view("addthis/extend");
-			}
-		?>
-	</div>
-</div>
-<?php	
+	if (!$blog) {
+		return TRUE;
+	}
+	
+	$owner = $blog->getOwnerEntity();
+	$container = $blog->getContainerEntity();
+	$categories = elgg_view('output/categories', $vars);
+	$excerpt = $blog->excerpt;
+	
+	$owner_icon = elgg_view_entity_icon($owner, 'tiny');
+	$owner_link = elgg_view('output/url', array(
+		'href' => "blog/owner/$owner->username",
+		'text' => $owner->name,
+	));
+	$author_text = elgg_echo('byline', array($owner_link));
+	$tags = elgg_view('output/tags', array('tags' => $blog->tags));
+	$date = elgg_view_friendly_time($blog->time_created);
+	
+	// The "on" status changes for comments, so best to check for !Off
+	if ($blog->comments_on != 'Off') {
+		$comments_count = $blog->countComments();
+		//only display if there are commments
+		if ($comments_count != 0) {
+			$text = elgg_echo("comments") . " ($comments_count)";
+			$comments_link = elgg_view('output/url', array(
+				'href' => $blog->getURL() . '#blog-comments',
+				'text' => $text,
+			));
+		} else {
+			$comments_link = '';
 		}
-
+	} else {
+		$comments_link = '';
+	}
+	
+	// get icon settings
+	if($full) {
+		$icon_align = elgg_get_plugin_setting("full_align", "blog_tools");
+		$icon_size = elgg_get_plugin_setting("full_size", "blog_tools");
+	
+		if(empty($icon_align)) {
+			$icon_align = "right";
+		}
+	
+		if(empty($icon_size)) {
+			$icon_size = "large";
+		}
+	} else {
+		$icon_align = elgg_get_plugin_setting("listing_align", "blog_tools");
+		$icon_size = elgg_get_plugin_setting("listing_size", "blog_tools");
+	
+		if(empty($icon_align)) {
+			$icon_align = "left";
+		}
+	
+		if(empty($icon_size)) {
+			$icon_size = "small";
+		}
+	}
+		
+	$icon_class = "";
+	$info_class = "";
+		
+	// show icon
+	if(!empty($blog->icontime) && ($icon_align != "none")) {
+		if($icon_align == "right"){
+			$icon_class = "blog_tools_blog_image_right";
+		}
+		
+		$blog_icon ="<div class='blog_tools_blog_image " . $icon_class . "'>";
+		$blog_icon .= "<img src='" . $vars["entity"]->getIconURL($icon_size) . "' />";
+		$blog_icon .= "</div>";
+	}
+	
+	$metadata = elgg_view_menu('entity', array(
+		'entity' => $vars['entity'],
+		'handler' => 'blog',
+		'sort_by' => 'priority',
+		'class' => 'elgg-menu-hz',
+	));
+	
+	$subtitle = "<p>$author_text $date $comments_link</p>";
+	$subtitle .= $categories;
+	
+	// do not show the metadata and controls in widget view
+	if (elgg_in_context('widgets')) {
+		$metadata = '';
+	}
+	
+	// Show blog
+	if ($full) {
+		// full view
+		$body = elgg_view('output/longtext', array(
+			'value' => $blog->description,
+			'class' => 'blog-post',
+		));
+	
+		$header = elgg_view_title($blog->title);
+	
+		$params = array(
+			'entity' => $blog,
+			'title' => false,
+			'metadata' => $metadata,
+			'subtitle' => $subtitle,
+			'tags' => $tags,
+		);
+		$params = $params + $vars;
+		$list_body = elgg_view('object/elements/summary', $params);
+	
+		$blog_info = elgg_view_image_block($owner_icon, $list_body);
+	
+		echo $header;
+		echo $blog_info;
+		echo $blog_icon;
+		echo $body;
+	
+	} else {
+		// prepend icon
+		$excerpt = $blog_icon . $excerpt;
+		
+		// how to show strapline
+		if(elgg_get_plugin_setting("listing_strapline", "blog_tools") == "time"){
+			$subtitle = "";
+			$tags = false;
+			
+			$excerpt = date("F j, Y", $blog->time_created) . " - " . $excerpt;
+		}
+		
+		// brief view
+		$params = array(
+			'entity' => $blog,
+			'metadata' => $metadata,
+			'subtitle' => $subtitle,
+			'tags' => $tags,
+			'content' => $excerpt,
+		);
+		
+		$params = $params + $vars;
+		
+		$list_body = elgg_view('object/elements/summary', $params);
+	
+		echo elgg_view_image_block($owner_icon, $list_body);
 	}

@@ -14,10 +14,10 @@
 				// backup original page handler
 				$BLOG_TOOLS_PAGE_HANDLER_BACKUP[$handler] = $CONFIG->pagehandler[$handler];
 				// register new handler
-				register_page_handler($handler, $function);
+				elgg_register_page_handler($handler, $function);
 				$result = true;
 			} else {
-				register_page_handler($handler, $function);
+				elgg_register_page_handler($handler, $function);
 				$result = true;
 			}
 		}

@@ -7,40 +7,41 @@
 	
 	function blog_tools_init(){
 		
-		if(is_plugin_enabled("blog")){
+		if(elgg_is_active_plugin("blog")){
 			// overrule blog actions
-			register_action("blog/add", false, dirname(__FILE__) . "/actions/blog/add.php");
-			register_action("blog/edit", false, dirname(__FILE__) . "/actions/blog/edit.php");
+			elgg_register_action('blog/save', dirname(__FILE__) . "/actions/blog/save.php");
 			
 			// Register an icon handler for blog
-			register_page_handler("blogicon", "blog_tools_icon_handler");
+			elgg_register_page_handler("blogicon", "blog_tools_icon_handler");
 			blog_tools_extend_page_handler("blog", "blog_tools_blog_page_handler");
 			blog_tools_extend_page_handler("livesearch", "blog_tools_livesearch_page_handler");
 			
 			// Now override icons
-			register_plugin_hook("entity:icon:url", "object", "blog_tools_icon_hook");
+			elgg_register_plugin_hook_handler("entity:icon:url", "object", "blog_tools_icon_hook");
+			
+			// get items in blog menu
+			elgg_register_plugin_hook_handler("register", "menu:entity", "blog_tools_entity_menu_setup");
 			
 			// extend css
-			elgg_extend_view("css", "fancybox/css");
 			elgg_extend_view("css", "blog_tools/css");
-			elgg_extend_view("metatags", "blog_tools/metatags");
 			
 			// extend editmenu
 			elgg_extend_view("editmenu", "blog_tools/editmenu");
 			
 			// register index widget
-			add_widget_type("index_blog", elgg_echo("blog_tools:widgets:index_blog:name"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
+			elgg_register_widget_type("index_blog", elgg_echo("blog_tools:widgets:index_blog:name"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
 			if(is_callable("add_widget_title_link")){
-				add_widget_title_link("index_blog", "[BASEURL]pg/blog/all/");
+				add_widget_title_link("index_blog", "[BASEURL]blog/all/");
 			}
+			
 		}
 	}
 	
 	// register default elgg events
-	register_elgg_event_handler("init", "system", "blog_tools_init");	
+	elgg_register_event_handler("init", "system", "blog_tools_init");	
 
-	register_elgg_event_handler("delete", "object", "blog_tools_delete_handler");
+	elgg_register_event_handler("delete", "object", "blog_tools_delete_handler");
 	
 	// register actions
-	register_action("blog_tools/toggle_metadata", false, dirname(__FILE__) . "/actions/toggle_metadata.php", true);
-	register_action("blog_tools/transfer", false, dirname(__FILE__) . "/actions/transfer.php", true);
+	elgg_register_action("blog_tools/toggle_metadata", dirname(__FILE__) . "/actions/toggle_metadata.php", "admin");
+	elgg_register_action("blog_tools/transfer", dirname(__FILE__) . "/actions/transfer.php", "admin");

@@ -1,37 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin_manifest>
-	<field key="author" value="ColdTrick IT Solutions" />
-	<field key="version" value="1.2.1" />
-	<field key="description" value="Adds a image to a blog" />
-	<field key="website" value="http://www.coldtrick.com/" />
-	<field key="licence" value="GNU Public License version 2" />
-	<field key="elgg_version" value="2010030101" />
-</plugin_manifest>
-<!--
-
-=====================
-Version history
-=====================
-1.2.1 (2011-10-13):
-	- fixed: blog slider widget
-	- fixed: delete thumbnail on delete blog (#2)
-	- changed: moved some functions
-
-1.2 (2011-09-12):
-	- added: widget slider view (#4)
+<plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
+	<name>Blog Tools</name>
+	<author>ColdTrick IT Solutions</author>
+	<version>1.2.1</version>
+	<blurb>Offers more functionality for blogs</blurb>
+	<description>Allows to add an image to blogs, transfer owner and many more extentions.</description>
+	<website>http://www.coldtrick.com/</website>
+	<copyright>(C) ColdTrick IT Solutions 2009 - 2011</copyright>
+	<license>GNU Public License version 2</license>
+ 	
+ 	<requires>
+		<type>elgg_version</type>
+		<version>2011061200</version>
+	</requires>
+	<requires>
+		<type>plugin</type>
+		<name>blog</name>
+		<priority>after</priority>
+	</requires>
+	<requires>
+		<type>priority</type>
+		<plugin>blog</plugin>
+		<priority>after</priority>
+	</requires>
 	
-1.1.1 (2011-08-18):
-	- fixed: broken preview mode
-	- fixed: preview/draft not cleaning up correctly in edit mode
-
-1.1 (2011-07-25):
-	- added: plugin setting to control strapline in listing
-	- added: index widget for blog
-
-1.0.1 (2011-05-25) :
-	- fixed: full blog layout without tags
-
-1.0 (2011-05-24):
-	- initial version
-
--->
+	<suggests>
+		<type>plugin</type>
+		<name>widget_manager</name>
+	</suggests>
+	
+	<category>ColdTrick</category>
+</plugin_manifest>
