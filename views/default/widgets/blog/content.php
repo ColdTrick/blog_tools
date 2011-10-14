@@ -10,13 +10,10 @@
 		$num = 4;
 	}
 
-	$context = get_context();
-	set_context('search');
-	
 	$options = array(
 		'type' => 'object', 
 		'subtype' => 'blog', 
-		'container_guid' => $widget->getOwner(), 
+		'container_guid' => $widget->getOwnerGUID(), 
 		'limit' => $num, 
 		'full_view' => false, 
 		'pagination' => false
@@ -29,13 +26,10 @@
 	if($content = elgg_list_entities_from_metadata($options)){
 		echo $content;
 		
-		echo "<div class='widget_more_wrapper'>";
+		echo "<div class='elgg-widget-more'>";
 		echo elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/owner/" . $widget->getOwnerEntity()->username, "text" => elgg_echo("blog:moreblogs")));
 		echo "</div>";
 	} else {
-		echo elgg_view("page_elements/contentwrapper", array("body" => elgg_echo("blog_tools:no_blogs")));
+		echo elgg_echo("blog_tools:no_blogs");
 	}
-	
-	set_context($context);
-	
 	

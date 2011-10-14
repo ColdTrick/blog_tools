@@ -9,11 +9,11 @@
 	}
 
 	// backup context and set
-	$old_context = get_context();
+	$old_context = elgg_get_context();
 	if($widget->view_mode == 'slider') {
-		set_context("slider");
+		elgg_set_context("slider");
 	} elseif($widget->view_mode != "preview"){
-		set_context("search");
+		elgg_set_context("search");
 	}
 	
 	$options = array(
@@ -82,9 +82,9 @@
 			echo $blogs;
 		}
 	} else {
-		echo elgg_view("page_elements/contentwrapper", array("body" => elgg_echo("blog_tools:widgets:index_blog:no_result")));
+		echo elgg_echo("blog_tools:widgets:index_blog:no_result");
 	}
 
 	// reset context
-	set_context($old_context);
-?>
+	elgg_set_context($old_context);
+	

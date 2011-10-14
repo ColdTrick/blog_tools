@@ -54,9 +54,12 @@
 					$result[] = ElggMenuItem::factory($options);
 					
 					// transfer owner link
+					// @todo: mak this work again
 					// need fancybox
-					elgg_load_js('lightbox');
-					elgg_load_css('lightbox');
+					/* 
+					elgg_load_js("lightbox");
+					elgg_load_css("lightbox");
+					elgg_load_js("elgg.autocomplete");
 					// init fancybox
 					elgg_extend_view("page/elements/head", "blog_tools/metatags");
 					
@@ -69,6 +72,7 @@
 					);
 					
 					$result[] = ElggMenuItem::factory($options);
+					 */
 				}
 			}
 		}

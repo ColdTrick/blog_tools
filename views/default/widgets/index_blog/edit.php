@@ -20,10 +20,10 @@
 
 ?>
 <div><?php echo elgg_echo("blog_tools:widgets:index_blog:blog_count"); ?></div>
-<input type="text" name="params[blog_count]" value="<?php echo elgg_view("output/text", array("value" => $count)); ?>" size="4" maxlength="4" />
+<?php echo elgg_view("input/text", array("name" => "params[blog_count]", "value" => $count, "size" => "4", "maxlength" => "4")); ?>
 
 <div><?php echo elgg_echo("blog_tools:widgets:index_blog:view_mode"); ?></div>
-<?php echo elgg_view("input/pulldown", array("internalname" => "params[view_mode]", "options_values" => $view_mode_options_values, "value" => $widget->view_mode)); ?>
+<?php echo elgg_view("input/dropdown", array("name" => "params[view_mode]", "options_values" => $view_mode_options_values, "value" => $widget->view_mode)); ?>
 
 <div><?php echo elgg_echo('blog_tools:widget:featured') . ": "; ?></div> 
-<?php echo elgg_view("input/pulldown", array("options_values" => $noyes_options, "value" => $widget->show_featured, "internalname" => "params[show_featured]")); ?>
+<?php echo elgg_view("input/dropdown", array("name" => "params[show_featured]", "options_values" => $noyes_options, "value" => $widget->show_featured)); ?>

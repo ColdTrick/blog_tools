@@ -10,9 +10,6 @@
 	
 	if(!empty($guid)){
 		if(($entity = get_entity($guid)) && elgg_instanceof($entity, "object", "blog")){
-			
-			// load autocomplete
-// 			elgg_load_js('elgg.autocomplete');
 
 			$title_text = sprintf(elgg_echo("blog_tools:transfer:title"), $entity->title);
 			$title = elgg_view_title($title_text);
@@ -31,4 +28,4 @@
 	$page_data .= $body;
 	$page_data .= "</div>";
 	
-	echo elgg_view_page($title_text, $page_data, "lightbox");
+	echo $page_data;

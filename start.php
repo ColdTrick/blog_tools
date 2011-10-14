@@ -33,7 +33,6 @@
 			if(is_callable("add_widget_title_link")){
 				add_widget_title_link("index_blog", "[BASEURL]blog/all/");
 			}
-			
 		}
 	}
 	
