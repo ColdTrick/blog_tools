@@ -60,7 +60,8 @@ if($vars["guid"]){
 	$icon_label = elgg_echo("blog_tools:label:icon:exists");
 	
 	if($blog->icontime){
-		$icon_remove_input = "<br />";
+		$icon_remove_input = "<br /><img src='" . $blog->getIcon() . "' />";
+		$icon_remove_input .= "<br />";
 		$icon_remove_input .= elgg_view("input/checkbox", array(
 			"name" => "remove_icon",
 			"value" => "yes"
