@@ -1,5 +1,5 @@
 = Version History =
-x.x:
+1.2.2 (2011-11-18):
 
 - fixed: css depricated notice
 - fixed: IE7 blog image outlining
