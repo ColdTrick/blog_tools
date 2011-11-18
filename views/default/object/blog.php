@@ -119,15 +119,14 @@
 	
 		$blog_info = elgg_view_image_block($owner_icon, $list_body);
 	
+		echo "<div class='blog_tools_blog_wrapper'>";
 		echo $header;
 		echo $blog_info;
 		echo $blog_icon;
 		echo $body;
+		echo "</div>";
 	
 	} else {
-		// prepend icon
-		$excerpt = $blog_icon . $excerpt;
-		
 		// how to show strapline
 		if(elgg_get_plugin_setting("listing_strapline", "blog_tools") == "time"){
 			$subtitle = "";
@@ -135,6 +134,9 @@
 			
 			$excerpt = date("F j, Y", $blog->time_created) . " - " . $excerpt;
 		}
+		
+		// prepend icon
+		$excerpt = $blog_icon . $excerpt;
 		
 		// brief view
 		$params = array(
@@ -149,5 +151,7 @@
 		
 		$list_body = elgg_view('object/elements/summary', $params);
 	
+		echo "<div class='blog_tools_blog_wrapper'>";
 		echo elgg_view_image_block($owner_icon, $list_body);
+		echo "</div>";
 	}

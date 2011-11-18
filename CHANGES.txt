@@ -2,6 +2,7 @@
 x.x:
 
 - fixed: css depricated notice
+- fixed: IE7 blog image outlining
 - changed: making the plugin Elgg 1.8 compatible
 
 1.2.1 (2011-10-13):

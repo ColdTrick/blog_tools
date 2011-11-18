@@ -5,6 +5,10 @@
 	height: 300px;
 }
 
+.blog_tools_blog_wrapper .elgg-content {
+	margin: 0 0 10px;
+}
+
 .blog_tools_blog_image {
 	float: left; 
 	margin: 5px; 
