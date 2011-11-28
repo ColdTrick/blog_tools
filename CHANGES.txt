@@ -1,5 +1,5 @@
 = Version History =
-x.x:
+1.2.3 (2011-11-28):
 
 - fixed: page_handler issue with Elgg 1.8.1
 
