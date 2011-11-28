@@ -1,4 +1,8 @@
 = Version History =
+x.x:
+
+- fixed: page_handler issue with Elgg 1.8.1
+
 1.2.2 (2011-11-18):
 
 - fixed: css depricated notice

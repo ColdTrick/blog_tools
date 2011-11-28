@@ -11,6 +11,7 @@
 	
 		// Include the standard profile index
 		include(dirname(dirname(__FILE__)) . "/pages/icon.php");
+		return true;
 	}
 	
 	function blog_tools_blog_page_handler($page, $handler){
@@ -39,6 +40,8 @@
 				return blog_tools_fallback_page_handler($page, $handler);
 			break;
 		}
+		
+		return true;
 	}
 	
 	function blog_tools_livesearch_page_handler($page, $handler){
