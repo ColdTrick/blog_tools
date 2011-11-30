@@ -3,11 +3,11 @@ x.x:
 
 - added: advanced gatekeeper, to more easily allow user to access blogs
 
-1.2.3 (2011-11-28):
+2.0.1 (2011-11-28):
 
 - fixed: page_handler issue with Elgg 1.8.1
 
-1.2.2 (2011-11-18):
+2.0 (2011-11-18):
 
 - fixed: css depricated notice
 - fixed: IE7 blog image outlining
