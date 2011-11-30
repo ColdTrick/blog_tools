@@ -21,6 +21,11 @@
 		"time" => elgg_echo("blog_tools:settings:strapline:time")
 	);
 	
+	$yesno_options = array(
+		"yes" => elgg_echo("option:yes"),
+		"no" => elgg_echo("option:no")
+	);
+	
 	// get settings
 	$listing_align = $plugin->listing_align;
 	$listing_size = $plugin->listing_size;
@@ -44,6 +49,7 @@
 		$full_size = "large";
 	}
 ?>
+<h3><?php echo elgg_echo("blog_tools:settings:image"); ?></h3>
 <div>
 	<?php 
 		echo elgg_echo("blog_tools:settings:listing:strapline");
@@ -72,5 +78,14 @@
 	<?php 
 		echo elgg_echo("blog_tools:settings:full:image_size");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[full_size]", "options_values" => $size_options, "value" => $full_size));
+	?>
+</div>
+
+<h3><?php echo elgg_echo("blog_tools:settings:other"); ?></h3>
+<div>
+	<?php 
+		echo elgg_echo("blog_tools:settings:advanced_gatekeeper");
+		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[advanced_gatekeeper]", "options_values" => $yesno_options, "value" => $plugin->advanced_gatekeeper));
+		echo "<br />" . elgg_echo("blog_tools:settings:advanced_gatekeeper:description");
 	?>
 </div>

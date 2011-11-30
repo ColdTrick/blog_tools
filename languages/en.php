@@ -24,6 +24,9 @@
 		'blog_tools:transfer:form:submit' => "Transfer",
 		
 		// settings
+		'blog_tools:settings:image' => "Blog image settings",
+		'blog_tools:settings:other' => "Other settings",
+		
 		'blog_tools:settings:listing:image_align' => "Blog listing image align",
 		'blog_tools:settings:listing:image_size' => "Blog listing image size",
 		
@@ -43,6 +46,8 @@
 		'blog_tools:settings:strapline:default' => "Default (owner and tags)",
 		'blog_tools:settings:strapline:time' => "Time only",
 		
+		'blog_tools:settings:advanced_gatekeeper' => "Use advanced blog gatekeeper",
+		'blog_tools:settings:advanced_gatekeeper:description' => "This will help non loggedin users to find their way to a protected blog more easily",
 		
 		// actions
 		'blog_tools:action:error:input' => "Incorrect input to perform this action",
