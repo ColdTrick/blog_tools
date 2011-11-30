@@ -25,9 +25,17 @@
 	
 				include(dirname(dirname(__FILE__)) . "/pages/transfer.php");
 				break;
+			case "read":
+				if(!isloggedin() && (get_plugin_setting("advanced_gatekeeper", "blog_tools") != "no")){
+					if(!get_entity($page[1])){
+						gatekeeper();
+					}
+				}
+				return blog_tools_fallback_page_handler($page, $handler);
+				break;
 			default:
 				return blog_tools_fallback_page_handler($page, $handler);
-			break;
+				break;
 		}
 	}
 	

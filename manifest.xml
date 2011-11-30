@@ -12,6 +12,9 @@
 =====================
 Version history
 =====================
+x.x:
+	- added: advanced gatekeeper, to more easily allow user to access blogs
+
 1.2.1 (2011-10-13):
 	- fixed: blog slider widget
 	- fixed: delete thumbnail on delete blog (#2)
