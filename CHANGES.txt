@@ -1,5 +1,5 @@
 = Version History =
-x.x:
+2.1 (2011-12-05):
 
 - added: advanced gatekeeper, to more easily allow user to access blogs
 
