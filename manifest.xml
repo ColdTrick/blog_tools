@@ -7,34 +7,3 @@
 	<field key="licence" value="GNU Public License version 2" />
 	<field key="elgg_version" value="2010030101" />
 </plugin_manifest>
-<!--
-
-=====================
-Version history
-=====================
-x.x:
-	- added: advanced gatekeeper, to more easily allow user to access blogs
-
-1.2.1 (2011-10-13):
-	- fixed: blog slider widget
-	- fixed: delete thumbnail on delete blog (#2)
-	- changed: moved some functions
-
-1.2 (2011-09-12):
-	- added: widget slider view (#4)
-	
-1.1.1 (2011-08-18):
-	- fixed: broken preview mode
-	- fixed: preview/draft not cleaning up correctly in edit mode
-
-1.1 (2011-07-25):
-	- added: plugin setting to control strapline in listing
-	- added: index widget for blog
-
-1.0.1 (2011-05-25) :
-	- fixed: full blog layout without tags
-
-1.0 (2011-05-24):
-	- initial version
-
--->
