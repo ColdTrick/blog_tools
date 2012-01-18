@@ -1,4 +1,8 @@
 = Version History =
+x.x:
+
+- changed: updated required Elgg version to 1.8.3
+
 2.1 (2011-12-05):
 
 - added: advanced gatekeeper, to more easily allow user to access blogs
