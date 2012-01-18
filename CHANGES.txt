@@ -1,6 +1,7 @@
 = Version History =
 x.x:
 
+- fixed: blog title showing twice (#5)
 - changed: updated required Elgg version to 1.8.3
 
 2.1 (2011-12-05):
