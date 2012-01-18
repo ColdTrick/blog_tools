@@ -19,6 +19,9 @@
 		switch($page[0]){
 			case "add":
 			case "edit":
+				// push all blogs breadcrumb
+				elgg_push_breadcrumb(elgg_echo('blog:blogs'), "blog/all");
+				
 				set_input("page_type", $page[0]);
 				if(isset($page[1])){
 					set_input("guid", $page[1]);
