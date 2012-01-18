@@ -16,6 +16,9 @@
 	$container = $blog->getContainerEntity();
 	$categories = elgg_view('output/categories', $vars);
 	$excerpt = $blog->excerpt;
+	if (!empty($excerpt)) {
+		$excerpt = elgg_get_excerpt($blog->description);
+	}
 	
 	$owner_icon = elgg_view_entity_icon($owner, 'tiny');
 	$owner_link = elgg_view('output/url', array(
