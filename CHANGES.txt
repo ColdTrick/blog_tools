@@ -1,4 +1,8 @@
 = Version History =
+x.x:
+
+- fixed: blog listing not showing description on older blogs (#6) (again)
+
 2.1.1 (2012-01-18):
 
 - fixed: blog title showing twice (#5)
