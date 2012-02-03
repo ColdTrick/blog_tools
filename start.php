@@ -31,8 +31,8 @@
 			
 			// register index widget
 			elgg_register_widget_type("index_blog", elgg_echo("blog_tools:widgets:index_blog:name"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
-			if(is_callable("add_widget_title_link")){
-				add_widget_title_link("index_blog", "[BASEURL]blog/all/");
+			if(is_callable("widget_manager_add_widget_title_link")){
+				widget_manager_add_widget_title_link("index_blog", "[BASEURL]blog/all/");
 			}
 		}
 	}
