@@ -92,8 +92,7 @@
 		'class' => 'elgg-menu-hz',
 	));
 	
-	$subtitle = "<p>$author_text $date $comments_link</p>";
-	$subtitle .= $categories;
+	$subtitle = "$author_text $date $comments_link $categories";
 	
 	// do not show the metadata and controls in widget view
 	if (elgg_in_context('widgets')) {
