@@ -1,6 +1,7 @@
 = Version History =
 x.x:
 
+- added: dutch translation
 - fixed: depricated notice with widget_manager
 - fixed: depricated notice on blog save form (thanks to ZigZag http://community.elgg.org/pg/profile/zigzag)
 - fixed: categories no displaying the same as in core
