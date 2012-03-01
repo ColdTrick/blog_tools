@@ -30,6 +30,6 @@
 		echo elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/owner/" . $widget->getOwnerEntity()->username, "text" => elgg_echo("blog:moreblogs")));
 		echo "</div>";
 	} else {
-		echo elgg_echo("blog_tools:no_blogs");
+		echo elgg_echo("blog:noblogs");
 	}
 	

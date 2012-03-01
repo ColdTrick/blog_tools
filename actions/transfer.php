@@ -8,8 +8,8 @@
 	$forward_url = REFERER;
 	
 	if(!empty($guid) && !empty($user_guid)){
-		if(($entity = get_entity($guid)) && ($user = get_user($user_guid))){
-			if($entity->canEdit() && ($entity->getSubtype() == "blog")){
+		if(($entity = get_entity($guid)) && $entity->canEdit() && ($user = get_user($user_guid))){
+			if(elgg_instanceof($entity, "object", "blog", "ElggBlog")){
 				if($entity->getOwner() != $user->getGUID()){
 					$old_owner = $entity->getOwner();
 					
@@ -65,13 +65,13 @@
 					register_error(elgg_echo("blog_tools:action:transfer:error:owner"));
 				}
 			} else {
-				register_error(elgg_echo("blog_tools:action:error:entity"));
+				register_error(elgg_echo("InvalidClassException:NotValidElggStar", array($guid, "ElggBlog")));
 			}
 		} else {
-			register_error(elgg_echo("blog_tools:action:error:guid"));
+			register_error(elgg_echo("InvalidParameterException:GUIDNotFound", array($guid)));
 		}
 	} else {
-		register_error(elgg_echo("blog_tools:action:error:input"));
+		register_error(elgg_echo("InvalidParameterException:MissingParameter"));
 	}
 	
 	forward($forward_url);

@@ -30,7 +30,7 @@
 			elgg_extend_view("editmenu", "blog_tools/editmenu");
 			
 			// register index widget
-			elgg_register_widget_type("index_blog", elgg_echo("blog_tools:widgets:index_blog:name"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
+			elgg_register_widget_type("index_blog", elgg_echo("blog"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
 			if(is_callable("widget_manager_add_widget_title_link")){
 				widget_manager_add_widget_title_link("index_blog", "[BASEURL]blog/all/");
 			}

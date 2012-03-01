@@ -5,7 +5,6 @@
 		
 		'blog_tools:toggle:feature' => "Feature",
 		'blog_tools:toggle:unfeature' => "Unfeature",
-		'blog_tools:no_blogs' => "No blogs found",
 		'blog_tools:transfer' => "Transfer owner",
 		
 		// widget
@@ -50,29 +49,20 @@
 		'blog_tools:settings:advanced_gatekeeper:description' => "This will help non loggedin users to find their way to a protected blog more easily",
 		
 		// actions
-		'blog_tools:action:error:input' => "Incorrect input to perform this action",
-		'blog_tools:action:error:guid' => "The given GUID didn't result in an entity",
-		'blog_tools:action:error:entity' => "You're not allowed to edit the given entity",
-		
 		'blog_tools:action:toggle_metadata:error' => "An unknown error occured while editing the entity, please try agian",
 		'blog_tools:action:toggle_metadata:success' => "The entity was successfully edited",
-		
 		
 		'blog_tools:action:transfer:error:owner' => "You can't transfer the blog to the same user",
 		'blog_tools:action:transfer:error:transfer' => "An unknown error occured while transfering the blog, please try again",
 		'blog_tools:action:transfer:success' => "Blog successfully transfered",
 		
 		// widget
-		'blog_tools:widgets:index_blog:name' => "Blogs",
 		'blog_tools:widgets:index_blog:description' => "Show the latest blogs on your community",
 		
-		'blog_tools:widgets:index_blog:blog_count' => "How many blogs to show",
 		'blog_tools:widgets:index_blog:view_mode' => "How to view the blogs",
 		'blog_tools:widgets:index_blog:view_mode:list' => "List",
 		'blog_tools:widgets:index_blog:view_mode:preview' => "Preview",
 		'blog_tools:widgets:index_blog:view_mode:slider' => "Slider",
-		
-		'blog_tools:widgets:index_blog:no_result' => "No blogs were found",
 	);
 	
 	add_translation("en", $english);

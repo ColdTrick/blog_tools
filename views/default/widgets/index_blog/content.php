@@ -29,7 +29,6 @@
 		$options["metadata_name_value_pairs"] = array("featured" => true);
 	}
 	
-	
 	if($blogs = elgg_list_entities_from_metadata($options)) {
 		if($widget->view_mode == 'slider') {
 			$blog_entities = elgg_get_entities_from_metadata($options);
@@ -82,7 +81,7 @@
 			echo $blogs;
 		}
 	} else {
-		echo elgg_echo("blog_tools:widgets:index_blog:no_result");
+		echo elgg_echo("blog:noblogs");
 	}
 
 	// reset context

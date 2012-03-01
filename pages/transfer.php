@@ -17,10 +17,10 @@
 			$body = elgg_view("blog_tools/forms/transfer", array("entity" => $entity));
 			
 		} else {
-			$body = elgg_view("page/components/module", array("body" => elgg_echo("blog_tools:action:error:guid")));
+			$body = elgg_view("page/components/module", array("body" => elgg_echo("InvalidClassException:NotValidElggStar", array($guid, "ElggBlog"))));
 		}
 	} else {
-		$body = elgg_view("page/components/module", array("body" => elgg_echo("blog_tools:action:error:input")));
+		$body = elgg_view("page/components/module", array("body" => elgg_echo("InvalidParameterException:MissingParameter")));
 	}
 
 	$page_data = "<div id='blog_tools_transfer_wrapper'>";

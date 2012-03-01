@@ -6,8 +6,8 @@
 	$metadata = get_input("metadata");
 	
 	if(!empty($guid) && !empty($metadata)){
-		if($entity = get_entity($guid)){
-			if($entity->canEdit() && ($entity->getSubtype() == "blog")){
+		if(($entity = get_entity($guid)) && $entity->canEdit()){
+			if(elgg_instanceof($entity, "object", "blog", "ElggBlog")){
 				$old = $entity->$metadata;
 				
 				if(empty($entity->$metadata)){
@@ -22,13 +22,13 @@
 					register_error(elgg_echo("blog_tools:action:toggle_metadata:error"));
 				}
 			} else {
-				register_error(elgg_echo("blog_tools:action:error:entity"));
+				register_error(elgg_echo("InvalidClassException:NotValidElggStar", array($guid, "ElggBlog")));
 			}
 		} else {
-			register_error(elgg_echo("blog_tools:action:error:guid"));
+			register_error(elgg_echo("InvalidParameterException:GUIDNotFound", array($guid)));
 		}
 	} else {
-		register_error(elgg_echo("blog_tools:action:error:input"));
+		register_error(elgg_echo("InvalidParameterException:MissingParameter"));
 	}
 	
 	forward(REFERER);

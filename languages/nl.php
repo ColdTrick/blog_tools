@@ -1,9 +1,8 @@
 <?php
 $language = array (
+  'blog_tools:toggle:unfeature' => 'Afraden',
   'blog_tools' => 'Blog tools',
   'blog_tools:toggle:feature' => 'Aanraden',
-  'blog_tools:toggle:unfeature' => 'Afrade',
-  'blog_tools:no_blogs' => 'Geen blogs gevonden',
   'blog_tools:transfer' => 'Eigenaar overdragen',
   'blog_tools:widget:featured' => 'Toon alleen aangeraden blogs?',
   'blog_tools:label:icon:exists' => 'Upload een icoon (laat leeg om het huidige icoon te behouden)',
@@ -31,21 +30,15 @@ $language = array (
   'blog_tools:settings:strapline:time' => 'Alleen tijd',
   'blog_tools:settings:advanced_gatekeeper' => 'Gebruik geavanceerde blog gatekeeper',
   'blog_tools:settings:advanced_gatekeeper:description' => 'Dit helpt niet aangemelde gebruiker om afgeschermde blogs makkelijker te vinden',
-  'blog_tools:action:error:input' => 'Onjuiste invoer om deze actie uit te voeren',
-  'blog_tools:action:error:guid' => 'De opgegeven GUID is geen geldige entity',
-  'blog_tools:action:error:entity' => 'Je mag de opgegeven entity niet bewerken',
   'blog_tools:action:toggle_metadata:error' => 'Er is een onbekende fout opgetreden bij het bewerken van de entity, probeer het nogmaals',
   'blog_tools:action:toggle_metadata:success' => 'De entity is succesvol bijgewerkt',
   'blog_tools:action:transfer:error:owner' => 'Je kunt de blog niet overdragen aan dezelfde eigenaar',
   'blog_tools:action:transfer:error:transfer' => 'Er is een onbekende fout opgetreden tijdens het overdragen van de blog, probeer het nogmaals',
   'blog_tools:action:transfer:success' => 'Blog succesvol overgedragen',
-  'blog_tools:widgets:index_blog:name' => 'Blogs',
   'blog_tools:widgets:index_blog:description' => 'Toon de laatste blogs op je community',
-  'blog_tools:widgets:index_blog:blog_count' => 'Hoeveel blogs moeten er getoond worden',
   'blog_tools:widgets:index_blog:view_mode' => 'Hoe moeten de blogs worden weergegeven',
   'blog_tools:widgets:index_blog:view_mode:list' => 'Lijst',
   'blog_tools:widgets:index_blog:view_mode:preview' => 'Voorbeeld',
   'blog_tools:widgets:index_blog:view_mode:slider' => 'Diavoorstelling',
-  'blog_tools:widgets:index_blog:no_result' => 'Geen blogs gevonden',
 );
 add_translation("nl", $language);

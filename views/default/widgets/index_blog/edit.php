@@ -19,7 +19,7 @@
 	);
 
 ?>
-<div><?php echo elgg_echo("blog_tools:widgets:index_blog:blog_count"); ?></div>
+<div><?php echo elgg_echo("blog:numbertodisplay"); ?></div>
 <?php echo elgg_view("input/text", array("name" => "params[blog_count]", "value" => $count, "size" => "4", "maxlength" => "4")); ?>
 
 <div><?php echo elgg_echo("blog_tools:widgets:index_blog:view_mode"); ?></div>
