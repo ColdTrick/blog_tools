@@ -130,64 +130,26 @@ if (!$error) {
 		// handle icon upload
 		if(get_input("remove_icon") == "yes"){
 			// remove existing icons
-			$sizes = array("tiny", "small", "medium", "large");
-			$prefix = "blogs/" . $blog->getGUID();
-			
-			$fh = new ElggFile();
-			$fh->owner_guid  = $blog->getOwner();
-			$fh->setFilename($prefix . ".jpg");
-			
-			if($fh->exists()){
-				$fh->delete();
-				
-				foreach($sizes as $size){
-					$fh->setFilename($prefix . $size . ".jpg");
-					$fh->delete();
-				}
-			}
-			
-			$blog->clearMetaData("icontime");
-		} elseif(($icon_file = get_uploaded_file("icon")) && substr_count($_FILES["icon"]["type"], "image/")){
+			blog_tools_remove_blog_icon($blog);
+		} elseif(($icon_file = get_resized_image_from_uploaded_file("icon", 100, 100)) && ($icon_sizes = elgg_get_config("icon_sizes"))){
 			// create icon
 			$prefix = "blogs/" . $blog->getGUID();
 			
 			$fh = new ElggFile();
-			$fh->owner_guid = $blog->getOwner();
-			$fh->setFilename($prefix . ".jpg");
-			$fh->open("write");
-			$fh->write($icon_file);
-			$fh->close();
+			$fh->owner_guid = $blog->getOwnerGUID();
 			
-			$tiny = get_resized_image_from_uploaded_file("icon", 25, 25, true);
-			$small = get_resized_image_from_uploaded_file("icon", 40, 40, true);
-			$medium = get_resized_image_from_uploaded_file("icon", 100, 100, true);
-			$large = get_resized_image_from_uploaded_file("icon", 200, 200);
-			
-			if($tiny){
-				$fh->setMimeType("image/jpeg");
-				
-				$fh->setFilename($prefix . "tiny.jpg");
-				$fh->open("write");
-				$fh->write($tiny);
-				$fh->close();
-				
-				$fh->setFilename($prefix . "small.jpg");
-				$fh->open("write");
-				$fh->write($small);
-				$fh->close();
-				
-				$fh->setFilename($prefix . "medium.jpg");
-				$fh->open("write");
-				$fh->write($medium);
-				$fh->close();
-				
-				$fh->setFilename($prefix . "large.jpg");
-				$fh->open("write");
-				$fh->write($large);
-				$fh->close();
-				
-				$blog->icontime = time();
+			foreach($icon_sizes as $icon_name => $icon_info){
+				if($icon_file = get_resized_image_from_uploaded_file("icon", $icon_info["w"], $icon_info["h"], $icon_info["square"], $icon_info["upscale"])){
+					$fh->setFilename($prefix . $icon_name . ".jpg");
+					
+					if($fh->open("write")){
+						$fh->write($icon_file);
+						$fh->close();
+					}
+				}
 			}
+			
+			$blog->icontime = time();
 		}
 		
 		// remove sticky form entries
