@@ -7,6 +7,7 @@ x.x:
 - fixed: categories no displaying the same as in core
 - changed: language file cleanup, use more core language keys
 - changed: icon upload / remove handling
+- changed: legacy Elgg 1.7 page_handlers overrule to use Elgg 1.8 route hook
 
 2.1.2 (2012-01-23):
 

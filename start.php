@@ -7,33 +7,35 @@
 	
 	function blog_tools_init(){
 		
-		if(elgg_is_active_plugin("blog")){
-			// overrule blog actions
-			elgg_register_action('blog/save', dirname(__FILE__) . "/actions/blog/save.php");
-			
-			// Register an icon handler for blog
-			elgg_register_page_handler("blogicon", "blog_tools_icon_handler");
-			blog_tools_extend_page_handler("blog", "blog_tools_blog_page_handler");
-			blog_tools_extend_page_handler("livesearch", "blog_tools_livesearch_page_handler");
-			
-			// Now override icons
-			elgg_register_plugin_hook_handler("entity:icon:url", "object", "blog_tools_icon_hook");
-			
-			// get items in blog menu
-			elgg_register_plugin_hook_handler("register", "menu:entity", "blog_tools_entity_menu_setup");
-			
-			// extend css
-			elgg_extend_view("css/elgg", "blog_tools/css/site");
-			elgg_extend_view("css/ie", "blog_tools/css/ie");
-			
-			// extend editmenu
-			elgg_extend_view("editmenu", "blog_tools/editmenu");
-			
-			// register index widget
-			elgg_register_widget_type("index_blog", elgg_echo("blog"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
-			if(is_callable("widget_manager_add_widget_title_link")){
-				widget_manager_add_widget_title_link("index_blog", "[BASEURL]blog/all/");
-			}
+		// overrule blog actions
+		elgg_register_action('blog/save', dirname(__FILE__) . "/actions/blog/save.php");
+		
+		// Register an icon handler for blog
+		elgg_register_page_handler("blogicon", "blog_tools_icon_handler");
+		
+		// extend blog page_handler
+		elgg_register_plugin_hook_handler("route", "blog", "blog_tools_route_blog_hook");
+		
+		// extend livesearch page_handler
+		elgg_register_plugin_hook_handler("route", "livesearch", "blog_tools_route_livesearch_hook");
+		
+		// Now override icons
+		elgg_register_plugin_hook_handler("entity:icon:url", "object", "blog_tools_icon_hook");
+		
+		// get items in blog menu
+		elgg_register_plugin_hook_handler("register", "menu:entity", "blog_tools_entity_menu_setup");
+		
+		// extend css
+		elgg_extend_view("css/elgg", "blog_tools/css/site");
+		elgg_extend_view("css/ie", "blog_tools/css/ie");
+		
+		// extend editmenu
+		elgg_extend_view("editmenu", "blog_tools/editmenu");
+		
+		// register index widget
+		elgg_register_widget_type("index_blog", elgg_echo("blog"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
+		if(is_callable("widget_manager_add_widget_title_link")){
+			widget_manager_add_widget_title_link("index_blog", "[BASEURL]blog/all/");
 		}
 	}
 	
