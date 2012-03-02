@@ -5,6 +5,7 @@ x.x:
 - fixed: depricated notice with widget_manager
 - fixed: depricated notice on blog save form (thanks to ZigZag http://community.elgg.org/pg/profile/zigzag)
 - fixed: categories no displaying the same as in core
+- fixed: image align issue in full view
 - changed: language file cleanup, use more core language keys
 - changed: icon upload / remove handling
 - changed: legacy Elgg 1.7 page_handlers overrule to use Elgg 1.8 route hook

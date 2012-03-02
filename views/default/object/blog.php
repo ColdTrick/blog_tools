@@ -121,7 +121,7 @@
 	
 		$blog_info = elgg_view_image_block($owner_icon, $list_body);
 	
-		echo "<div class='blog_tools_blog_wrapper'>";
+		echo "<div class='blog_tools_blog_wrapper clearfix'>";
 		echo $blog_info;
 		echo $blog_icon;
 		echo $body;
