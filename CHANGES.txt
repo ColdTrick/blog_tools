@@ -1,5 +1,5 @@
 = Version History =
-x.x:
+2.2 (2012-03-02):
 
 - added: dutch translation
 - fixed: depricated notice with widget_manager
