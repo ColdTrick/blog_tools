@@ -27,7 +27,12 @@
 		echo $content;
 		
 		echo "<div class='elgg-widget-more'>";
-		echo elgg_view("output/url", array("href" => $vars["url"] . "pg/blog/owner/" . $widget->getOwnerEntity()->username, "text" => elgg_echo("blog:moreblogs")));
+		$owner = $widget->getOwnerEntity();
+		if(elgg_instanceof($owner, "group", null, "ElggGroup")){
+			echo elgg_view("output/url", array("href" => $vars["url"] . "blog/group/" . $owner->getGUID(), "text" => elgg_echo("blog:moreblogs")));
+		} else {
+			echo elgg_view("output/url", array("href" => $vars["url"] . "blog/owner/" . $owner->username, "text" => elgg_echo("blog:moreblogs")));
+		}
 		echo "</div>";
 	} else {
 		echo elgg_echo("blog:noblogs");
