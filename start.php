@@ -34,15 +34,16 @@
 		
 		// register index widget
 		elgg_register_widget_type("index_blog", elgg_echo("blog"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
-		if(is_callable("widget_manager_add_widget_title_link")){
-			widget_manager_add_widget_title_link("index_blog", "[BASEURL]blog/all/");
-		}
 	}
 	
 	// register default elgg events
 	elgg_register_event_handler("init", "system", "blog_tools_init");	
 
+	// register event handlers
 	elgg_register_event_handler("delete", "object", "blog_tools_delete_handler");
+	
+	// register plugin hook handlers
+	elgg_register_plugin_hook_handler("widget_url", "widget_manager", "blog_tools_widget_url_handler");
 	
 	// register actions
 	elgg_register_action("blog_tools/toggle_metadata", dirname(__FILE__) . "/actions/toggle_metadata.php", "admin");

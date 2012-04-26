@@ -181,3 +181,21 @@
 		
 		return $result;
 	}
+	
+	function blog_tools_widget_url_handler($hook, $type, $returm_value, $params){
+		$result = $return_value;
+		
+		if(!$result && !empty($params) && is_array($params)){
+			$widget = elgg_extract("entity", $params);
+				
+			if(!empty($widget) && elgg_instanceof($widget, "object", "widget")){
+				switch($widget->handler){
+					case "index_blog":
+						$result = "blog/all";
+						break;
+				}
+			}
+		}
+		
+		return $result;
+	}
