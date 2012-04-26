@@ -9,11 +9,13 @@
 	}
 
 	// backup context and set
-	$old_context = elgg_get_context();
+
 	if($widget->view_mode == 'slider') {
-		elgg_set_context("slider");
+		elgg_push_context("slider");
+		$pop_context = true;
 	} elseif($widget->view_mode != "preview"){
-		elgg_set_context("search");
+		elgg_push_context("search");
+		$pop_context = true;
 	}
 	
 	$options = array(
@@ -83,7 +85,7 @@
 	} else {
 		echo elgg_echo("blog:noblogs");
 	}
-
-	// reset context
-	elgg_set_context($old_context);
+	if($pop_context){ 
+		elgg_pop_context();
+	}
 	
