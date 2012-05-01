@@ -14,7 +14,7 @@
 					foreach($icon_sizes as $name => $info){
 						$fh->setFilename($prefix . $name . ".jpg");
 						
-						if($fh->exitst()){
+						if($fh->exists()){
 							if($fh->delete()){
 								$result = true;
 							}
