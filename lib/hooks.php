@@ -182,7 +182,7 @@
 		return $result;
 	}
 	
-	function blog_tools_widget_url_handler($hook, $type, $returm_value, $params){
+	function blog_tools_widget_url_handler($hook, $type, $return_value, $params){
 		$result = $return_value;
 		
 		if(!$result && !empty($params) && is_array($params)){

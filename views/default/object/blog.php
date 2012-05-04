@@ -73,7 +73,8 @@
 		
 	$icon_class = "";
 	$info_class = "";
-		
+	$blog_icon = "";
+	
 	// show icon
 	if(!empty($blog->icontime) && ($icon_align != "none")) {
 		if($icon_align == "right"){
