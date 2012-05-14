@@ -13,7 +13,7 @@
 	if($blog = get_entity($guid)) {
 		
 		$filehandler = new ElggFile();
-		$filehandler->owner_guid = $blog->getOwner();
+		$filehandler->owner_guid = $blog->getOwnerGUID();
 		$filehandler->setFilename("blogs/" . $blog->getGUID(). $size . ".jpg");
 		
 		if ($filehandler->exists()) {
