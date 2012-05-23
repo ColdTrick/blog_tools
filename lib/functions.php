@@ -15,16 +15,13 @@
 						$fh->setFilename($prefix . $name . ".jpg");
 						
 						if($fh->exists()){
-							if($fh->delete()){
-								$result = true;
-							}
+							$fh->delete();
 						}
 					}
 				}
 				
-				if($result){
-					unset($blog->icontime);
-				}
+				unset($blog->icontime);
+				$result = true;
 			} else {
 				$result = true;
 			}
