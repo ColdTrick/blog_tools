@@ -193,6 +193,14 @@
 					case "index_blog":
 						$result = "blog/all";
 						break;
+					case "blog":
+						$owner = $widget->getOwnerEntity();
+						if(elgg_instanceof($owner, "user")){
+							$result = "blog/owner/" . $owner->username;
+						} elseif(elgg_instanceof($owner, "group")){
+							$result = "blog/group/" . $owner->getGUID() . "/all";
+						}
+						break;
 				}
 			}
 		}
