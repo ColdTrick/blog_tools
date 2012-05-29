@@ -1,5 +1,7 @@
 <?php
 $language = array (
+  'blog_tools:readmore' => 'lees meer',
+  'blog_tools:widgets:index_blog:view_mode:simple' => 'Simpel',
   'blog_tools:toggle:unfeature' => 'Afraden',
   'blog_tools' => 'Blog tools',
   'blog_tools:toggle:feature' => 'Aanraden',
