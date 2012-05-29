@@ -130,7 +130,7 @@
 	
 	} else {
 		// how to show strapline
-		if(elgg_in_context("preview")){
+		if(elgg_in_context("listing")){
 			$excerpt = "";
 			$blog_icon = "";
 		} elseif(elgg_get_plugin_setting("listing_strapline", "blog_tools") == "time"){

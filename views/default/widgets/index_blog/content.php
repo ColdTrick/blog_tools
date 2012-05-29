@@ -12,16 +12,15 @@
 	$view_mode = $widget->view_mode;
 	
 	// backup context and set
-	$pop_context = false;
 	switch($view_mode){
 		case "slider":
 			elgg_push_context("slider");
-			$pop_context = true;
-			
 			break;
 		case "preview":
 			elgg_push_context("preview");
-			$pop_context = true;
+			break;
+		default:
+			elgg_push_context("listing");
 			break;
 	}
 	
@@ -91,7 +90,5 @@
 	}
 	
 	// restore context
-	if($pop_context){ 
-		elgg_pop_context();
-	}
+	elgg_pop_context();
 	
