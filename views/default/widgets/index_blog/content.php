@@ -19,6 +19,9 @@
 		case "preview":
 			elgg_push_context("preview");
 			break;
+		case "simple":
+			elgg_push_context("simple");
+			break;
 		default:
 			elgg_push_context("listing");
 			break;

@@ -6,6 +6,7 @@
 		'blog_tools:toggle:feature' => "Feature",
 		'blog_tools:toggle:unfeature' => "Unfeature",
 		'blog_tools:transfer' => "Transfer owner",
+		'blog_tools:readmore' => "read more",
 		
 		// widget
 		'blog_tools:widget:featured' => "Show only featured blogs?",
@@ -63,6 +64,7 @@
 		'blog_tools:widgets:index_blog:view_mode:list' => "List",
 		'blog_tools:widgets:index_blog:view_mode:preview' => "Preview",
 		'blog_tools:widgets:index_blog:view_mode:slider' => "Slider",
+		'blog_tools:widgets:index_blog:view_mode:simple' => "Simple",
 	);
 	
 	add_translation("en", $english);

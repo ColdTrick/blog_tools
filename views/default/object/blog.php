@@ -74,6 +74,7 @@
 	$icon_class = "";
 	$info_class = "";
 	$blog_icon = "";
+	$title = "";
 	
 	// show icon
 	if(!empty($blog->icontime) && ($icon_align != "none")) {
@@ -133,6 +134,21 @@
 		if(elgg_in_context("listing")){
 			$excerpt = "";
 			$blog_icon = "";
+		} elseif(elgg_in_context("simple")){
+			$owner_icon = "";
+			$tags = false;
+			$subtitle = "";
+			$title = false;
+			
+			// prepend title to the excerpt
+			$title_link = "<h3>" . elgg_view("output/url", array("text" => $blog->title, "href" => $blog->getURL())) . "</h3>";
+			$excerpt = $title_link . $excerpt;
+			
+			// add read more link
+			if(substr($excerpt, -3) == "..."){
+				$read_more = elgg_view("output/url", array("text" => elgg_echo("blog_tools:readmore"), "href" => $blog->getURL()));
+				$excerpt .= " " . $read_more;
+			}
 		} elseif(elgg_get_plugin_setting("listing_strapline", "blog_tools") == "time"){
 			$subtitle = "";
 			$tags = false;
@@ -146,6 +162,7 @@
 		// brief view
 		$params = array(
 			'entity' => $blog,
+			'title' => $title,
 			'metadata' => $metadata,
 			'subtitle' => $subtitle,
 			'tags' => $tags,
