@@ -34,7 +34,7 @@
 	margin: 0 5px 0 0;
 }
 
-.blog_tools_widget_items_container > div {
+.blog_tools_widget_items_container > ul.elgg-list-entity > li.elgg-item {
 	display: none;
 }
 
@@ -44,7 +44,6 @@
 }
 
 .blog_tools_widget_items_navigator {
-	border-top: 1px dotted #CCCCCC;
 	padding-top: 5px;
 	text-align: center;
 }
