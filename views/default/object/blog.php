@@ -130,7 +130,10 @@
 	
 	} else {
 		// how to show strapline
-		if(elgg_get_plugin_setting("listing_strapline", "blog_tools") == "time"){
+		if(elgg_in_context("preview")){
+			$excerpt = "";
+			$blog_icon = "";
+		} elseif(elgg_get_plugin_setting("listing_strapline", "blog_tools") == "time"){
 			$subtitle = "";
 			$tags = false;
 			

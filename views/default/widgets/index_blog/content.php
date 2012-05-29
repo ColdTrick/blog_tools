@@ -20,7 +20,7 @@
 			
 			break;
 		case "preview":
-			elgg_push_context("search");
+			elgg_push_context("preview");
 			$pop_context = true;
 			break;
 	}
