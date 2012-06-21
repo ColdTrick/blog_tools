@@ -33,11 +33,24 @@
 		"limit" => $count,
 		"full_view" => false,
 		"pagination" => false,
-		"view_type_toggle" => false
+		"view_type_toggle" => false,
+		"metadata_name_value_pairs" => array()
 	);
 	
+	// only show published blogs to non admins
+	if(!elgg_is_admin_logged_in()){
+		$options["metadata_name_value_pairs"][] = array(
+			"name" => "status",
+			"value" => "published"
+		);
+	}
+	
+	// limit to featured blogs?
 	if($widget->show_featured == "yes") {
-		$options["metadata_name_value_pairs"] = array("featured" => true);
+		$options["metadata_name_value_pairs"][] = array(
+			"name" => "featured",
+			"value" => true
+		);
 	}
 	
 	if($blogs = elgg_list_entities_from_metadata($options)) {

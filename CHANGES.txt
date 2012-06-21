@@ -12,6 +12,7 @@ x.x:
 - fixed: depricated notice in blog save action
 - fixed: index_blog widget slider mode
 - fixed: index_blog widget preview mode
+- fixed: index_blog widget showing unpublished blogs
 
 2.2 (2012-03-02):
 
