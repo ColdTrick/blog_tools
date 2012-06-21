@@ -11,16 +11,27 @@
 	}
 
 	$options = array(
-		'type' => 'object', 
-		'subtype' => 'blog', 
-		'container_guid' => $widget->getOwnerGUID(), 
-		'limit' => $num, 
-		'full_view' => false, 
-		'pagination' => false
+		"type" => "object", 
+		"subtype" => "blog", 
+		"container_guid" => $widget->getOwnerGUID(), 
+		"limit" => $num, 
+		"full_view" => false, 
+		"pagination" => false,
+		"metadata_name_value_pairs" => array()
 	);
 	
+	if(!elgg_is_admin_logged_in() && !($widget->getOwnerGUID() == elgg_get_logged_in_user_guid())){
+		$options["metadata_name_value_pairs"][] = array(
+			"name" => "status",
+			"value" => "published"
+		);
+	}
+	
 	if($widget->show_featured == "yes"){
-		$options["metadata_name_value_pairs"] = array("featured" => true);
+		$options["metadata_name_value_pairs"][] = array(
+			"name" => "featured",
+			"value" => true
+		);
 	}
 	
 	if($content = elgg_list_entities_from_metadata($options)){
