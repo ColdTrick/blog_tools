@@ -1,5 +1,5 @@
 = Version History =
-x.x:
+2.3 (2012-07-31):
 
 - added: widget title links for blog widget
 - added: index_blog widget simple mode
