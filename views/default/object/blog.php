@@ -83,12 +83,12 @@
 		}
 		
 		$blog_icon ="<div class='blog_tools_blog_image " . $icon_class . "'>";
-		$blog_icon .= "<img src='" . $vars["entity"]->getIconURL($icon_size) . "' />";
+		$blog_icon .= elgg_view("output/img", array("src" => $blog->getIconURL($icon_size), "alt" => $blog->title));
 		$blog_icon .= "</div>";
 	}
 	
 	$metadata = elgg_view_menu('entity', array(
-		'entity' => $vars['entity'],
+		'entity' => $blog,
 		'handler' => 'blog',
 		'sort_by' => 'priority',
 		'class' => 'elgg-menu-hz',
