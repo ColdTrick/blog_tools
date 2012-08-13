@@ -56,6 +56,7 @@ $excerpt_input = elgg_view('input/text', array(
 	'value' => html_entity_decode($vars['excerpt'], ENT_COMPAT, 'UTF-8')
 ));
 
+$icon_remove_input = "";
 if($vars["guid"]){
 	$icon_label = elgg_echo("blog_tools:label:icon:exists");
 	
