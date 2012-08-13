@@ -50,6 +50,8 @@ $values = array(
 	'excerpt' => '',
 	'tags' => '',
 	'container_guid' => (int)get_input('container_guid'),
+	'publication_date' => '',
+	'expiration_date' => ''
 );
 
 // fail if a required entity isn't set
@@ -103,6 +105,35 @@ foreach ($values as $name => $default) {
 			unset($values['guid']);
 			break;
 
+		case 'publication_date':
+			if(!empty($value)){
+				$values[$name] = $value;
+				
+				// publication date has not yet passed, set as draft
+				if(strtotime($value) > time()){
+					$save = false;
+				}
+			}
+			break;
+			
+		case 'expiration_date':
+			if(!empty($value)){
+				$values[$name] = $value;
+				
+				if($new_post){
+					// new blogs can't expire directly
+					if(strtotime($value) < time()){
+						$error = elgg_echo("blog_tools:action:save:error:expiration_date");
+					}
+				} else {
+					// if expiration is passed, set as draft
+					if(strtotime($value) < time()){
+						$save = false;
+					}
+				}
+			}
+			break;
+			
 		default:
 			$values[$name] = $value;
 			break;

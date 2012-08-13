@@ -11,11 +11,34 @@
 		// widget
 		'blog_tools:widget:featured' => "Show only featured blogs?",
 		
+		// notifications
+		'blog_tools:notify:publish:subject' => "A blog has been published",
+		'blog_tools:notify:publish:message' => "Hi,
+		
+your blog '%s' has been published.
+
+You can view your blog here:
+%s",
+		
+		'blog_tools:notify:expire:subject' => "A blog has expired",
+		'blog_tools:notify:expire:message' => "Hi,
+		
+your blog '%s' has expired and is nog longer visible for the community.
+
+You can view your blog here:
+%s",
+		
 		// views
 		// blog edit
 		'blog_tools:label:icon:exists' => "Upload icon (leave empty to keep current icon)",
 		'blog_tools:label:icon:new' => "Upload icon",
 		'blog_tools:label:icon:remove' => "Remove icon",
+		
+		'blog_tools:label:publication_options' => "Publication options",
+		'blog_tools:label:publication_date' => "Publication date (optional)",
+		'blog_tools:publication_date:description' => "When you select a date here the blog will not be published until the selected date.",
+		'blog_tools:label:expiration_date' => "Expiration date (optional)",
+		'blog_tools:expiration_date:description' => "The blog will no longer be published after the selected date.",
 	
 		// transfer owner
 		'blog_tools:transfer:title' => "Transfer owner of: %s",
@@ -56,6 +79,8 @@
 		'blog_tools:action:transfer:error:owner' => "You can't transfer the blog to the same user",
 		'blog_tools:action:transfer:error:transfer' => "An unknown error occured while transfering the blog, please try again",
 		'blog_tools:action:transfer:success' => "Blog successfully transfered",
+		
+		'blog_tools:action:save:error:expiration_date' => "The expiration date can't be before today",
 		
 		// widget
 		'blog_tools:widgets:index_blog:description' => "Show the latest blogs on your community",

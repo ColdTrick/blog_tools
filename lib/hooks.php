@@ -207,3 +207,107 @@
 		
 		return $result;
 	}
+	
+	function blog_tools_daily_cron_hook($hook, $type, $return_value, $params){
+		
+		$dbprefix = elgg_get_config("dbprefix");
+		$publication_id = add_metastring("publication_date");
+		$expiration_id = add_metastring("expiration_date");
+		
+		$time = elgg_extract("time", $params, time());
+		
+		$publish_options = array(
+			"type" => "object",
+			"subtype" => "blog",
+			"limit" => false,
+			"joins" => array(
+				"JOIN " . $dbprefix . "metadata mdtime ON e.guid = mdtime.entity_guid",
+				"JOIN " . $dbprefix . "metastrings mstime ON mdtime.value_id = mstime.id"
+			),
+			"metadata_name_value_pairs" => array(
+				array(
+					"name" => "status",
+					"value" => "draft"
+				)
+			),
+			"wheres" => array("((mdtime.name_id = " . $publication_id . ") AND (DATE(mstime.string) = DATE(NOW())))")
+		);
+		
+		$unpublish_options = array(
+			"type" => "object",
+			"subtype" => "blog",
+			"limit" => false,
+			"joins" => array(
+				"JOIN " . $dbprefix . "metadata mdtime ON e.guid = mdtime.entity_guid",
+				"JOIN " . $dbprefix . "metastrings mstime ON mdtime.value_id = mstime.id"
+			),
+			"metadata_name_values_pairs" => array(
+				array(
+					"name" => "status",
+					"value" => "published"
+				)
+			),
+			"wheres" => array("((mdtime.name_id = " . $expiration_id . ") AND (DATE(mstime.string) = DATE(NOW())))")
+		);
+		
+		// ignore access
+		$ia = elgg_set_ignore_access(true);
+		
+		// get unpublished blogs that need to be published
+		if($entities = elgg_get_entities_from_metadata($publish_options)){
+			foreach ($entities as $entity){
+				// add river item
+				add_to_river("river/object/blog/create", "create", $entity->getOwnerGUID(), $entity->getGUID());
+				
+				// set correct time created
+				$entity->time_created = $time;
+				
+				// publish blog
+				$entity->status = "published";
+				
+				// notify owner
+				notify_user($entity->getOwnerGUID(), 
+							$entity->site_guid, 
+							elgg_echo("blog_tools:notify:publish:subject"), 
+							elgg_echo("blog_tools:notify:publish:message", array(
+								$entity->title,
+								$entity->getURL()
+							))
+				);
+				
+				// save everything
+				$entity->save();
+			}
+		}
+		
+		// get published blogs that need to be unpublished
+		if($entities = elgg_get_entities_from_metadata($unpublish_options)){
+			foreach ($entities as $entity){
+				// remove river item
+				elgg_delete_river(array(
+					"object_guid" => $entity->getGUID(),
+					"action_type" => "create",
+				));
+				
+				// unpublish blog
+				$entity->status = "draft";
+				
+				// notify owner
+				notify_user($entity->getOwnerGUID(),
+							$entity->site_guid,
+							elgg_echo("blog_tools:notify:expire:subject"),
+							elgg_echo("blog_tools:notify:expire:message", array(
+								$entity->title,
+								$entity->getURL()
+							))
+				);
+				
+				// save everything
+				$entity->save();
+			}
+		}
+		
+		// reset access
+		elgg_set_ignore_access($ia);
+	}
+	

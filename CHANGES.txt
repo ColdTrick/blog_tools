@@ -1,4 +1,8 @@
 = Version History =
+x.x:
+
+- added: publication and expiration date on blogs (cron based)
+
 2.3 (2012-07-31):
 
 - added: widget title links for blog widget

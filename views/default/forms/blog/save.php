@@ -92,8 +92,25 @@ if ($vars['guid']) {
 	$saved = elgg_echo('blog:never');
 }
 
-$status_label = elgg_echo('blog:status');
-$status_input = elgg_view('input/dropdown', array(
+// publication options
+if(!empty($blog)){
+	$publication_date_value = elgg_extract("publication_date", $vars, $blog->publication_date);
+	$expiration_date_value = elgg_extract("expiration_date", $vars, $blog->expiration_date);
+} else {
+	$publication_date_value = elgg_extract("publication_date", $vars);
+	$expiration_date_value = elgg_extract("expiration_date", $vars);
+}
+
+if(empty($publication_date_value)){
+	$publication_date_value = "";
+}
+if(empty($expiration_date_value)){
+	$expiration_date_value = "";
+}
+
+$status = "<div class='mbs'>";
+$status .= "<label for='blog_status'>" . elgg_echo('blog:status') . "</label>";
+$status .= "&nbsp;" . elgg_view('input/dropdown', array(
 	'name' => 'status',
 	'id' => 'blog_status',
 	'value' => $vars['status'],
@@ -102,7 +119,27 @@ $status_input = elgg_view('input/dropdown', array(
 		'published' => elgg_echo('blog:status:published')
 	)
 ));
+$status .= "</div>";
 
+$publication_date = "<div class='mbs'>";
+$publication_date .= "<label for='publication_date'>" . elgg_echo("blog_tools:label:publication_date") . "</label>";
+$publication_date .= elgg_view("input/date", array(
+							"name" => "publication_date", 
+							"value" => $publication_date_value));
+$publication_date .= "<div class='elgg-subtext'>" . elgg_echo("blog_tools:publication_date:description") . "</div>";
+$publication_date .= "</div>";
+
+$expiration_date = "<div class='mbs'>";
+$expiration_date .= "<label for='expiration_date'>" . elgg_echo("blog_tools:label:expiration_date") . "</label>";
+$expiration_date .= elgg_view("input/date", array(
+							"name" => "expiration_date", 
+							"value" => $expiration_date_value));
+$expiration_date .= "<div class='elgg-subtext'>" . elgg_echo("blog_tools:expiration_date:description") . "</div>";
+$expiration_date .= "</div>";
+
+$publication_options = elgg_view_module("info", elgg_echo("blog_tools:label:publication_options"), $status . $publication_date . $expiration_date);
+
+// comments
 $comments_label = elgg_echo('comments');
 $comments_input = elgg_view('input/dropdown', array(
 	'name' => 'comments_on',
@@ -111,6 +148,7 @@ $comments_input = elgg_view('input/dropdown', array(
 	'options_values' => array('On' => elgg_echo('on'), 'Off' => elgg_echo('off'))
 ));
 
+// tags
 $tags_label = elgg_echo('tags');
 $tags_input = elgg_view('input/tags', array(
 	'name' => 'tags',
@@ -118,6 +156,7 @@ $tags_input = elgg_view('input/tags', array(
 	'value' => $vars['tags']
 ));
 
+// access
 $access_label = elgg_echo('access');
 $access_input = elgg_view('input/access', array(
 	'name' => 'access_id',
@@ -125,6 +164,7 @@ $access_input = elgg_view('input/access', array(
 	'value' => $vars['access_id']
 ));
 
+// categories
 $categories_input = elgg_view('input/categories', $vars);
 
 // hidden inputs
@@ -173,10 +213,7 @@ $categories_input
 	$access_input
 </div>
 
-<div>
-	<label for="blog_status">$status_label</label>
-	$status_input
-</div>
+$publication_options
 
 <div class="elgg-foot">
 	<div class="elgg-subtext mbm">

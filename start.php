@@ -44,6 +44,7 @@
 	
 	// register plugin hook handlers
 	elgg_register_plugin_hook_handler("widget_url", "widget_manager", "blog_tools_widget_url_handler");
+	elgg_register_plugin_hook_handler("cron", "daily", "blog_tools_daily_cron_hook");
 	
 	// register actions
 	elgg_register_action("blog_tools/toggle_metadata", dirname(__FILE__) . "/actions/toggle_metadata.php", "admin");
