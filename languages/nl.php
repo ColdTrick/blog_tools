@@ -1,5 +1,25 @@
 <?php
 $language = array (
+  'blog_tools:notify:publish:subject' => 'Een blog is gepubliceerd',
+  'blog_tools:notify:publish:message' => 'LS,
+
+je blog \'%s\' is gepubliceerd.
+
+Je kunt je blog hier bekijken:
+%s',
+  'blog_tools:notify:expire:subject' => 'Een blog is verlopen',
+  'blog_tools:notify:expire:message' => 'LS,
+
+je blog \'%s\' is verlopen en is niet meer zichtbaar voor de community.
+
+Je kun je blog hier bekijken:
+%s',
+  'blog_tools:label:publication_options' => 'Publicatie instellingen',
+  'blog_tools:label:publication_date' => 'Publicatie datum (optioneel)',
+  'blog_tools:publication_date:description' => 'Als je hier een datum selecteert zal de blog niet worden gepubliceerd voor deze datum.',
+  'blog_tools:label:expiration_date' => 'Verval datum (optioneel)',
+  'blog_tools:expiration_date:description' => 'De blog zal niet meer gepubliceerd zijn na de geselecteerde datum',
+  'blog_tools:action:save:error:expiration_date' => 'De verval datum kan niet voor vandaag zijn',
   'blog_tools:readmore' => 'lees meer',
   'blog_tools:widgets:index_blog:view_mode:simple' => 'Simpel',
   'blog_tools:toggle:unfeature' => 'Afraden',

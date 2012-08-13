@@ -23,7 +23,7 @@ You can view your blog here:
 		'blog_tools:notify:expire:subject' => "A blog has expired",
 		'blog_tools:notify:expire:message' => "Hi,
 		
-your blog '%s' has expired and is nog longer visible for the community.
+your blog '%s' has expired and is no longer visible for the community.
 
 You can view your blog here:
 %s",
