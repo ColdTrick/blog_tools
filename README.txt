@@ -16,3 +16,4 @@ Offers additional functionality for Blogs
 == 2. ToDo ==
 - navigate to previous/next blog
 	- off user/group/site
+- remove transfer owner (now in entity_tools)
