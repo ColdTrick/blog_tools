@@ -1,5 +1,7 @@
 <?php
 $language = array (
+  'blog_tools:settings:advanced_publication' => 'Maak geavanceerde publicatie opties beschikbaar',
+  'blog_tools:settings:advanced_publication:description' => 'Als dit is ingeschakeld kunnen gebruikers een publicatie- en vervaldatum kiezen voor blogs. Dit vereist een werkende dagelijkse CRON.',
   'blog_tools:notify:publish:subject' => 'Een blog is gepubliceerd',
   'blog_tools:notify:publish:message' => 'LS,
 
