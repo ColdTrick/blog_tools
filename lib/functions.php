@@ -29,3 +29,17 @@
 		
 		return $result;
 	}
+
+	function blog_tools_use_advanced_publication_options(){
+		static $result;
+		
+		if(!isset($result)){
+			$result = false;
+			
+			if(($setting = elgg_get_plugin_setting("advanced_publication", "blog_tools")) && ($setting == "yes")){
+				$result = true;
+			}
+		}
+		
+		return $result;
+	}

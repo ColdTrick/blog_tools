@@ -86,6 +86,13 @@
 	<?php 
 		echo elgg_echo("blog_tools:settings:advanced_gatekeeper");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[advanced_gatekeeper]", "options_values" => $yesno_options, "value" => $plugin->advanced_gatekeeper));
-		echo "<br />" . elgg_echo("blog_tools:settings:advanced_gatekeeper:description");
+		echo "<div class='elgg-subtext'>" . elgg_echo("blog_tools:settings:advanced_gatekeeper:description") . "</div>";
+	?>
+</div>
+<div>
+	<?php 
+		echo elgg_echo("blog_tools:settings:advanced_publication");
+		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[advanced_publication]", "options_values" => array_reverse($yesno_options, true), "value" => $plugin->advanced_publication));
+		echo "<div class='elgg-subtext'>" . elgg_echo("blog_tools:settings:advanced_publication:description") . "</div>";
 	?>
 </div>
