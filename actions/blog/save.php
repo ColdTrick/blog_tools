@@ -34,6 +34,8 @@ if ($guid) {
 } else {
 	$blog = new ElggBlog();
 	$blog->subtype = 'blog';
+	$blog->container_guid = (int)get_input('container_guid');
+	
 	$new_post = TRUE;
 }
 
@@ -49,7 +51,6 @@ $values = array(
 	'comments_on' => 'On',
 	'excerpt' => '',
 	'tags' => '',
-	'container_guid' => (int)get_input('container_guid'),
 	'publication_date' => '',
 	'expiration_date' => ''
 );
@@ -63,19 +64,12 @@ foreach ($values as $name => $default) {
 
 	if (in_array($name, $required) && empty($value)) {
 		$error = elgg_echo("blog:error:missing:$name");
-	}
-
-	if ($error) {
 		break;
 	}
 
 	switch ($name) {
 		case 'tags':
-			if ($value) {
-				$values[$name] = string_to_tag_array($value);
-			} else {
-				unset ($values[$name]);
-			}
+			$values[$name] = string_to_tag_array($value);
 			break;
 
 		case 'excerpt':
@@ -85,24 +79,6 @@ foreach ($values as $name => $default) {
 				$value = elgg_get_excerpt($values['description']);
 			}
 			$values[$name] = $value;
-			break;
-
-		case 'container_guid':
-			// this can't be empty or saving the base entity fails
-			if (!empty($value)) {
-				if (can_write_to_container($user->getGUID(), $value)) {
-					$values[$name] = $value;
-				} else {
-					$error = elgg_echo("blog:error:cannot_write_to_container");
-				}
-			} else {
-				unset($values[$name]);
-			}
-			break;
-
-		// don't try to set the guid
-		case 'guid':
-			unset($values['guid']);
 			break;
 
 		case 'publication_date':
