@@ -3,6 +3,8 @@ x.x:
 
 - added: publication and expiration date on blogs (cron based)
 - changed: cleaned up blog/save action
+- changed: requirements for plugin to Elgg 1.8.9
+- fixed: security issue in blog tools save form
 
 2.3 (2012-07-31):
 
