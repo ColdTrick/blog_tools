@@ -9,6 +9,7 @@
 		
 		// overrule blog actions
 		elgg_register_action('blog/save', dirname(__FILE__) . "/actions/blog/save.php");
+		elgg_register_action('blog/auto_save_revision', dirname(__FILE__) . "/actions/blog/auto_save_revision.php");
 		
 		// Register an icon handler for blog
 		elgg_register_page_handler("blogicon", "blog_tools_icon_handler");

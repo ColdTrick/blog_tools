@@ -86,6 +86,16 @@
 		if($page = elgg_extract("segments", $returm_value)){
 			
 			switch ($page[0]){
+				case 'owner':
+					if($user = get_user_by_username($page[1])){
+						$result = false;
+						// push all blogs breadcrumb
+						elgg_push_breadcrumb(elgg_echo('blog:blogs'), "blog/all");
+						
+						set_input("owner_guid", $user->guid);
+						include(dirname(dirname(__FILE__)) . "/pages/owner.php");
+						break;
+					}
 				case "read": // Elgg 1.7 compatibility
 				case "view":
 					if(!elgg_is_logged_in() && (elgg_get_plugin_setting("advanced_gatekeeper", "blog_tools") != "no")){
