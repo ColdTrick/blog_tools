@@ -38,6 +38,7 @@
 			$comments_link = elgg_view('output/url', array(
 				'href' => $blog->getURL() . '#blog-comments',
 				'text' => $text,
+				'is_trusted' => true,
 			));
 		} else {
 			$comments_link = '';
@@ -173,7 +174,7 @@
 		
 		$list_body = elgg_view('object/elements/summary', $params);
 	
-		echo "<div class='blog_tools_blog_wrapper'>";
+		echo "<div class='blog_tools_blog_wrapper'>"; //@todo can't this class be put somewhere else?
 		echo elgg_view_image_block($owner_icon, $list_body);
 		echo "</div>";
 	}

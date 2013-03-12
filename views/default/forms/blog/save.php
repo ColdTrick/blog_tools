@@ -23,7 +23,7 @@ if ($vars['guid']) {
 	$delete_link = elgg_view('output/confirmlink', array(
 		'href' => $delete_url,
 		'text' => elgg_echo('delete'),
-		'class' => 'elgg-button elgg-button-delete elgg-state-disabled float-alt'
+		'class' => 'elgg-button elgg-button-delete float-alt'
 	));
 }
 
@@ -197,9 +197,10 @@ $draft_warning
 	$icon_remove_input
 </div>
 
-<label for="blog_description">$body_label</label>
-$body_input
-<br />
+<div>
+	<label for="blog_description">$body_label</label>
+	$body_input
+</div>
 
 <div>
 	<label for="blog_tags">$tags_label</label>
