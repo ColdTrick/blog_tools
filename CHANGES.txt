@@ -1,5 +1,5 @@
 = Version History =
-x.x:
+2.4 (2013-04-05):
 
 - added: publication and expiration date on blogs (cron based)
 - changed: cleaned up blog/save action
