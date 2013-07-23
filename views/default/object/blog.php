@@ -52,7 +52,7 @@
 	$title = "";
 	
 	// show icon
-	if(!empty($blog->icontime) && ($icon_align != "none")) {
+	if(!empty($blog->icontime)) {
 		$params = $vars;
 		$params["plugin_settings"] = true;
 		
