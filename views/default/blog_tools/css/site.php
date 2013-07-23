@@ -5,19 +5,10 @@
 	height: 300px;
 }
 
-.blog_tools_blog_wrapper .elgg-content {
-	margin: 0 0 10px;
-}
-
 .blog_tools_blog_image {
-	float: left; 
-	margin: 5px; 
-	padding: 5px; 
+	margin: 5px;
+	padding: 5px;
 	border: 1px solid #CECECE;
-}
-
-.blog_tools_blog_image_right {
-	float: right;
 }
 
 .blog_tools_info_wrapper p.tags,

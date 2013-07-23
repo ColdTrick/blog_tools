@@ -28,7 +28,6 @@
 		
 		// extend css
 		elgg_extend_view("css/elgg", "blog_tools/css/site");
-		elgg_extend_view("css/ie", "blog_tools/css/ie");
 		
 		// extend editmenu
 		elgg_extend_view("editmenu", "blog_tools/editmenu");
@@ -38,7 +37,7 @@
 	}
 	
 	// register default elgg events
-	elgg_register_event_handler("init", "system", "blog_tools_init");	
+	elgg_register_event_handler("init", "system", "blog_tools_init");
 
 	// register event handlers
 	elgg_register_event_handler("delete", "object", "blog_tools_delete_handler");

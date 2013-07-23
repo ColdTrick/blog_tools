@@ -72,7 +72,7 @@
 		}
 	}
 		
-	$icon_class = "";
+	$icon_class = "float";
 	$info_class = "";
 	$blog_icon = "";
 	$title = "";
@@ -80,7 +80,7 @@
 	// show icon
 	if(!empty($blog->icontime) && ($icon_align != "none")) {
 		if($icon_align == "right"){
-			$icon_class = "blog_tools_blog_image_right";
+			$icon_class = "float-alt";
 		}
 		
 		$blog_icon ="<div class='blog_tools_blog_image " . $icon_class . "'>";
@@ -120,16 +120,14 @@
 			'tags' => $tags,
 		);
 		$params = $params + $vars;
-		$list_body = elgg_view('object/elements/summary', $params);
+		$summary = elgg_view('object/elements/summary', $params);
 	
-		$blog_info = elgg_view_image_block($owner_icon, $list_body);
-	
-		echo "<div class='blog_tools_blog_wrapper clearfix'>";
-		echo $blog_info;
-		echo $blog_icon;
-		echo $body;
-		echo "</div>";
-	
+		echo elgg_view("object/elements/full", array(
+			"summary" => $summary,
+			"icon" => $owner_icon,
+			"body" => $blog_icon . $body,
+		));
+		
 	} else {
 		// how to show strapline
 		if(elgg_in_context("listing")){
@@ -174,7 +172,5 @@
 		
 		$list_body = elgg_view('object/elements/summary', $params);
 	
-		echo "<div class='blog_tools_blog_wrapper'>"; //@todo can't this class be put somewhere else?
 		echo elgg_view_image_block($owner_icon, $list_body);
-		echo "</div>";
 	}

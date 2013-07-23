@@ -1,4 +1,9 @@
 = Version History =
+
+x.x:
+
+- changed: CSS cleanup
+
 2.4 (2013-04-05):
 
 - added: publication and expiration date on blogs (cron based)
