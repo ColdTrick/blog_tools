@@ -11,6 +11,16 @@
 	border: 1px solid #CECECE;
 }
 
+.blog-tools-blog-image-master {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.blog-tools-blog-image-master img {
+	width: 100%;
+}
+
 .blog_tools_info_wrapper p.tags,
 .blog_tools_info_wrapper p.categories {
 	display: inline-block;

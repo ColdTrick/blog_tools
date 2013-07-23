@@ -64,6 +64,7 @@ You can view your blog here:
 		'blog_tools:settings:size:small' => "Small (40x40)",
 		'blog_tools:settings:size:medium' => "Medium (100x100)",
 		'blog_tools:settings:size:large' => "Large (200x200)",
+		'blog_tools:settings:size:master' => "Master (550x550)",
 		
 		'blog_tools:settings:listing:strapline' => "Show strapline in listing",
 		'blog_tools:settings:strapline:default' => "Default (owner and tags)",

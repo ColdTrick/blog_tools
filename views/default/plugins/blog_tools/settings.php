@@ -14,6 +14,7 @@
 		"small" => elgg_echo("blog_tools:settings:size:small"),
 		"medium" => elgg_echo("blog_tools:settings:size:medium"),
 		"large" => elgg_echo("blog_tools:settings:size:large"),
+		"master" => elgg_echo("blog_tools:settings:size:master"),
 	);
 	
 	$strapline_options = array(
@@ -51,31 +52,31 @@
 ?>
 <h3><?php echo elgg_echo("blog_tools:settings:image"); ?></h3>
 <div>
-	<?php 
+	<?php
 		echo elgg_echo("blog_tools:settings:listing:strapline");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[listing_strapline]", "options_values" => $strapline_options, "value" => $plugin->listing_strapline));
 	?>
 </div>
 <div>
-	<?php 
+	<?php
 		echo elgg_echo("blog_tools:settings:listing:image_align");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[listing_align]", "options_values" => $align_options, "value" => $listing_align));
 	?>
 </div>
 <div>
-	<?php 
+	<?php
 		echo elgg_echo("blog_tools:settings:listing:image_size");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[listing_size]", "options_values" => $size_options, "value" => $listing_size));
 	?>
 </div>
 <div>
-	<?php 
+	<?php
 		echo elgg_echo("blog_tools:settings:full:image_align");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[full_align]", "options_values" => $align_options, "value" => $full_align));
 	?>
 </div>
 <div>
-	<?php 
+	<?php
 		echo elgg_echo("blog_tools:settings:full:image_size");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[full_size]", "options_values" => $size_options, "value" => $full_size));
 	?>
@@ -83,14 +84,14 @@
 
 <h3><?php echo elgg_echo("blog_tools:settings:other"); ?></h3>
 <div>
-	<?php 
+	<?php
 		echo elgg_echo("blog_tools:settings:advanced_gatekeeper");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[advanced_gatekeeper]", "options_values" => $yesno_options, "value" => $plugin->advanced_gatekeeper));
 		echo "<div class='elgg-subtext'>" . elgg_echo("blog_tools:settings:advanced_gatekeeper:description") . "</div>";
 	?>
 </div>
 <div>
-	<?php 
+	<?php
 		echo elgg_echo("blog_tools:settings:advanced_publication");
 		echo "&nbsp;" . elgg_view("input/dropdown", array("name" => "params[advanced_publication]", "options_values" => array_reverse($yesno_options, true), "value" => $plugin->advanced_publication));
 		echo "<div class='elgg-subtext'>" . elgg_echo("blog_tools:settings:advanced_publication:description") . "</div>";

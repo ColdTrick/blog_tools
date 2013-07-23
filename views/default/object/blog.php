@@ -47,45 +47,16 @@
 		$comments_link = '';
 	}
 	
-	// get icon settings
-	if($full) {
-		$icon_align = elgg_get_plugin_setting("full_align", "blog_tools");
-		$icon_size = elgg_get_plugin_setting("full_size", "blog_tools");
-	
-		if(empty($icon_align)) {
-			$icon_align = "right";
-		}
-	
-		if(empty($icon_size)) {
-			$icon_size = "large";
-		}
-	} else {
-		$icon_align = elgg_get_plugin_setting("listing_align", "blog_tools");
-		$icon_size = elgg_get_plugin_setting("listing_size", "blog_tools");
-	
-		if(empty($icon_align)) {
-			$icon_align = "left";
-		}
-	
-		if(empty($icon_size)) {
-			$icon_size = "small";
-		}
-	}
-		
-	$icon_class = "float";
 	$info_class = "";
 	$blog_icon = "";
 	$title = "";
 	
 	// show icon
 	if(!empty($blog->icontime) && ($icon_align != "none")) {
-		if($icon_align == "right"){
-			$icon_class = "float-alt";
-		}
+		$params = $vars;
+		$params["plugin_settings"] = true;
 		
-		$blog_icon ="<div class='blog_tools_blog_image " . $icon_class . "'>";
-		$blog_icon .= elgg_view("output/img", array("src" => $blog->getIconURL($icon_size), "alt" => $blog->title));
-		$blog_icon .= "</div>";
+		$blog_icon = elgg_view_entity_icon($entity, "dummy", $params);
 	}
 	
 	$metadata = elgg_view_menu('entity', array(

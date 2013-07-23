@@ -2,7 +2,9 @@
 
 x.x:
 
+- added: new image size support
 - changed: CSS cleanup
+- changed: moved blog image to own view
 
 2.4 (2013-04-05):
 
