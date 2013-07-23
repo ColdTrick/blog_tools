@@ -64,3 +64,10 @@
 .blog_tools_widget_items_navigator > span.active {
 	cursor: auto;
 }
+
+.blog-tools-river-item .blog_tools_blog_image {
+	margin: 0 5px 0 0;
+	padding: 0;
+	border: none;
+	float: left;
+}

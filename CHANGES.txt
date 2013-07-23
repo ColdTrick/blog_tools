@@ -3,6 +3,7 @@
 x.x:
 
 - added: new image size support
+- added: support for the blog image in the river
 - changed: CSS cleanup
 - changed: moved blog image to own view
 
