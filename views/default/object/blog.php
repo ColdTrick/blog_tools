@@ -4,14 +4,14 @@
 	 *
 	 * @package Blog
 	 */
-	
+
 	$full = elgg_extract('full_view', $vars, FALSE);
 	$blog = elgg_extract('entity', $vars, FALSE);
-	
+
 	if (!$blog) {
 		return TRUE;
 	}
-	
+
 	$owner = $blog->getOwnerEntity();
 	$container = $blog->getContainerEntity();
 	$categories = elgg_view('output/categories', $vars);
@@ -19,7 +19,7 @@
 	if (empty($excerpt)) {
 		$excerpt = elgg_get_excerpt($blog->description);
 	}
-	
+
 	$owner_icon = elgg_view_entity_icon($owner, 'tiny');
 	$owner_link = elgg_view('output/url', array(
 		'href' => "blog/owner/$owner->username",
@@ -28,7 +28,7 @@
 	$author_text = elgg_echo('byline', array($owner_link));
 	$tags = elgg_view('output/tags', array('tags' => $blog->tags));
 	$date = elgg_view_friendly_time($blog->time_created);
-	
+
 	// The "on" status changes for comments, so best to check for !Off
 	if ($blog->comments_on != 'Off') {
 		$comments_count = $blog->countComments();
@@ -46,33 +46,33 @@
 	} else {
 		$comments_link = '';
 	}
-	
+
 	$info_class = "";
 	$blog_icon = "";
 	$title = "";
-	
+
 	// show icon
 	if(!empty($blog->icontime)) {
 		$params = $vars;
 		$params["plugin_settings"] = true;
-		
-		$blog_icon = elgg_view_entity_icon($entity, "dummy", $params);
+
+		$blog_icon = elgg_view_entity_icon($blog, "dummy", $params);
 	}
-	
+
 	$metadata = elgg_view_menu('entity', array(
 		'entity' => $blog,
 		'handler' => 'blog',
 		'sort_by' => 'priority',
 		'class' => 'elgg-menu-hz',
 	));
-	
+
 	$subtitle = "$author_text $date $comments_link $categories";
-	
+
 	// do not show the metadata and controls in widget view
 	if (elgg_in_context('widgets')) {
 		$metadata = '';
 	}
-	
+
 	// Show blog
 	if ($full) {
 		// full view
@@ -80,9 +80,9 @@
 			'value' => $blog->description,
 			'class' => 'blog-post',
 		));
-	
+
 		$header = elgg_view_title($blog->title);
-	
+
 		$params = array(
 			'entity' => $blog,
 			'title' => false,
@@ -92,13 +92,13 @@
 		);
 		$params = $params + $vars;
 		$summary = elgg_view('object/elements/summary', $params);
-	
+
 		echo elgg_view("object/elements/full", array(
 			"summary" => $summary,
 			"icon" => $owner_icon,
 			"body" => $blog_icon . $body,
 		));
-		
+
 	} else {
 		// how to show strapline
 		if(elgg_in_context("listing")){
@@ -109,11 +109,11 @@
 			$tags = false;
 			$subtitle = "";
 			$title = false;
-			
+
 			// prepend title to the excerpt
 			$title_link = "<h3>" . elgg_view("output/url", array("text" => $blog->title, "href" => $blog->getURL())) . "</h3>";
 			$excerpt = $title_link . $excerpt;
-			
+
 			// add read more link
 			if(substr($excerpt, -3) == "..."){
 				$read_more = elgg_view("output/url", array("text" => elgg_echo("blog_tools:readmore"), "href" => $blog->getURL()));
@@ -122,13 +122,13 @@
 		} elseif(elgg_get_plugin_setting("listing_strapline", "blog_tools") == "time"){
 			$subtitle = "";
 			$tags = false;
-			
+
 			$excerpt = date("F j, Y", $blog->time_created) . " - " . $excerpt;
 		}
-		
+
 		// prepend icon
 		$excerpt = $blog_icon . $excerpt;
-		
+
 		// brief view
 		$params = array(
 			'entity' => $blog,
@@ -138,10 +138,10 @@
 			'tags' => $tags,
 			'content' => $excerpt,
 		);
-		
+
 		$params = $params + $vars;
-		
+
 		$list_body = elgg_view('object/elements/summary', $params);
-	
+
 		echo elgg_view_image_block($owner_icon, $list_body);
 	}
