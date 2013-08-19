@@ -56,7 +56,7 @@
 					// transfer owner link
 					// @todo: mak this work again
 					// need fancybox
-					/* 
+					/*
 					elgg_load_js("lightbox");
 					elgg_load_css("lightbox");
 					elgg_load_js("elgg.autocomplete");
@@ -80,10 +80,10 @@
 		return $result;
 	}
 	
-	function blog_tools_route_blog_hook($hook, $type, $returm_value, $params){
-		$result = $returm_value;
+	function blog_tools_route_blog_hook($hook, $type, $return_value, $params){
+		$result = $return_value;
 		
-		if($page = elgg_extract("segments", $returm_value)){
+		if($page = elgg_extract("segments", $return_value)){
 			
 			switch ($page[0]){
 				case 'owner':
@@ -135,8 +135,8 @@
 		return $result;
 	}
 	
-	function blog_tools_route_livesearch_hook($hook, $type, $returm_value, $params){
-		$result = $returm_value;
+	function blog_tools_route_livesearch_hook($hook, $type, $return_value, $params){
+		$result = $return_value;
 		
 		if(!elgg_is_logged_in()){
 			exit();
@@ -278,9 +278,9 @@
 					$entity->status = "published";
 					
 					// notify owner
-					notify_user($entity->getOwnerGUID(), 
-								$entity->site_guid, 
-								elgg_echo("blog_tools:notify:publish:subject"), 
+					notify_user($entity->getOwnerGUID(),
+								$entity->site_guid,
+								elgg_echo("blog_tools:notify:publish:subject"),
 								elgg_echo("blog_tools:notify:publish:message", array(
 									$entity->title,
 									$entity->getURL()
