@@ -32,6 +32,15 @@
 		// extend editmenu
 		elgg_extend_view("editmenu", "blog_tools/editmenu");
 		
+		// add featured filter menu item
+		elgg_register_menu_item("filter", ElggMenuItem::factory(array(
+				"name" => "featured",
+				"text" => elgg_echo("blog_tools:menu:filter:featured"),
+				"context" => "blog",
+				"href" => "blog/featured",
+				"priority" => 600
+			)));
+		
 		// register index widget
 		elgg_register_widget_type("index_blog", elgg_echo("blog"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
 	}

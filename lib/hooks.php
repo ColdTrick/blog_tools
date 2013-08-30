@@ -129,6 +129,11 @@
 				
 					include(dirname(dirname(__FILE__)) . "/pages/transfer.php");
 					break;
+				case "featured":
+					$result = false;
+									
+					include(dirname(dirname(__FILE__)) . "/pages/featured.php");
+					break;
 			}
 		}
 		

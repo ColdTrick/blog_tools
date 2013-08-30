@@ -8,6 +8,9 @@
 		'blog_tools:transfer' => "Transfer owner",
 		'blog_tools:readmore' => "read more",
 		
+		// menu
+		'blog_tools:menu:filter:featured' => "Featured",
+			
 		// widget
 		'blog_tools:widget:featured' => "Show only featured blogs?",
 		
