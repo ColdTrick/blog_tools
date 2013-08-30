@@ -52,27 +52,6 @@
 					);
 					
 					$result[] = ElggMenuItem::factory($options);
-					
-					// transfer owner link
-					// @todo: mak this work again
-					// need fancybox
-					/*
-					elgg_load_js("lightbox");
-					elgg_load_css("lightbox");
-					elgg_load_js("elgg.autocomplete");
-					// init fancybox
-					elgg_extend_view("page/elements/head", "blog_tools/metatags");
-					
-					$options = array(
-						"name" => "transfer_owner",
-						"text" => elgg_echo("blog_tools:transfer"),
-						"href" => elgg_get_site_url() . "blog/transfer/" . $entity->getGUID(),
-						"class" => "iframe",
-						"priority" => 175
-					);
-					
-					$result[] = ElggMenuItem::factory($options);
-					 */
 				}
 			}
 		}
@@ -119,15 +98,6 @@
 					}
 					
 					include(dirname(dirname(__FILE__)) . "/pages/edit.php");
-					break;
-				case "transfer":
-					$result = false;
-					
-					if(isset($page[1])){
-						set_input("guid", $page[1]);
-					}
-				
-					include(dirname(dirname(__FILE__)) . "/pages/transfer.php");
 					break;
 				case "featured":
 					$result = false;

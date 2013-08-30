@@ -57,4 +57,3 @@
 	
 	// register actions
 	elgg_register_action("blog_tools/toggle_metadata", dirname(__FILE__) . "/actions/toggle_metadata.php", "admin");
-	elgg_register_action("blog_tools/transfer", dirname(__FILE__) . "/actions/transfer.php", "admin");
