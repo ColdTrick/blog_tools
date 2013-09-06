@@ -69,7 +69,7 @@
 				static $blog_tools_listing_image_align;
 				
 				if (!isset($blog_tools_lising_image_size)) {
-					$blog_tools_lising_image_size = "large";
+					$blog_tools_lising_image_size = "small";
 						
 					if ($setting = elgg_get_plugin_setting("listing_size", "blog_tools")) {
 						$blog_tools_lising_image_size = $setting;
