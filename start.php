@@ -27,7 +27,7 @@
 		elgg_register_plugin_hook_handler("register", "menu:entity", "blog_tools_entity_menu_setup");
 		
 		// extend css
-		elgg_extend_view("css/elgg", "blog_tools/css/site");
+		elgg_extend_view("css/elgg", "css/blog_tools/site");
 		
 		// extend editmenu
 		elgg_extend_view("editmenu", "blog_tools/editmenu");
