@@ -15,6 +15,10 @@
 	width: 100%;
 }
 
+.blog-tools-navigation {
+	line-height: 14px;
+}
+
 .blog_tools_info_wrapper p.tags,
 .blog_tools_info_wrapper p.categories {
 	display: inline-block;
