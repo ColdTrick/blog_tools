@@ -43,6 +43,12 @@
 		
 		// register index widget
 		elgg_register_widget_type("index_blog", elgg_echo("blog"), elgg_echo("blog_tools:widgets:index_blog:description"), "index", true);
+		
+		// extra blog views
+		elgg_extend_view("object/blog", "blog_tools/full/navigation");
+		elgg_extend_view("object/blog", "blog_tools/full/owner");
+		elgg_extend_view("object/blog", "blog_tools/full/related");
+		elgg_extend_view("blog/sidebar", "blog_tools/full/related");
 	}
 	
 	// register default elgg events

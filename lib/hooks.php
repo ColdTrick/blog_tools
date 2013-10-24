@@ -77,17 +77,13 @@
 					}
 				case "read": // Elgg 1.7 compatibility
 				case "view":
-					$result = false;
-					
 					if(!elgg_is_logged_in() && (elgg_get_plugin_setting("advanced_gatekeeper", "blog_tools") != "no")){
 						if(isset($page[1]) && !get_entity($page[1])){
 							gatekeeper();
 						}
 					}
 					
-					set_input("guid", $page[1]);
-					
-					include(dirname(dirname(__FILE__)) . "/pages/view.php");
+					set_input("guid", $page[1]); // to be used in the blog_tools/full/related view
 					break;
 				case "add":
 				case "edit":
