@@ -26,6 +26,18 @@
 		'text' => $owner->name,
 	));
 	$author_text = elgg_echo('byline', array($owner_link));
+	
+	// add container text
+	if (elgg_instanceof($container, "group") && ($container->getGUID() !== elgg_get_page_owner_guid())) {
+		$params = array(
+			'href' => $container->getURL(),
+			'text' => $container->name,
+			'is_trusted' => true
+		);
+		$group_link = elgg_view('output/url', $params);
+		$author_text .= " " . elgg_echo('river:ingroup', array($group_link));
+	}
+	
 	$tags = elgg_view('output/tags', array('tags' => $blog->tags));
 	$date = elgg_view_friendly_time($blog->time_created);
 
