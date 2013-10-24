@@ -110,6 +110,12 @@
 			"icon" => $owner_icon,
 			"body" => $blog_icon . $body,
 		));
+		
+		// extra views
+		
+		echo elgg_view("blogs_tools/full/navigation", array("entity" => $blog));
+		echo elgg_view("blogs_tools/full/owner", array("entity" => $blog));
+		echo elgg_view("blogs_tools/full/related", array("entity" => $blog));
 
 	} else {
 		// how to show strapline
