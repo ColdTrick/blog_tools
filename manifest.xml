@@ -5,8 +5,10 @@
 	<version>2.4</version>
 	<description>Allows to add an image to blogs and many more extentions.</description>
 	<website>http://www.coldtrick.com/</website>
-	<copyright>(C) ColdTrick IT Solutions 2009 - 2011</copyright>
-	<license>GNU Public License version 2</license>
+	<repository>https://github.com/ColdTrick/blog_tools</repository>
+	<bugtracker>https://github.com/ColdTrick/blog_tools/issues</bugtracker>
+	<copyright>(C) ColdTrick IT Solutions 2011 - 2013</copyright>
+	<license>GNU General Public License version 2</license>
  	
  	<requires>
 		<type>elgg_release</type>
