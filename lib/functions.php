@@ -43,3 +43,41 @@
 		
 		return $result;
 	}
+	
+	/**
+	 * Returns suggested groups
+	 *
+	 */
+	function blog_tools_get_related_blogs(ElggEntity $entity, $limit = 4) {
+		$result = false;
+	
+		$limit = sanitise_int($limit, false);
+		
+		if (!empty($entity) && elgg_instanceof($entity, "object", "blog")) {
+			// transform to values
+			$tag_values = $entity->tags;
+	
+			if (!empty($tag_values)) {
+				if (!is_array($tag_values)) {
+					$tag_values = array($tag_values);
+				}
+				
+				// find blogs with these metadatavalues
+				$options = array(
+					"type" => "object",
+					"subtype" => "blog",
+					"metadata_name" => "tags",
+					"metadata_values" => $tag_values,
+					"wheres" => array("(e.guid <> " . $entity->getGUID() . ")"),
+					"group_by" => "e.guid",
+					"order_by" => "count(msn.id) DESC",
+					"limit" => $limit
+				);
+		
+				$result = elgg_get_entities_from_metadata($options);
+			}
+		}
+		
+		return $result;
+	}
+	
