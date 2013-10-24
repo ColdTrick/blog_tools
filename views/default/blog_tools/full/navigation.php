@@ -34,11 +34,14 @@
 	
 	if (!empty($previous)) {
 		$previous_link = elgg_view("output/url", array(
-			"text" => elgg_echo("previous"),
+			"text" => '&laquo; ' .elgg_echo("previous"),
 			"title" => $previous[0]->title,
 			"href" => $previous[0]->getURL(),
-			"is_trusted" => true
+			"is_trusted" => true,
+			"class" => "float"
 		));
+		
+		$previous_link = "<li>" . $previous_link . "</li>";
 	}
 	
 	// get next blog
@@ -56,17 +59,19 @@
 	
 	if (!empty($next)) {
 		$next_link = elgg_view("output/url", array(
-			"text" => elgg_echo("next"),
+			"text" => elgg_echo("next"). ' &raquo;',
 			"title" => $next[0]->title,
 			"href" => $next[0]->getURL(),
 			"is_trusted" => true,
 			"class" => "float-alt"
 		));
+		
+		$next_link = "<li>" . $next_link . "</li>";
 	}
 	
 	if (!empty($previous_link) || !empty($next_link)) {
-		echo "<div class='mts'>";
+		echo "<ul class='elgg-pagination blog-tools-navigation clearfix'>";
 		echo $next_link;
 		echo $previous_link;
-		echo "</div>";
+		echo "</ul>";
 	}
