@@ -52,6 +52,14 @@ You can view your blog here:
 		'blog_tools:settings:full:image_align' => "Blog full view image align",
 		'blog_tools:settings:full:image_size' => "Blog full view image size",
 		
+		'blog_tools:settings:full' => "Blog full view settings",
+		'blog_tools:settings:full:show_full_navigation' => "Show previous/next navigation",
+		'blog_tools:settings:full:show_full_owner' => "Show blog owner information below blog",
+		'blog_tools:settings:full:show_full_owner:optional' => "Optional, blog owner decides",
+		'blog_tools:settings:full:show_full_related' => "Show related blogs",
+		'blog_tools:settings:full:show_full_related:full_view' => "In the sidebar",
+		'blog_tools:settings:full:show_full_related:sidebar' => "Below the blog",
+		
 		'blog_tools:settings:align:none' => "No image",
 		'blog_tools:settings:align:left' => "Left",
 		'blog_tools:settings:align:right' => "Right",
