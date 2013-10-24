@@ -52,7 +52,8 @@ $values = array(
 	'excerpt' => '',
 	'tags' => '',
 	'publication_date' => '',
-	'expiration_date' => ''
+	'expiration_date' => '',
+	'show_owner' => 'no'
 );
 
 // fail if a required entity isn't set

@@ -126,7 +126,7 @@ if(blog_tools_use_advanced_publication_options()){
 	$publication_date = "<div class='mbs'>";
 	$publication_date .= "<label for='publication_date'>" . elgg_echo("blog_tools:label:publication_date") . "</label>";
 	$publication_date .= elgg_view("input/date", array(
-								"name" => "publication_date", 
+								"name" => "publication_date",
 								"value" => $publication_date_value));
 	$publication_date .= "<div class='elgg-subtext'>" . elgg_echo("blog_tools:publication_date:description") . "</div>";
 	$publication_date .= "</div>";
@@ -134,7 +134,7 @@ if(blog_tools_use_advanced_publication_options()){
 	$expiration_date = "<div class='mbs'>";
 	$expiration_date .= "<label for='expiration_date'>" . elgg_echo("blog_tools:label:expiration_date") . "</label>";
 	$expiration_date .= elgg_view("input/date", array(
-								"name" => "expiration_date", 
+								"name" => "expiration_date",
 								"value" => $expiration_date_value));
 	$expiration_date .= "<div class='elgg-subtext'>" . elgg_echo("blog_tools:expiration_date:description") . "</div>";
 	$expiration_date .= "</div>";
@@ -151,6 +151,20 @@ $comments_input = elgg_view('input/dropdown', array(
 	'id' => 'blog_comments_on',
 	'value' => $vars['comments_on'],
 	'options_values' => array('On' => elgg_echo('on'), 'Off' => elgg_echo('off'))
+));
+
+// show owner
+if (empty($blog)) {
+	$show_owner_value = elgg_extract("show_owner", $vars);
+} else {
+	$show_owner_value = elgg_extract("show_owner", $vars, $blog->show_owner);
+}
+$show_owner_label = elgg_echo('blog_tools:label:show_owner');
+$show_owner_input = elgg_view('input/dropdown', array(
+	'name' => 'show_owner',
+	'id' => 'blog_show_owner',
+	'value' => $show_owner_value,
+	'options_values' => array('no' => elgg_echo('option:no'), 'yes' => elgg_echo('option:yes'))
 ));
 
 // tags
@@ -214,6 +228,18 @@ $categories_input
 	$comments_input
 </div>
 
+___HTML;
+
+if (elgg_get_plugin_setting("show_full_owner", "blog_tools") == "optional") {
+echo <<<___HTML
+<div>
+	<label for="blog_show_owner">$show_owner_label</label>
+	$show_owner_input
+</div>
+___HTML;
+}
+
+echo <<<___HTML
 <div>
 	<label for="blog_access_id">$access_label</label>
 	$access_input

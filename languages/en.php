@@ -36,6 +36,8 @@ You can view your blog here:
 		'blog_tools:label:icon:new' => "Upload icon",
 		'blog_tools:label:icon:remove' => "Remove icon",
 		
+		'blog_tools:label:show_owner' => "Show information about yourself below the blog",
+		
 		'blog_tools:label:publication_options' => "Publication options",
 		'blog_tools:label:publication_date' => "Publication date (optional)",
 		'blog_tools:publication_date:description' => "When you select a date here the blog will not be published until the selected date.",
