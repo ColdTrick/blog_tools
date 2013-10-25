@@ -47,7 +47,7 @@
 		$title = elgg_echo("blog_tools:view:related");
 		
 		$icon_size = "medium";
-		$excerpt_length = 150;
+		$excerpt_length = 120;
 		
 		if ($sidebar) {
 			$icon_size = "small";
