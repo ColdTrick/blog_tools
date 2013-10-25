@@ -1,5 +1,14 @@
 <?php
 $language = array (
+  'blog_tools:view:related' => 'Gerelateerde blogs',
+  'blog_tools:label:show_owner' => 'Toon informatie over jezelf onder het blog',
+  'blog_tools:settings:full' => 'Blog detail weergave instellingen',
+  'blog_tools:settings:full:show_full_navigation' => 'Toon vorige/volgende navigatie',
+  'blog_tools:settings:full:show_full_owner' => 'Toon blog eigenaars informatie onder de blog',
+  'blog_tools:settings:full:show_full_owner:optional' => 'Optioneel, blog eigenaar mag dit bepalen',
+  'blog_tools:settings:full:show_full_related' => 'Toon gerelateerde blogs',
+  'blog_tools:settings:full:show_full_related:full_view' => 'Onder de blog',
+  'blog_tools:settings:full:show_full_related:sidebar' => 'In de zijbalk',
   'blog_tools:menu:filter:featured' => 'Aangeraden',
   'blog_tools:settings:size:master' => 'Master (550x550)',
   'blog_tools:settings:advanced_publication' => 'Maak geavanceerde publicatie opties beschikbaar',
