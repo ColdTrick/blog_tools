@@ -37,10 +37,9 @@
 			"text" => '&laquo; ' .elgg_echo("previous"),
 			"title" => $previous[0]->title,
 			"href" => $previous[0]->getURL(),
-			"is_trusted" => true
+			"is_trusted" => true,
+			"class" => "float"
 		));
-		
-		$previous_link = "<li class='float'>" . $previous_link . "</li>";
 	}
 	
 	// get next blog
@@ -61,15 +60,14 @@
 			"text" => elgg_echo("next"). ' &raquo;',
 			"title" => $next[0]->title,
 			"href" => $next[0]->getURL(),
-			"is_trusted" => true
+			"is_trusted" => true,
+			"class" => "float-alt"
 		));
-		
-		$next_link = "<li class='float-alt'>" . $next_link . "</li>";
 	}
 	
 	if (!empty($previous_link) || !empty($next_link)) {
-		echo "<ul class='elgg-pagination clearfix'>";
+		echo "<div class='elgg-pagination clearfix'>";
 		echo $next_link;
 		echo $previous_link;
-		echo "</ul>";
+		echo "</div>";
 	}
