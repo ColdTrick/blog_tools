@@ -23,6 +23,22 @@
 	border-radius: 4px;
 }
 
+#blog-tools-full-related .elgg-body > div {
+	float: left;
+	width: 50%;
+}
+
+#blog-tools-full-related .elgg-image-block {
+	padding: 0;
+	margin: 0 10px 10px 0;
+	height: 100px;
+	overflow: hidden;
+}
+
+#blog-tools-full-related .elgg-image-block:hover {
+	background: #E4ECF5;
+}
+
 .blog_tools_info_wrapper p.tags,
 .blog_tools_info_wrapper p.categories {
 	display: inline-block;

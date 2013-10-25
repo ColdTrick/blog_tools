@@ -31,6 +31,9 @@ You can view your blog here:
 %s",
 		
 		// views
+		'blog_tools:view:related' => "Related blogs",
+			
+			
 		// blog edit
 		'blog_tools:label:icon:exists' => "Upload icon (leave empty to keep current icon)",
 		'blog_tools:label:icon:new' => "Upload icon",
