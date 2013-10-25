@@ -15,8 +15,12 @@
 	width: 100%;
 }
 
-.blog-tools-navigation {
-	line-height: 14px;
+.blog-tools-full-owner {
+	border: 1px solid #4690D6;
+	background: #E4ECF5;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 
 .blog_tools_info_wrapper p.tags,

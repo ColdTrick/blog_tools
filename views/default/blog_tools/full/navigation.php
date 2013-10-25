@@ -40,8 +40,6 @@
 			"is_trusted" => true,
 			"class" => "float"
 		));
-		
-		$previous_link = "<li>" . $previous_link . "</li>";
 	}
 	
 	// get next blog
@@ -65,13 +63,11 @@
 			"is_trusted" => true,
 			"class" => "float-alt"
 		));
-		
-		$next_link = "<li>" . $next_link . "</li>";
 	}
 	
 	if (!empty($previous_link) || !empty($next_link)) {
-		echo "<ul class='elgg-pagination blog-tools-navigation clearfix'>";
+		echo "<div class='elgg-pagination clearfix'>";
 		echo $next_link;
 		echo $previous_link;
-		echo "</ul>";
+		echo "</div>";
 	}

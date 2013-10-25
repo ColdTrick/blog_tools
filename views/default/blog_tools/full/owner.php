@@ -60,5 +60,5 @@
 			$content .= "</div>";
 		}
 		
-		echo elgg_view_image_block($icon, $content, array("class" => "mts"));
+		echo elgg_view_image_block($icon, $content, array("class" => "mts pam blog-tools-full-owner"));
 	}
