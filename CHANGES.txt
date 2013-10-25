@@ -1,11 +1,18 @@
 = Version History =
 
-x.x:
+2.5 (2013-10-25):
 
+- added: related blogs on full view (sidebar or blog footer)
+- added: owner information below blog
+- added: blog container navigation (previous/next blog) on full view
+- added: settings to control new full view views
+- added: "in group" text added to subtitle of a blog
+- added: featured blogs page
 - added: new image size support
 - added: support for the blog image in the river
 - changed: CSS cleanup
 - changed: moved blog image to own view
+- removed: owner transfer code (replaced by ColdTrick/entity_tools plugin)
 
 2.4 (2013-04-05):
 
