@@ -2,6 +2,12 @@
 /**
  * Save blog entity
  *
+ * Can be called by clicking save button or preview button. If preview button,
+ * we automatically save as draft. The preview button is only available for
+ * non-published drafts.
+ *
+ * Drafts are saved with the access set to private.
+ *
  * @package Blog
  */
 
@@ -34,7 +40,7 @@ if ($guid) {
 } else {
 	$blog = new ElggBlog();
 	$blog->subtype = 'blog';
-	$blog->container_guid = (int)get_input('container_guid');
+	$blog->container_guid = (int) get_input('container_guid');
 	
 	$new_post = TRUE;
 }
@@ -79,36 +85,33 @@ foreach ($values as $name => $default) {
 
 		case 'excerpt':
 			if ($value) {
-				$value = elgg_get_excerpt($value);
-			} else {
-				$value = elgg_get_excerpt($values['description']);
+				$values[$name] = elgg_get_excerpt($value);
 			}
-			$values[$name] = $value;
 			break;
 
 		case 'publication_date':
-			if(!empty($value)){
+			if (!empty($value)) {
 				$values[$name] = $value;
 				
 				// publication date has not yet passed, set as draft
-				if(strtotime($value) > time()){
+				if (strtotime($value) > time()) {
 					$save = false;
 				}
 			}
 			break;
 			
 		case 'expiration_date':
-			if(!empty($value)){
+			if (!empty($value)) {
 				$values[$name] = $value;
 				
-				if($new_post){
+				if ($new_post) {
 					// new blogs can't expire directly
-					if(strtotime($value) < time()){
+					if (strtotime($value) < time()) {
 						$error = elgg_echo("blog_tools:action:save:error:expiration_date");
 					}
 				} else {
 					// if expiration is passed, set as draft
-					if(strtotime($value) < time()){
+					if (strtotime($value) < time()) {
 						$save = false;
 					}
 				}
@@ -135,10 +138,7 @@ if ($values['status'] == 'draft') {
 // assign values to the entity, stopping on error.
 if (!$error) {
 	foreach ($values as $name => $value) {
-		if (FALSE === ($blog->$name = $value)) {
-			$error = elgg_echo('blog:error:cannot_save' . "$name=$value");
-			break;
-		}
+		$blog->$name = $value;
 	}
 }
 
@@ -146,28 +146,34 @@ if (!$error) {
 if (!$error) {
 	if ($blog->save()) {
 		// handle icon upload
-		if(get_input("remove_icon") == "yes"){
+		if (get_input("remove_icon") == "yes") {
 			// remove existing icons
 			blog_tools_remove_blog_icon($blog);
-		} elseif(($icon_file = get_resized_image_from_uploaded_file("icon", 100, 100)) && ($icon_sizes = elgg_get_config("icon_sizes"))){
-			// create icon
-			$prefix = "blogs/" . $blog->getGUID();
+		} else {
+			$icon_file = get_resized_image_from_uploaded_file("icon", 100, 100);
+			$icon_sizes = elgg_get_config("icon_sizes");
 			
-			$fh = new ElggFile();
-			$fh->owner_guid = $blog->getOwnerGUID();
-			
-			foreach($icon_sizes as $icon_name => $icon_info){
-				if($icon_file = get_resized_image_from_uploaded_file("icon", $icon_info["w"], $icon_info["h"], $icon_info["square"], $icon_info["upscale"])){
-					$fh->setFilename($prefix . $icon_name . ".jpg");
-					
-					if($fh->open("write")){
-						$fh->write($icon_file);
-						$fh->close();
+			if (!empty($icon_file) && !empty($icon_sizes)) {
+				// create icon
+				$prefix = "blogs/" . $blog->getGUID();
+				
+				$fh = new ElggFile();
+				$fh->owner_guid = $blog->getOwnerGUID();
+				
+				foreach ($icon_sizes as $icon_name => $icon_info) {
+					$icon_file = get_resized_image_from_uploaded_file("icon", $icon_info["w"], $icon_info["h"], $icon_info["square"], $icon_info["upscale"]);
+					if (!empty($icon_file)) {
+						$fh->setFilename($prefix . $icon_name . ".jpg");
+						
+						if ($fh->open("write")) {
+							$fh->write($icon_file);
+							$fh->close();
+						}
 					}
 				}
+				
+				$blog->icontime = time();
 			}
-			
-			$blog->icontime = time();
 		}
 		
 		// remove sticky form entries
@@ -191,7 +197,12 @@ if (!$error) {
 		// add to river if changing status or published, regardless of new post
 		// because we remove it for drafts.
 		if (($new_post || $old_status == 'draft') && $status == 'published') {
-			add_to_river('river/object/blog/create', 'create', $blog->owner_guid, $blog->getGUID());
+			elgg_create_river_item(array(
+				'view' => 'river/object/blog/create',
+				'action_type' => 'create',
+				'subject_guid' => $blog->owner_guid,
+				'object_guid' => $blog->getGUID(),
+			));
 			
 			// we only want notifications sent when post published
 			register_notification_object('object', 'blog', elgg_echo('blog:newpost'));

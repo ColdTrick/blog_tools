@@ -17,5 +17,5 @@ if ($object->icontime) {
 
 echo elgg_view("river/elements/layout", array(
 	"item" => $vars["item"],
-	"message" =>  $message
+	"message" => $message
 ));

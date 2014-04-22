@@ -36,10 +36,10 @@ if (!$vars['guid'] || ($blog && $blog->status != 'published')) {
 }
 
 $icon_remove_input = "";
-if($vars["guid"]){
+if ($vars["guid"]) {
 	$icon_label = elgg_echo("blog_tools:label:icon:exists");
 	
-	if($blog->icontime){
+	if ($blog->icontime) {
 		$icon_remove_input = "<br /><img src='" . $blog->getIconURL() . "' />";
 		$icon_remove_input .= "<br />";
 		$icon_remove_input .= elgg_view("input/checkbox", array(
@@ -75,7 +75,7 @@ $status .= "</div>";
 
 // advanced publication options
 if (blog_tools_use_advanced_publication_options()) {
-	if(!empty($blog)){
+	if (!empty($blog)) {
 		$publication_date_value = elgg_extract("publication_date", $vars, $blog->publication_date);
 		$expiration_date_value = elgg_extract("expiration_date", $vars, $blog->expiration_date);
 	} else {
@@ -83,10 +83,10 @@ if (blog_tools_use_advanced_publication_options()) {
 		$expiration_date_value = elgg_extract("expiration_date", $vars);
 	}
 	
-	if(empty($publication_date_value)){
+	if (empty($publication_date_value)) {
 		$publication_date_value = "";
 	}
-	if(empty($expiration_date_value)){
+	if (empty($expiration_date_value)) {
 		$expiration_date_value = "";
 	}
 	

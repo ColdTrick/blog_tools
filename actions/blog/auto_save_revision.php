@@ -44,7 +44,7 @@ if ($title && $description) {
 		$blog->new_post = TRUE;
 		
 		$container_guid = (int)get_input('container_guid');
-		if($container_guid){
+		if ($container_guid) {
 			$blog->container_guid = $container_guid;
 		}
 		
@@ -59,10 +59,14 @@ if ($title && $description) {
 		// we have to delete everything or the times are wrong.
 
 		// don't save if nothing changed
-		if ($auto_save_annotations = $blog->getAnnotations('blog_auto_save', 1)) {
+		$auto_save_annotations = $blog->getAnnotations(array(
+			'annotation_name' => 'blog_auto_save',
+			'limit' => 1,
+		));
+		if ($auto_save_annotations) {
 			$auto_save = $auto_save_annotations[0];
 		} else {
-			$auto_save == FALSE;
+			$auto_save = FALSE;
 		}
 
 		if (!$auto_save) {
