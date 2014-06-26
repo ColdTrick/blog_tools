@@ -10,7 +10,7 @@ $vars['entity'] = $blog;
 
 $draft_warning = $vars['draft_warning'];
 if ($draft_warning) {
-	$draft_warning = '<span class="message warning">' . $draft_warning . '</span>';
+	$draft_warning = '<span class="mbm elgg-text-help">' . $draft_warning . '</span>';
 }
 
 $delete_link = '';
@@ -31,7 +31,7 @@ if (!$vars['guid'] || ($blog && $blog->status != 'published')) {
 	$preview_button = elgg_view('input/submit', array(
 		'value' => elgg_echo('preview'),
 		'name' => 'preview',
-		'class' => 'mls',
+		'class' => 'mls elgg-button-action',
 	));
 }
 
@@ -56,20 +56,21 @@ if ($vars['guid']) {
 	$entity = get_entity($vars['guid']);
 	$saved = date('F j, Y @ H:i', $entity->time_created);
 } else {
-	$saved = elgg_echo('blog:never');
+	$saved = elgg_echo('never');
 }
 
 // publication options
 $status = "<div class='mbs'>";
-$status .= "<label for='blog_status'>" . elgg_echo('blog:status') . "</label>";
-$status .= "&nbsp;" . elgg_view('input/dropdown', array(
+$status .= "<label for='blog_status'>" . elgg_echo('status') . "</label>";
+$status .= elgg_view('input/dropdown', array(
 	'name' => 'status',
 	'id' => 'blog_status',
 	'value' => $vars['status'],
 	'options_values' => array(
-		'draft' => elgg_echo('blog:status:draft'),
-		'published' => elgg_echo('blog:status:published')
-	)
+		'draft' => elgg_echo('status:draft'),
+		'published' => elgg_echo('status:published')
+	),
+	'class' => 'mls'
 ));
 $status .= "</div>";
 
@@ -184,7 +185,10 @@ echo elgg_view('input/dropdown', array(
 	'id' => 'blog_comments_on',
 	'class' => 'mls',
 	'value' => $vars['comments_on'],
-	'options_values' => array('On' => elgg_echo('on'), 'Off' => elgg_echo('off'))
+	'options_values' => array(
+		'On' => elgg_echo('on'),
+		'Off' => elgg_echo('off')
+	)
 ));
 echo "</div>";
 
@@ -211,7 +215,7 @@ echo $publication_options;
 echo "<div class='elgg-foot'>";
 echo "<div class='elgg-subtext mbm'>";
 echo elgg_echo('blog:save_status');
-echo "<span class='blog-save-status-time'>$saved</span>";
+echo "<span class='blog-save-status-time mls'>$saved</span>";
 echo "</div>";
 
 echo elgg_view('input/hidden', array('name' => 'guid', 'value' => $vars['guid']));

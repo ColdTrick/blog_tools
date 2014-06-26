@@ -373,4 +373,42 @@ function blog_tools_daily_cron_hook($hook, $type, $return_value, $params) {
 		elgg_set_ignore_access($ia);
 	}
 }
-	
+
+/**
+ * Add or remove widgets based on the group tool option
+ *
+ * @param string $hook         'group_tool_widgets'
+ * @param string $type         'widget_manager'
+ * @param array  $return_value current enable/disable widget handlers
+ * @param array  $params       supplied params
+ *
+ * @return array
+ */
+function blog_tools_tool_widgets_handler($hook, $type, $return_value, $params) {
+
+	if (!empty($params) && is_array($params)) {
+		$entity = elgg_extract("entity", $params);
+
+		if (!empty($entity) && elgg_instanceof($entity, "group")) {
+			if (!is_array($return_value)) {
+				$return_value = array();
+			}
+				
+			if (!isset($return_value["enable"])) {
+				$return_value["enable"] = array();
+			}
+			if (!isset($return_value["disable"])) {
+				$return_value["disable"] = array();
+			}
+				
+			// check different group tools for which we supply widgets
+			if ($entity->blog_enable == "yes") {
+				$return_value["enable"][] = "blog";
+			} else {
+				$return_value["disable"][] = "blog";
+			}
+		}
+	}
+
+	return $return_value;
+}

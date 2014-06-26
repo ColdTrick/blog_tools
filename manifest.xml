@@ -19,7 +19,6 @@
 	<requires>
 		<type>plugin</type>
 		<name>blog</name>
-		<priority>after</priority>
 	</requires>
 	
 	<requires>

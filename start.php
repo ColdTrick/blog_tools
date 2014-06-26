@@ -34,12 +34,13 @@ function blog_tools_init() {
 	elgg_register_event_handler("delete", "object", "blog_tools_delete_handler");
 	
 	// register plugin hook handlers
-	elgg_register_plugin_hook_handler("widget_url", "widget_manager", "blog_tools_widget_url_handler");
+	elgg_register_plugin_hook_handler("entity:url", "object", "blog_tools_widget_url_handler");
 	elgg_register_plugin_hook_handler("cron", "daily", "blog_tools_daily_cron_hook");
 	elgg_register_plugin_hook_handler("entity:icon:url", "object", "blog_tools_icon_hook");
 	elgg_register_plugin_hook_handler("route", "blog", "blog_tools_route_blog_hook");
 	elgg_register_plugin_hook_handler("route", "livesearch", "blog_tools_route_livesearch_hook");
 	elgg_register_plugin_hook_handler("register", "menu:entity", "blog_tools_entity_menu_setup");
+	elgg_register_plugin_hook_handler("group_tool_widgets", "widget_manager", "blog_tools_tool_widgets_handler");
 	
 	// extend editmenu
 	elgg_extend_view("editmenu", "blog_tools/editmenu");
@@ -55,6 +56,7 @@ function blog_tools_init() {
 	
 	// register index widget
 	elgg_register_widget_type("index_blog", elgg_echo("blog"), elgg_echo("blog_tools:widgets:index_blog:description"), array("index"), true);
+	elgg_register_widget_type("blog", elgg_echo("blog"), elgg_echo("blog:widget:description"), array("profile", "dashboard", "groups"));
 	
 	// overrule blog actions
 	elgg_register_action("blog/save", dirname(__FILE__) . "/actions/blog/save.php");
