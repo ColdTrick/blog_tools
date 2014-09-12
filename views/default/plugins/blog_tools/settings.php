@@ -49,7 +49,7 @@ $full_size = $plugin->full_size;
 
 // make default settings
 if (empty($listing_align)) {
-	$listing_align = "left";
+	$listing_align = "right";
 }
 
 if (empty($listing_size)) {
