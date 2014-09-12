@@ -57,23 +57,26 @@ function blog_tools_entity_menu_setup($hook, $entity_type, $returnvalue, $params
 	if (!empty($params) && is_array($params)) {
 		$entity = elgg_extract("entity", $params);
 		if (!empty($entity) && elgg_instanceof($entity, "object", "blog")) {
+
+			// only allow featuring
+			if ($entity->status !== "draft") {
+				// feature link
+				if (!empty($entity->featured)) {
+					$text = elgg_echo("blog_tools:toggle:unfeature");
+				} else {
+					$text = elgg_echo("blog_tools:toggle:feature");
+				}
 				
-			// feature link
-			if (!empty($entity->featured)) {
-				$text = elgg_echo("blog_tools:toggle:unfeature");
-			} else {
-				$text = elgg_echo("blog_tools:toggle:feature");
+				$options = array(
+					"name" => "featured",
+					"text" => $text,
+					"href" => "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured",
+					"is_action" => true,
+					"priority" => 175
+				);
+				
+				$result[] = ElggMenuItem::factory($options);
 			}
-			
-			$options = array(
-				"name" => "featured",
-				"text" => $text,
-				"href" => "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured",
-				"is_action" => true,
-				"priority" => 175
-			);
-			
-			$result[] = ElggMenuItem::factory($options);
 		}
 	}
 	
