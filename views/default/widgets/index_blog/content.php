@@ -33,7 +33,6 @@ $options = array(
 	"limit" => $count,
 	"full_view" => false,
 	"pagination" => false,
-	"view_type_toggle" => false,
 	"metadata_name_value_pairs" => array()
 );
 
