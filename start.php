@@ -20,6 +20,7 @@ function blog_tools_init() {
 	
 	// extend css
 	elgg_extend_view("css/elgg", "css/blog_tools/site");
+	elgg_extend_view("js/elgg", "js/blog_tools/site");
 	
 	// extra blog views
 	elgg_extend_view("object/blog", "blog_tools/full/navigation");

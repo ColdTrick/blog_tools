@@ -48,39 +48,50 @@ function blog_tools_icon_hook($hook, $entity_type, $returnvalue, $params) {
  * @return ElggMenuItem[]
  */
 function blog_tools_entity_menu_setup($hook, $entity_type, $returnvalue, $params) {
-	$result = $returnvalue;
 	
-	if (elgg_in_context("widgets") || !elgg_is_admin_logged_in()) {
-		return $result;
+	if (empty($params) || !is_array($params)) {
+		return $returnvalue;
 	}
 	
-	if (!empty($params) && is_array($params)) {
-		$entity = elgg_extract("entity", $params);
-		if (!empty($entity) && elgg_instanceof($entity, "object", "blog")) {
-
-			// only allow featuring
-			if ($entity->status !== "draft") {
-				// feature link
-				if (!empty($entity->featured)) {
-					$text = elgg_echo("blog_tools:toggle:unfeature");
-				} else {
-					$text = elgg_echo("blog_tools:toggle:feature");
-				}
-				
-				$options = array(
-					"name" => "featured",
-					"text" => $text,
-					"href" => "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured",
-					"is_action" => true,
-					"priority" => 175
-				);
-				
-				$result[] = ElggMenuItem::factory($options);
-			}
-		}
+	$entity = elgg_extract("entity", $params);
+	if (empty($entity) || !elgg_instanceof($entity, "object", "blog")) {
+		return $returnvalue;
 	}
 	
-	return $result;
+	// only published blogs
+	if ($entity->status == "draft") {
+		return $returnvalue;
+	}
+	
+	if (!elgg_in_context("widgets") && elgg_is_admin_logged_in()) {
+		$returnvalue[] = ElggMenuItem::factory(array(
+			"name" => "blog-feature",
+			"text" => elgg_echo("blog_tools:toggle:feature"),
+			"href" => "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured",
+			"item_class" => empty($entity->featured) ? "" : "hidden",
+			"is_action" => true,
+			"priority" => 175
+		));
+		$returnvalue[] = ElggMenuItem::factory(array(
+			"name" => "blog-unfeature",
+			"text" => elgg_echo("blog_tools:toggle:unfeature"),
+			"href" => "action/blog_tools/toggle_metadata?guid=" . $entity->getGUID() . "&metadata=featured",
+			"item_class" => empty($entity->featured) ? "hidden" : "",
+			"is_action" => true,
+			"priority" => 176
+		));
+	}
+	
+	if ($entity->canComment()) {
+		$returnvalue[] = ElggMenuItem::factory(array(
+			"name" => "comments",
+			"text" => elgg_view_icon("speech-bubble"),
+			"title" => elgg_echo("comments"),
+			"href" => $entity->getURL() . "#comments"
+		));
+	}
+	
+	return $returnvalue;
 }
 
 /**
