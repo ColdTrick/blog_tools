@@ -86,7 +86,7 @@ function blog_tools_entity_menu_setup($hook, $entity_type, $returnvalue, $params
 		$returnvalue[] = ElggMenuItem::factory(array(
 			"name" => "comments",
 			"text" => elgg_view_icon("speech-bubble"),
-			"title" => elgg_echo("comments"),
+			"title" => elgg_echo("comment:this"),
 			"href" => $entity->getURL() . "#comments"
 		));
 	}
