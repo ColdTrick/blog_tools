@@ -19,19 +19,16 @@ function blog_tools_icon_hook($hook, $entity_type, $returnvalue, $params) {
 		$entity = elgg_extract("entity", $params);
 		
 		if (!empty($entity) && elgg_instanceof($entity, "object", "blog")) {
-			$size = elgg_extract("size", $params);
+			$iconsizes = (array) elgg_get_config("icon_sizes");
+			$size = strtolower(elgg_extract("size", $params));
 			
-			if ($icontime = $entity->icontime) {
-				
-				$filehandler = new ElggFile();
-				$filehandler->owner_guid = $entity->getOwnerGUID();
-				$filehandler->setFilename("blogs/" . $entity->getGUID() . $size . ".jpg");
-				
-				if ($filehandler->exists()) {
-					$url = elgg_get_site_url() . "blogicon/" . $entity->getGUID() . "/" . $size . "/" . $icontime . ".jpg";
-					
-					return $url;
-				}
+			if (!array_key_exists($size, $iconsizes)) {
+				$size = "medium";
+			}
+			
+			$icontime = $entity->icontime;
+			if ($icontime) {
+				return elgg_normalize_url("mod/blog_tools/pages/thumbnail.php?guid=" . $entity->getOwnerGUID() . "&blog_guid=" . $entity->getGUID() . "&size=" . $size . "&icontime=" . $icontime);
 			}
 		}
 	}

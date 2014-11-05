@@ -6,7 +6,6 @@
 require_once(dirname(__FILE__) . "/lib/functions.php");
 require_once(dirname(__FILE__) . "/lib/hooks.php");
 require_once(dirname(__FILE__) . "/lib/events.php");
-require_once(dirname(__FILE__) . "/lib/page_handlers.php");
 
 // register default elgg events
 elgg_register_event_handler("init", "system", "blog_tools_init");
@@ -27,10 +26,7 @@ function blog_tools_init() {
 	elgg_extend_view("object/blog", "blog_tools/full/owner");
 	elgg_extend_view("object/blog", "blog_tools/full/related");
 	elgg_extend_view("blog/sidebar", "blog_tools/full/related");
-	
-	// Register an icon handler for blog
-	elgg_register_page_handler("blogicon", "blog_tools_icon_handler");
-	
+		
 	// register event handlers
 	elgg_register_event_handler("delete", "object", "blog_tools_delete_handler");
 	
