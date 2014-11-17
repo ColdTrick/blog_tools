@@ -1,6 +1,12 @@
 Version History
 ===============
 
+3.1 (2014-11-17):
+
+- added: link to the comments section in the entity menu
+- changed: admin option to feature a blog now toggles ajax based
+- changed: blog thumbnails can be cached better
+
 3.0 (2014-09-25):
 
 - prepared for Elgg 1.9
