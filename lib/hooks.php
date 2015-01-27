@@ -197,10 +197,10 @@ function blog_tools_route_livesearch_hook($hook, $type, $return_value, $params) 
 		$options = array(
 			"type" => "user",
 			"relationship" => "member_of_site",
-			"relationship_guid" => get_config("site_guid"),
+			"relationship_guid" => elgg_get_config("site_guid"),
 			"inverse_relationship" => true,
 			"limit" => $limit,
-			"joins" => array("JOIN " . get_config("dbprefix") . "users_entity ue ON e.guid = ue.guid"),
+			"joins" => array("JOIN " . elgg_get_config("dbprefix") . "users_entity ue ON e.guid = ue.guid"),
 			"wheres" => array("(ue.username LIKE '%" . $q . "%' OR ue.name LIKE '%" . $q . "%')")
 		);
 		
