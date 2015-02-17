@@ -1,6 +1,10 @@
 Version History
 ===============
 
+4.0:
+
+- fixed: blog icons crash in Elgg 1.10 #21
+
 3.2 (2015-02-17):
 
 - fixed: use of a private function
