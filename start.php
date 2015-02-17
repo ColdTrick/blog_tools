@@ -4,8 +4,6 @@
  */
 
 require_once(dirname(__FILE__) . "/lib/functions.php");
-require_once(dirname(__FILE__) . "/lib/hooks.php");
-require_once(dirname(__FILE__) . "/lib/events.php");
 
 // register default elgg events
 elgg_register_event_handler("init", "system", "blog_tools_init");
@@ -28,15 +26,15 @@ function blog_tools_init() {
 	elgg_extend_view("blog/sidebar", "blog_tools/full/related");
 		
 	// register event handlers
-	elgg_register_event_handler("delete", "object", "blog_tools_delete_handler");
+	elgg_register_event_handler("delete", "object", array("\ColdTrick\BlogTools\DeleteHandler", "cleanupBlogIcon"));
 	
 	// register plugin hook handlers
-	elgg_register_plugin_hook_handler("entity:url", "object", "blog_tools_widget_url_handler");
-	elgg_register_plugin_hook_handler("cron", "daily", "blog_tools_daily_cron_hook");
-	elgg_register_plugin_hook_handler("entity:icon:url", "object", "blog_tools_icon_hook");
-	elgg_register_plugin_hook_handler("route", "blog", "blog_tools_route_blog_hook");
-	elgg_register_plugin_hook_handler("register", "menu:entity", "blog_tools_entity_menu_setup");
-	elgg_register_plugin_hook_handler("group_tool_widgets", "widget_manager", "blog_tools_tool_widgets_handler");
+	elgg_register_plugin_hook_handler("entity:url", "object", array("\ColdTrick\BlogTools\Widgets", "widgetUrl"));
+	elgg_register_plugin_hook_handler("cron", "daily", array("\ColdTrick\BlogTools\Cron", "daily"));
+	elgg_register_plugin_hook_handler("entity:icon:url", "object", array("\ColdTrick\BlogTools\EntityIcon", "blogIcon"));
+	elgg_register_plugin_hook_handler("route", "blog", array("\ColdTrick\BlogTools\Router", "blog"));
+	elgg_register_plugin_hook_handler("register", "menu:entity", array("\ColdTrick\BlogTools\EntityMenu", "register"));
+	elgg_register_plugin_hook_handler("group_tool_widgets", "widget_manager", array("\ColdTrick\BlogTools\Widgets", "groupTools"));
 	
 	// extend editmenu
 	elgg_extend_view("editmenu", "blog_tools/editmenu");
