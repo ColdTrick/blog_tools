@@ -35,7 +35,6 @@ function blog_tools_init() {
 	elgg_register_plugin_hook_handler("cron", "daily", "blog_tools_daily_cron_hook");
 	elgg_register_plugin_hook_handler("entity:icon:url", "object", "blog_tools_icon_hook");
 	elgg_register_plugin_hook_handler("route", "blog", "blog_tools_route_blog_hook");
-	elgg_register_plugin_hook_handler("route", "livesearch", "blog_tools_route_livesearch_hook");
 	elgg_register_plugin_hook_handler("register", "menu:entity", "blog_tools_entity_menu_setup");
 	elgg_register_plugin_hook_handler("group_tool_widgets", "widget_manager", "blog_tools_tool_widgets_handler");
 	

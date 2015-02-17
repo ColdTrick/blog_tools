@@ -1,6 +1,10 @@
 Version History
 ===============
 
+x.x:
+
+- removed: left over code from owner transfer
+
 3.1 (2014-11-17):
 
 - added: link to the comments section in the entity menu
