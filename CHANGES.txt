@@ -1,8 +1,9 @@
 Version History
 ===============
 
-x.x:
+3.2 (2015-02-17):
 
+- fixed: use of a private function
 - removed: left over code from owner transfer
 
 3.1 (2014-11-17):
