@@ -22,7 +22,7 @@ class Router {
 	 */
 	public function blog($hook, $type, $return_value, $params) {
 		
-		$page = elgg_extract("segments", $params);
+		$page = elgg_extract("segments", $return_value);
 		if (empty($page)) {
 			return $return_value;
 		}
