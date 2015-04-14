@@ -112,63 +112,6 @@
 		return $result;
 	}
 	
-	function blog_tools_route_livesearch_hook($hook, $type, $return_value, $params){
-		$result = $return_value;
-		
-		if(!elgg_is_logged_in()){
-			exit();
-		}
-		
-		if(!($q = get_input("term"))){
-			exit();
-		}
-		
-		$match_on = get_input("match_on");
-		$limit = (int) get_input("limit", 10);
-		if($limit < 1){
-			$limit = 10;
-		}
-		
-		if(!empty($match_on) && ($match_on == "users_of_site")){
-			$result = false;
-			
-			$q = sanitise_string($q);
-			
-			$return = array();
-			
-			$options = array(
-				"type" => "user",
-				"relationship" => "member_of_site",
-				"relationship_guid" => get_config("site_guid"),
-				"inverse_relationship" => true,
-				"limit" => $limit,
-				"joins" => array("JOIN " . get_config("dbprefix") . "users_entity ue ON e.guid = ue.guid"),
-				"wheres" => array("(ue.username LIKE '%" . $q . "%' OR ue.name LIKE '%" . $q . "%')")
-			);
-			
-			if($users = elgg_get_entities_from_relationship($options)){
-				foreach($users as $user){
-					$json = json_encode(array(
-						'type' => 'user',
-						'name' => $user->name,
-						'desc' => $user->username,
-						'icon' => '<img class="livesearch_icon" src="' . $user->getIcon('tiny') . '" />',
-						'guid' => $user->getGUID()
-					));
-					
-					$return[$user->name . rand(1,100)] = $json;
-				}
-			}
-			
-			ksort($return);
-			echo implode($return, "\n");
-			
-			exit();
-		}
-		
-		return $result;
-	}
-	
 	function blog_tools_widget_url_handler($hook, $type, $return_value, $params){
 		$result = $return_value;
 		

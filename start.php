@@ -17,9 +17,6 @@
 		// extend blog page_handler
 		elgg_register_plugin_hook_handler("route", "blog", "blog_tools_route_blog_hook");
 		
-		// extend livesearch page_handler
-		elgg_register_plugin_hook_handler("route", "livesearch", "blog_tools_route_livesearch_hook");
-		
 		// Now override icons
 		elgg_register_plugin_hook_handler("entity:icon:url", "object", "blog_tools_icon_hook");
 		
