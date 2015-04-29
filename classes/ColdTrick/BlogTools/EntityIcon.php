@@ -20,7 +20,7 @@ class EntityIcon {
 	 *
 	 * @return string|void
 	 */
-	public function blogIcon($hook, $entity_type, $returnvalue, $params) {
+	public static function blogIcon($hook, $entity_type, $returnvalue, $params) {
 		
 		if (empty($params) || !is_array($params)) {
 			return $returnvalue;

@@ -20,7 +20,7 @@ class EntityMenu {
 	 *
 	 * @return ElggMenuItem[]
 	 */
-	public function register($hook, $entity_type, $returnvalue, $params) {
+	public static function register($hook, $entity_type, $returnvalue, $params) {
 		
 		if (empty($params) || !is_array($params)) {
 			return $returnvalue;

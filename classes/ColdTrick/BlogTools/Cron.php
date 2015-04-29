@@ -20,7 +20,7 @@ class Cron {
 	 *
 	 * @return void
 	 */
-	public function daily($hook, $type, $return_value, $params) {
+	public static function daily($hook, $type, $return_value, $params) {
 		
 		// only do if this is configured
 		if (!blog_tools_use_advanced_publication_options()) {

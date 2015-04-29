@@ -19,7 +19,7 @@ class DeleteHandler {
 	 *
 	 * @return void
 	 */
-	public function cleanupBlogIcon($event, $type, $object) {
+	public static function cleanupBlogIcon($event, $type, $object) {
 		
 		if (!elgg_instanceof($object, "object", "blog", "ElggBlog")) {
 			return;

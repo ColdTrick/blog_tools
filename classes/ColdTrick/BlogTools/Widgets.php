@@ -20,7 +20,7 @@ class Widgets {
 	 *
 	 * @return string
 	 */
-	public function widgetUrl($hook, $type, $return_value, $params) {
+	public static function widgetUrl($hook, $type, $return_value, $params) {
 		
 		if (!empty($return_value)) {
 			return $return_value;
@@ -62,7 +62,7 @@ class Widgets {
 	 *
 	 * @return array
 	 */
-	public function groupTools($hook, $type, $return_value, $params) {
+	public static function groupTools($hook, $type, $return_value, $params) {
 		
 		if (empty($params) || is_array($params)) {
 			return $return_value;
