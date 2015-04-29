@@ -20,9 +20,14 @@ class Router {
 	 *
 	 * @return array|bool
 	 */
-	public function blog($hook, $type, $return_value, $params) {
+	public static function blog($hook, $type, $return_value, $params) {
 		
-		$page = elgg_extract("segments", $params);
+		if (empty($return_value) || !is_array($return_value)) {
+			// someone else had a route hook
+			return $return_value;
+		}
+		
+		$page = elgg_extract("segments", $return_value);
 		if (empty($page)) {
 			return $return_value;
 		}
