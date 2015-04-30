@@ -23,8 +23,16 @@ if (in_array($vars['page'], array('owner', 'group', 'view'))) {
 }
 
 if ($vars['page'] != 'friends') {
-	echo elgg_view('page/elements/tagcloud_block', array(
-		'subtypes' => 'blog',
-		'owner_guid' => elgg_get_page_owner_guid(),
-	));
+	$page_owner = elgg_get_page_owner_entity();
+	
+	$options = array(
+		'subtypes' => 'blog'
+	);
+	if ($page_owner instanceof ElggUser) {
+		$options['owner_guid'] = $page_owner->getGUID();
+	} elseif ($page_owner instanceof ElggGroup) {
+		$options['container_guid'] = $page_owner->getGUID();
+	}
+	
+	echo elgg_view('page/elements/tagcloud_block', $options);
 }
