@@ -89,3 +89,7 @@
 	border: none;
 	float: left;
 }
+
+.elgg-menu .elgg-menu-item-comments-count {
+	margin-left: 3px;
+}

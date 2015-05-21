@@ -62,6 +62,16 @@ class EntityMenu {
 				"title" => elgg_echo("comment:this"),
 				"href" => $entity->getURL() . "#comments"
 			));
+			
+			$comment_count = $entity->countComments();
+			if ($comment_count) {
+				$returnvalue[] = \ElggMenuItem::factory(array(
+					"name" => "comments_count",
+					"text" => $comment_count,
+					"title" => elgg_echo("comments"),
+					"href" => false
+				));
+			}
 		}
 		
 		return $returnvalue;

@@ -41,21 +41,6 @@ if (elgg_instanceof($container, "group") && ($container->getGUID() !== elgg_get_
 $tags = elgg_view('output/tags', array('tags' => $blog->tags));
 $date = elgg_view_friendly_time($blog->time_created);
 
-// The "on" status changes for comments, so best to check for !Off
-$comments_link = '';
-if ($blog->comments_on != 'Off') {
-	$comments_count = $blog->countComments();
-	//only display if there are commments
-	if ($comments_count != 0) {
-		$text = elgg_echo("comments") . " ($comments_count)";
-		$comments_link = elgg_view('output/url', array(
-			'href' => $blog->getURL() . '#blog-comments',
-			'text' => $text,
-			'is_trusted' => true,
-		));
-	}
-}
-
 $info_class = "";
 $blog_icon = "";
 $title = "";
@@ -75,7 +60,7 @@ $metadata = elgg_view_menu('entity', array(
 	'class' => 'elgg-menu-hz',
 ));
 
-$subtitle = "$author_text $date $comments_link $categories";
+$subtitle = "$author_text $date $categories";
 
 // do not show the metadata and controls in widget view
 if (elgg_in_context('widgets')) {
