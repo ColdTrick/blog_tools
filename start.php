@@ -35,6 +35,7 @@ function blog_tools_init() {
 	elgg_register_plugin_hook_handler("route", "blog", array("\ColdTrick\BlogTools\Router", "blog"));
 	elgg_register_plugin_hook_handler("register", "menu:entity", array("\ColdTrick\BlogTools\EntityMenu", "register"));
 	elgg_register_plugin_hook_handler("group_tool_widgets", "widget_manager", array("\ColdTrick\BlogTools\Widgets", "groupTools"));
+	elgg_register_plugin_hook_handler("permissions_check:comment", "object", array("\ColdTrick\BlogTools\Access", "blogCanComment"));
 	
 	// extend editmenu
 	elgg_extend_view("editmenu", "blog_tools/editmenu");
