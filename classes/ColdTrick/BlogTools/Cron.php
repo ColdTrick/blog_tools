@@ -86,6 +86,9 @@ class Cron {
 
 			// publish blog
 			$entity->status = "published";
+			
+			// send notifications when post published
+			elgg_trigger_event('publish', 'object', $entity);
 
 			// notify owner
 			notify_user($entity->getOwnerGUID(),
