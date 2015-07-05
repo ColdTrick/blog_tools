@@ -87,6 +87,11 @@ class Cron {
 			// publish blog
 			$entity->status = "published";
 			
+			// revert access
+			$entity->access_id = $entity->future_access;
+			unset($entity->future_access);
+			
+			
 			// send notifications when post published
 			elgg_trigger_event('publish', 'object', $entity);
 
