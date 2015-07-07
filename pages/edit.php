@@ -6,7 +6,7 @@
 gatekeeper();
 
 elgg_load_library("elgg:blog");
-elgg_load_js("elgg.blog");
+elgg_require_js('elgg/blog/save_draft');
 
 // get inputs
 $page_type = get_input("page_type");
