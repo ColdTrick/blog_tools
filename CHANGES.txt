@@ -1,6 +1,10 @@
 Version History
 ===============
 
+3.2.1 (2015-07-08):
+
+- fixed: incorrect loading of draft JS
+
 3.2 (2015-02-17):
 
 - fixed: use of a private function
