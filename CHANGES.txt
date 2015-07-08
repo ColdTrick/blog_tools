@@ -3,7 +3,17 @@ Version History
 
 4.0:
 
+- added: canComment hook for consistency
+- added: composer support
+- changed: comments count now in entity menu and no longer in subtitle
+- fixed: correct tagcloud depending on page owner
+- fixed: deprecated confirm link
 - fixed: blog icons crash in Elgg 1.10 #21
+- fixed: incorrect loading of draft JS
+- fixed: incorrect loading of draft JS
+- fixed: class callback functions should be static
+- fixed: wrong handling of the blog route hook #26
+- removed: unused function
 
 3.2 (2015-02-17):
 
