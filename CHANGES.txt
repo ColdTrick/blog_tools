@@ -1,7 +1,7 @@
-Version History
+Version history
 ===============
 
-4.0:
+4.0 (2015-07-08):
 
 - added: canComment hook for consistency
 - added: composer support
