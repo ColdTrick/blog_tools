@@ -1,6 +1,12 @@
 Version history
 ===============
 
+4.1 (2016-03-07):
+
+- added: notification when post published
+- fixed: correctly fallback to default entity icon if no blog icon
+- fixed: unwanted access change when a blog published automatically #30
+
 4.0 (2015-07-08):
 
 - added: canComment hook for consistency
