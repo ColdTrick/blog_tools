@@ -59,7 +59,7 @@ $values = array(
 	'tags' => '',
 	'publication_date' => '',
 	'expiration_date' => '',
-	'show_owner' => 'no'
+	'show_owner' => 'no',
 );
 
 // fail if a required entity isn't set
@@ -107,7 +107,7 @@ foreach ($values as $name => $default) {
 				if ($new_post) {
 					// new blogs can't expire directly
 					if (strtotime($value) < time()) {
-						$error = elgg_echo("blog_tools:action:save:error:expiration_date");
+						$error = elgg_echo('blog_tools:action:save:error:expiration_date');
 					}
 				} else {
 					// if expiration is passed, set as draft
@@ -146,26 +146,26 @@ if (!$error) {
 if (!$error) {
 	if ($blog->save()) {
 		// handle icon upload
-		if (get_input("remove_icon") == "yes") {
+		if (get_input('remove_icon') == 'yes') {
 			// remove existing icons
 			blog_tools_remove_blog_icon($blog);
 		} else {
-			$icon_file = get_resized_image_from_uploaded_file("icon", 100, 100);
-			$icon_sizes = elgg_get_config("icon_sizes");
+			$icon_file = get_resized_image_from_uploaded_file('icon', 100, 100);
+			$icon_sizes = elgg_get_config('icon_sizes');
 			
 			if (!empty($icon_file) && !empty($icon_sizes)) {
 				// create icon
-				$prefix = "blogs/" . $blog->getGUID();
+				$prefix = "blogs/{$blog->getGUID()}";
 				
 				$fh = new ElggFile();
 				$fh->owner_guid = $blog->getOwnerGUID();
 				
 				foreach ($icon_sizes as $icon_name => $icon_info) {
-					$icon_file = get_resized_image_from_uploaded_file("icon", $icon_info["w"], $icon_info["h"], $icon_info["square"], $icon_info["upscale"]);
+					$icon_file = get_resized_image_from_uploaded_file('icon', $icon_info['w'], $icon_info['h'], $icon_info['square'], $icon_info['upscale']);
 					if (!empty($icon_file)) {
-						$fh->setFilename($prefix . $icon_name . ".jpg");
+						$fh->setFilename("{$prefix}{$icon_name}.jpg");
 						
-						if ($fh->open("write")) {
+						if ($fh->open('write')) {
 							$fh->write($icon_file);
 							$fh->close();
 						}
