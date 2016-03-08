@@ -31,16 +31,6 @@ class Router {
 		$pages_path = elgg_get_plugins_path() . 'blog_tools/pages/';
 		
 		switch ($page[0]) {
-			case 'owner':
-				$user = get_user_by_username($page[1]);
-				if (!empty($user)) {
-					// push all blogs breadcrumb
-					elgg_push_breadcrumb(elgg_echo('blog:blogs'), 'blog/all');
-					
-					set_input('owner_guid', $user->guid);
-					$include_file = $pages_path . 'owner.php';
-				}
-				break;
 			case 'read': // Elgg 1.7 compatibility
 			case 'view':
 				if (!elgg_is_logged_in()) {
