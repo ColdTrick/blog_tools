@@ -28,6 +28,7 @@ class Router {
 		}
 		
 		$include_file = false;
+		$resouce_loaded = false;
 		$pages_path = elgg_get_plugins_path() . 'blog_tools/pages/';
 		
 		switch ($page[0]) {
@@ -36,12 +37,14 @@ class Router {
 				set_input('guid', $page[1]); // to be used in the blog_tools/full/related view
 				break;
 			case 'featured':
-				
-				$include_file = $pages_path . 'featured.php';
+				$resouce_loaded = true;
+				echo elgg_view_resource('blog_tools/blog/featured');
 				break;
 		}
 		
-		if (!empty($include_file)) {
+		if (!empty($resouce_loaded)) {
+			return false;
+		} elseif (!empty($include_file)) {
 			include($include_file);
 			return false;
 		}

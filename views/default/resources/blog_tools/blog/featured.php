@@ -9,6 +9,7 @@ elgg_register_title_button();
 // breadcrumb
 $title = elgg_echo('blog_tools:menu:filter:featured');
 
+elgg_push_breadcrumb(elgg_echo('blog:blogs'), 'blog/all');
 elgg_push_breadcrumb($title);
 
 // build page elements
@@ -24,20 +25,25 @@ $options = [
 		[
 			'name' => 'featured',
 			'value' => '0',
-			'operand' => ' > ',
+			'operand' => '>',
 		],
 	],
 	'no_results' => elgg_echo('blog:none'),
 ];
-$params['content'] = elgg_list_entities_from_metadata($options);
 
-$params['sidebar'] = elgg_view('blog/sidebar', [
-	'page' => null,
+$content = elgg_list_entities_from_metadata($options);
+
+$sidebar = elgg_view('blog/sidebar', [
+	'page' => 'featured',
 ]);
-$params['filter_context'] = 'featured';
 
 // build page
-$body = elgg_view_layout('content', $params);
+$body = elgg_view_layout('content', [
+	'title' => $title,
+	'content' => $content,
+	'sidebar' => $sidebar,
+	'filter_context' => 'featured',
+]);
 
 // draw page
 echo elgg_view_page($title, $body);
