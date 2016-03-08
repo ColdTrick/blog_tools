@@ -12,7 +12,6 @@
  * @return bool
  */
 function blog_tools_remove_blog_icon(ElggBlog $blog) {
-	$result = false;
 	
 	if (!($blog instanceof ElggBlog)) {
 		return false;
@@ -75,8 +74,7 @@ function blog_tools_use_advanced_publication_options() {
  * @return false|ElggBlog[]
  */
 function blog_tools_get_related_blogs(ElggBlog $entity, $limit = 4) {
-	$result = false;
-
+	
 	$limit = sanitise_int($limit, false);
 	
 	if (!($entity instanceof ElggBlog)) {
