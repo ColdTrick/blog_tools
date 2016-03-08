@@ -35,21 +35,6 @@ class Router {
 			case 'view':
 				set_input('guid', $page[1]); // to be used in the blog_tools/full/related view
 				break;
-			case 'add':
-			case 'edit':
-				// push all blogs breadcrumb
-				elgg_push_breadcrumb(elgg_echo('blog:blogs'), 'blog/all');
-				
-				set_input('page_type', $page[0]);
-				if (isset($page[1])) {
-					set_input('guid', $page[1]);
-				}
-				if (isset($page[2])) {
-					set_input('revision', $page[2]);
-				}
-				
-				$include_file = $pages_path . 'edit.php';
-				break;
 			case 'featured':
 				
 				$include_file = $pages_path . 'featured.php';
