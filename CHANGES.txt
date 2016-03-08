@@ -1,6 +1,16 @@
 Version history
 ===============
 
+5.0 (2016-03-08):
+
+- changed: featured blogs to resource view
+- changed: increased Elgg requirement to 2.0
+- changed: set blog edit form enctype using hook
+- changed: updated Dutch translation
+- changed: using core language keys
+- removed: advanced blog gatekeeper
+- removed: overrule of owner page
+
 4.1 (2016-03-07):
 
 - added: notification when post published
