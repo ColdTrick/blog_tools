@@ -73,6 +73,7 @@ $settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[listing_strapline]',
 	'options_values' => $strapline_options,
 	'value' => $plugin->listing_strapline,
+	'class' => 'mls',
 ]));
 $settings_image .= '</tr>';
 
@@ -82,6 +83,7 @@ $settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[listing_align]',
 	'options_values' => $align_options,
 	'value' => $listing_align,
+	'class' => 'mls',
 ]));
 $settings_image .= '</tr>';
 
@@ -91,6 +93,7 @@ $settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[listing_size]',
 	'options_values' => $size_options,
 	'value' => $listing_size,
+	'class' => 'mls',
 ]));
 $settings_image .= '</tr>';
 
@@ -100,6 +103,7 @@ $settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[full_align]',
 	'options_values' => $align_options,
 	'value' => $full_align,
+	'class' => 'mls',
 ]));
 $settings_image .= '</tr>';
 
@@ -109,6 +113,7 @@ $settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[full_size]',
 	'options_values' => $size_options,
 	'value' => $full_size,
+	'class' => 'mls',
 ]));
 $settings_image .= '</tr>';
 
@@ -125,6 +130,7 @@ $settings_full .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[show_full_navigation]',
 	'options_values' => $noyes_options,
 	'value' => $plugin->show_full_navigation,
+	'class' => 'mls',
 ]));
 $settings_full .= '</tr>';
 
@@ -134,6 +140,7 @@ $settings_full .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[show_full_owner]',
 	'options_values' => $show_full_owner_options,
 	'value' => $plugin->show_full_owner,
+	'class' => 'mls',
 ]));
 $settings_full .= '</tr>';
 
@@ -143,6 +150,7 @@ $settings_full .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[show_full_related]',
 	'options_values' => $show_full_related_options,
 	'value' => $plugin->show_full_related,
+	'class' => 'mls',
 ]));
 $settings_full .= '</tr>';
 
@@ -159,6 +167,7 @@ $settings_other .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[advanced_publication]',
 	'options_values' => $noyes_options,
 	'value' => $plugin->advanced_publication,
+	'class' => 'mls',
 ]));
 $settings_other .= '</tr>';
 
