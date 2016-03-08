@@ -1,5 +1,10 @@
 <?php
-$language = array (
+/**
+ * This file was created by Translation Editor v5.0
+ * On 2016-03-08 13:23
+ */
+
+return array (
   'blog_tools:view:related' => 'Gerelateerde blogs',
   'blog_tools:label:show_owner' => 'Toon informatie over jezelf onder het blog',
   'blog_tools:settings:full' => 'Blog detail weergave instellingen',
@@ -9,7 +14,6 @@ $language = array (
   'blog_tools:settings:full:show_full_related' => 'Toon gerelateerde blogs',
   'blog_tools:settings:full:show_full_related:full_view' => 'Onder de blog',
   'blog_tools:settings:full:show_full_related:sidebar' => 'In de zijbalk',
-  'blog_tools:menu:filter:featured' => 'Aangeraden',
   'blog_tools:settings:size:master' => 'Master (550x550)',
   'blog_tools:settings:advanced_publication' => 'Maak geavanceerde publicatie opties beschikbaar',
   'blog_tools:settings:advanced_publication:description' => 'Als dit is ingeschakeld kunnen gebruikers een publicatie- en vervaldatum kiezen voor blogs. Dit vereist een werkende dagelijkse CRON.',
@@ -49,8 +53,6 @@ Je kun je blog hier bekijken:
   'blog_tools:settings:full:image_align' => 'Blog detail weergave afbeelding uitlijning',
   'blog_tools:settings:full:image_size' => 'Blog detail weergave afbeelding grote',
   'blog_tools:settings:align:none' => 'Geen afbeelding',
-  'blog_tools:settings:align:left' => 'Links',
-  'blog_tools:settings:align:right' => 'Rechts',
   'blog_tools:settings:size:tiny' => 'Erg klein (16x16)',
   'blog_tools:settings:size:small' => 'Klein (40x40)',
   'blog_tools:settings:size:medium' => 'Medium (100x100)',
@@ -58,8 +60,6 @@ Je kun je blog hier bekijken:
   'blog_tools:settings:listing:strapline' => 'Toon extra informatie in lijstweergave',
   'blog_tools:settings:strapline:default' => 'Standaard (eigenaar en tags)',
   'blog_tools:settings:strapline:time' => 'Alleen tijd',
-  'blog_tools:settings:advanced_gatekeeper' => 'Gebruik geavanceerde blog gatekeeper',
-  'blog_tools:settings:advanced_gatekeeper:description' => 'Dit helpt niet aangemelde gebruiker om afgeschermde blogs makkelijker te vinden',
   'blog_tools:action:toggle_metadata:error' => 'Er is een onbekende fout opgetreden bij het bewerken van de entity, probeer het nogmaals',
   'blog_tools:action:toggle_metadata:success' => 'De entity is succesvol bijgewerkt',
   'blog_tools:widgets:index_blog:description' => 'Toon de laatste blogs op je community',
@@ -68,4 +68,3 @@ Je kun je blog hier bekijken:
   'blog_tools:widgets:index_blog:view_mode:preview' => 'Voorbeeld',
   'blog_tools:widgets:index_blog:view_mode:slider' => 'Diavoorstelling',
 );
-add_translation("nl", $language);
