@@ -43,7 +43,7 @@ function blog_tools_init() {
 	// add featured filter menu item
 	elgg_register_menu_item('filter', ElggMenuItem::factory([
 		'name' => 'featured',
-		'text' => elgg_echo('blog_tools:menu:filter:featured'),
+		'text' => elgg_echo('status:featured'),
 		'context' => 'blog',
 		'href' => 'blog/featured',
 		'priority' => 600

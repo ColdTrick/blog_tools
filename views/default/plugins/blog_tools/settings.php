@@ -5,8 +5,8 @@ $plugin = elgg_extract('entity', $vars);
 // define possible values
 $align_options = [
 	'none' => elgg_echo('blog_tools:settings:align:none'),
-	'left' => elgg_echo('blog_tools:settings:align:left'),
-	'right' => elgg_echo('blog_tools:settings:align:right'),
+	'left' => elgg_echo('left'),
+	'right' => elgg_echo('right'),
 ];
 
 $size_options = [

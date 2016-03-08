@@ -7,7 +7,7 @@
 elgg_register_title_button();
 
 // breadcrumb
-$title = elgg_echo('blog_tools:menu:filter:featured');
+$title = elgg_echo('status:featured');
 
 elgg_push_breadcrumb(elgg_echo('blog:blogs'), 'blog/all');
 elgg_push_breadcrumb($title);

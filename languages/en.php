@@ -7,9 +7,6 @@ return array(
 	'blog_tools:toggle:unfeature' => "Unfeature",
 	'blog_tools:readmore' => "read more",
 	
-	// menu
-	'blog_tools:menu:filter:featured' => "Featured",
-		
 	// widget
 	'blog_tools:widget:featured' => "Show only featured blogs?",
 	
@@ -66,8 +63,6 @@ You can view your blog here:
 	'blog_tools:settings:full:show_full_related:sidebar' => "In the sidebar",
 	
 	'blog_tools:settings:align:none' => "No image",
-	'blog_tools:settings:align:left' => "Left",
-	'blog_tools:settings:align:right' => "Right",
 	
 	'blog_tools:settings:size:tiny' => "Tiny (16x16)",
 	'blog_tools:settings:size:small' => "Small (40x40)",
