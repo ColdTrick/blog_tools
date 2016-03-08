@@ -35,6 +35,20 @@ if (empty($plugin_settings)) {
 	static $blog_tools_full_image_size;
 	static $blog_tools_full_image_align;
 	
+	if (!isset($blog_tools_full_image_align)) {
+		$blog_tools_full_image_align = 'right';
+	
+		$setting = elgg_get_plugin_setting('full_align', 'blog_tools');
+		if (!empty($setting)) {
+			$blog_tools_full_image_align = $setting;
+		}
+	}
+	
+	if ($blog_tools_full_image_align === 'none') {
+		// no image
+		return true;
+	}
+	
 	if (!isset($blog_tools_full_image_size)) {
 		$blog_tools_full_image_size = 'large';
 		
@@ -44,37 +58,37 @@ if (empty($plugin_settings)) {
 		}
 	}
 	
-	if (!isset($blog_tools_full_image_align)) {
-		$blog_tools_full_image_align = 'right';
-		
-		$setting = elgg_get_plugin_setting('full_align', 'blog_tools');
-		if (!empty($setting)) {
-			$blog_tools_full_image_align = $setting;
-		}
-	}
+	$href = false;
+	$image_params['src'] = $entity->getIconURL($blog_tools_full_image_size);
 	
-	if ($blog_tools_full_image_align !== 'none') {
-		$href = false;
-		$image_params['src'] = $entity->getIconURL($blog_tools_full_image_size);
-		
-		$class[] = "blog-tools-blog-image-{$blog_tools_full_image_size}";
-		
-		if ($blog_tools_full_image_size !== 'master') {
-			if ($blog_tools_full_image_align === 'right') {
-				$class[] = 'float-alt';
-			} else {
-				$class[] = 'float';
-			}
+	$class[] = "blog-tools-blog-image-{$blog_tools_full_image_size}";
+	
+	if ($blog_tools_full_image_size !== 'master') {
+		if ($blog_tools_full_image_align === 'right') {
+			$class[] = 'float-alt';
+		} else {
+			$class[] = 'float';
 		}
-	} else {
-		// no image
-		return true;
 	}
 } else {
 	// listing view of a blog
 	// full view of a blog
 	static $blog_tools_lising_image_size;
 	static $blog_tools_listing_image_align;
+	
+	if (!isset($blog_tools_listing_image_align)) {
+		$blog_tools_listing_image_align = 'right';
+	
+		$setting = elgg_get_plugin_setting('listing_align', 'blog_tools');
+		if (!empty($setting)) {
+			$blog_tools_listing_image_align = $setting;
+		}
+	}
+	
+	if ($blog_tools_listing_image_align === 'none') {
+		// no image
+		return true;
+	}
 	
 	if (!isset($blog_tools_lising_image_size)) {
 		$blog_tools_lising_image_size = 'small';
@@ -85,28 +99,14 @@ if (empty($plugin_settings)) {
 		}
 	}
 	
-	if (!isset($blog_tools_listing_image_align)) {
-		$blog_tools_listing_image_align = 'right';
-		
-		$setting = elgg_get_plugin_setting('listing_align', 'blog_tools');
-		if (!empty($setting)) {
-			$blog_tools_listing_image_align = $setting;
-		}
-	}
+	$image_params['src'] = $entity->getIconURL($blog_tools_lising_image_size);
 	
-	if ($blog_tools_listing_image_align !== 'none') {
-		$image_params['src'] = $entity->getIconURL($blog_tools_lising_image_size);
-		
-		$class[] = "blog-tools-blog-image-{$blog_tools_lising_image_size}";
-		
-		if ($blog_tools_listing_image_align === 'right') {
-			$class[] = 'float-alt';
-		} else {
-			$class[] = 'float';
-		}
+	$class[] = "blog-tools-blog-image-{$blog_tools_lising_image_size}";
+	
+	if ($blog_tools_listing_image_align === 'right') {
+		$class[] = 'float-alt';
 	} else {
-		// no image
-		return true;
+		$class[] = 'float';
 	}
 }
 
