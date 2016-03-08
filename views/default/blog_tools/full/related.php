@@ -1,6 +1,6 @@
 <?php
 /**
- * shows a list of bloga related to this blog
+ * shows a list of blogs related to this blog
  *
  * @uses $vars['entity'] the blog to base the related blogs on
  * @uses $vars['full_view'] only in full view
