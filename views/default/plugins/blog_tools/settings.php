@@ -154,22 +154,6 @@ echo elgg_view_module('inline', elgg_echo('blog_tools:settings:full'), $settings
 $settings_other = '<table>';
 
 $settings_other .= '<tr>';
-$settings_other .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:advanced_gatekeeper'));
-$settings_other .= elgg_format_element('td', [], elgg_view('input/select', [
-	'name' => 'params[advanced_gatekeeper]',
-	'options_values' => $yesno_options,
-	'value' => $plugin->advanced_gatekeeper,
-]));
-$settings_other .= '</tr>';
-
-$settings_other .= '<tr>';
-$settings_other .= elgg_format_element('td', [
-	'colspan' => 2,
-	'class' => 'elgg-subtext',
-], elgg_echo('blog_tools:settings:advanced_gatekeeper:description'));
-$settings_other .= '</tr>';
-
-$settings_other .= '<tr>';
 $settings_other .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:advanced_publication'));
 $settings_other .= elgg_format_element('td', [], elgg_view('input/select', [
 	'name' => 'params[advanced_publication]',

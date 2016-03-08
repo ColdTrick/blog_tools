@@ -79,9 +79,6 @@ You can view your blog here:
 	'blog_tools:settings:strapline:default' => "Default (owner and tags)",
 	'blog_tools:settings:strapline:time' => "Time only",
 	
-	'blog_tools:settings:advanced_gatekeeper' => "Use advanced blog gatekeeper",
-	'blog_tools:settings:advanced_gatekeeper:description' => "This will help non loggedin users to find their way to a protected blog more easily",
-	
 	'blog_tools:settings:advanced_publication' => "Allow advanced publication options",
 	'blog_tools:settings:advanced_publication:description' => "With this users can select a publication and expiration date for blogs. Requires a working daily CRON.",
 	
