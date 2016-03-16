@@ -40,7 +40,7 @@ Vous pouvez y accéder ici :
 	
 	'blog_tools:label:publication_options' => "Options de publication",
 	'blog_tools:label:publication_date' => "Date de publication (optionnel)",
-	'blog_tools:publication_date:description' => "Si vous sélectionnez une date, l'arrticle ne sera pas publié avant cette date.",
+	'blog_tools:publication_date:description' => "Si vous sélectionnez une date, l'article ne sera pas publié avant cette date.",
 	'blog_tools:label:expiration_date' => "Date d'expiration (optionnel)",
 	'blog_tools:expiration_date:description' => "Votre article sera dépublié après la date choisie.",
 
