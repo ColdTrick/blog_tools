@@ -1,17 +1,17 @@
 <?php
 
 return array(
-	'blog_tools' => "Outils pour les articles de blogs",
+	'blog_tools' => "Outils pour les blogs",
 	
-	'blog_tools:toggle:feature' => "Sélectionner",
-	'blog_tools:toggle:unfeature' => "Dé-sélectionner",
+	'blog_tools:toggle:feature' => "Mettre en Une",
+	'blog_tools:toggle:unfeature' => "Enlever de la Une",
 	'blog_tools:readmore' => "lire la suite",
 	
 	// menu
 	'blog_tools:menu:filter:featured' => "Sélectionnés",
 		
 	// widget
-	'blog_tools:widget:featured' => "Montrer les articles sélectionnés uniquement ?",
+	'blog_tools:widget:featured' => "Montrer uniquement les articles mis en Une ?",
 	
 	// notifications
 	'blog_tools:notify:publish:subject' => "Un article a été publié",
@@ -27,7 +27,7 @@ Vous pouvez lire votre article ici :
 	
 votre article \"%s\" a été dépublié et n'est donc plus visible.
 
-Vous pouvez cependant y accéder ici :
+Vous pouvez y accéder ici :
 %s",
 	
 	// views
@@ -35,7 +35,7 @@ Vous pouvez cependant y accéder ici :
 		
 		
 	// blog edit
-	'blog_tools:label:icon:exists' => "Sélectionnez une image (ne rien sélectionner pour garder l'image actuelle)",
+	'blog_tools:label:icon:exists' => "Sélectionnez une image (ne rien sélectionner pour conserver l'image actuelle)",
 	'blog_tools:label:icon:new' => "Charger une image",
 	'blog_tools:label:icon:remove' => "Supprimer l'image",
 	
@@ -43,9 +43,9 @@ Vous pouvez cependant y accéder ici :
 	
 	'blog_tools:label:publication_options' => "Options de publication",
 	'blog_tools:label:publication_date' => "Date de publication (optionnel)",
-	'blog_tools:publication_date:description' => "Pour planifier la publication, choisissez une date à venir.",
+	'blog_tools:publication_date:description' => "Si vous sélectionnez une date, l'article ne sera pas publié avant cette date.",
 	'blog_tools:label:expiration_date' => "Date d'expiration (optionnel)",
-	'blog_tools:expiration_date:description' => "Votre article sera dépublié, si vous le souhaitez, à la date choisie.",
+	'blog_tools:expiration_date:description' => "Votre article sera dépublié après la date choisie.",
 
 	// settings
 	'blog_tools:settings:image' => "Paramètre de l'image de l'article",
@@ -72,22 +72,22 @@ Vous pouvez cependant y accéder ici :
 	'blog_tools:settings:size:tiny' => "Très petit (16x16)",
 	'blog_tools:settings:size:small' => "Petit (40x40)",
 	'blog_tools:settings:size:medium' => "Moyen (100x100)",
-	'blog_tools:settings:size:large' => "Large (200x200)",
-	'blog_tools:settings:size:master' => "Taille originale (550x550)",
+	'blog_tools:settings:size:large' => "Grand (200x200)",
+	'blog_tools:settings:size:master' => "Pleine taille (550x550)",
 	
-	'blog_tools:settings:listing:strapline' => "Afficher une ligne d'informations dans les listings",
+	'blog_tools:settings:listing:strapline' => "Afficher un bandeau d'informations dans les listings",
 	'blog_tools:settings:strapline:default' => "Par défaut (auteur et tags)",
 	'blog_tools:settings:strapline:time' => "Date seulement",
 	
 	'blog_tools:settings:advanced_gatekeeper' => "Utiliser le gestionnaire d'accès avancé des blogs",
-	'blog_tools:settings:advanced_gatekeeper:description' => "Cette option permet aux membres non connectés de mieux trouver leur chemin vers un blog en accès restrainet",
+	'blog_tools:settings:advanced_gatekeeper:description' => "Cette option permet aux membres non connectés de mieux trouver leur chemin vers un blog en accès restreint",
 	
 	'blog_tools:settings:advanced_publication' => "Activer les options de publication avancée",
-	'blog_tools:settings:advanced_publication:description' => "Cette option permet aux membres de choisir une date de publication et d'expiration pour leurs articles. Nécessite un CRON quotidien valide.",
+	'blog_tools:settings:advanced_publication:description' => "Cette option permet de choisir une date de publication et d'expiration pour les articles. Nécessite un CRON quotidien opérationnel.",
 	
 	// actions
-	'blog_tools:action:toggle_metadata:error' => "Une erreur est survenue pendant votre édition, merci de recommencer",
-	'blog_tools:action:toggle_metadata:success' => "Le contenu a bien été publié",
+	'blog_tools:action:toggle_metadata:error' => "Une erreur est survenue pendant la modification de l'article, veuillez recommencer",
+	'blog_tools:action:toggle_metadata:success' => "L'article a bien été modifié",
 	
 	'blog_tools:action:save:error:expiration_date' => "La date de dépublication de l'article doit être postérieure à la date de publication",
 	
