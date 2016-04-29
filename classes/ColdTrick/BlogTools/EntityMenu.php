@@ -67,7 +67,7 @@ class EntityMenu {
 					'name' => 'comments_count',
 					'text' => $comment_count,
 					'title' => elgg_echo('comments'),
-					'href' => false,
+					'href' => "{$entity->getURL()}#comments",
 				]);
 			}
 		}
