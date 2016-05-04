@@ -1,6 +1,11 @@
 Version history
 ===============
 
+5.0.1 (2016-05-04):
+
+- added: French translation
+- fixed: comments count not clickable
+
 5.0 (2016-03-08):
 
 - changed: featured blogs to resource view
