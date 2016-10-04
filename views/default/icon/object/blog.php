@@ -46,7 +46,8 @@ if (empty($plugin_settings)) {
 	
 	if ($blog_tools_full_image_align === 'none') {
 		// no image
-		return true;
+		echo ' ';
+		return;
 	}
 	
 	if (!isset($blog_tools_full_image_size)) {
@@ -87,7 +88,8 @@ if (empty($plugin_settings)) {
 	
 	if ($blog_tools_listing_image_align === 'none') {
 		// no image
-		return true;
+		echo ' ';
+		return;
 	}
 	
 	if (!isset($blog_tools_lising_image_size)) {
