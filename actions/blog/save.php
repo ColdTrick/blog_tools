@@ -151,7 +151,7 @@ if (!$error) {
 			blog_tools_remove_blog_icon($blog);
 		} else {
 			$icon_file = get_resized_image_from_uploaded_file('icon', 100, 100);
-			$icon_sizes = elgg_get_config('icon_sizes');
+			$icon_sizes = elgg_get_icon_sizes('object', 'blog');
 			
 			if (!empty($icon_file) && !empty($icon_sizes)) {
 				// create icon

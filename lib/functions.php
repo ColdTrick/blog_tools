@@ -22,7 +22,7 @@ function blog_tools_remove_blog_icon(ElggBlog $blog) {
 		return true;
 	}
 	
-	$icon_sizes = elgg_get_config('icon_sizes');
+	$icon_sizes = elgg_get_icon_sizes('object', 'blog');
 	if (!empty($icon_sizes)) {
 		$fh = new ElggFile();
 		$fh->owner_guid = $blog->getOwnerGUID();

@@ -27,7 +27,7 @@ class EntityIcon {
 			return;
 		}
 		
-		$iconsizes = (array) elgg_get_config('icon_sizes');
+		$iconsizes = (array) elgg_get_icon_sizes('object', 'blog');
 		$size = strtolower(elgg_extract('size', $params));
 		if (!array_key_exists($size, $iconsizes)) {
 			$size = 'medium';
