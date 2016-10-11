@@ -148,32 +148,9 @@ if (!$error) {
 		// handle icon upload
 		if (get_input('remove_icon') == 'yes') {
 			// remove existing icons
-			blog_tools_remove_blog_icon($blog);
+			$blog->deleteIcon();
 		} else {
-			$icon_file = get_resized_image_from_uploaded_file('icon', 100, 100);
-			$icon_sizes = elgg_get_icon_sizes('object', 'blog');
-			
-			if (!empty($icon_file) && !empty($icon_sizes)) {
-				// create icon
-				$prefix = "blogs/{$blog->getGUID()}";
-				
-				$fh = new ElggFile();
-				$fh->owner_guid = $blog->getOwnerGUID();
-				
-				foreach ($icon_sizes as $icon_name => $icon_info) {
-					$icon_file = get_resized_image_from_uploaded_file('icon', $icon_info['w'], $icon_info['h'], $icon_info['square'], $icon_info['upscale']);
-					if (!empty($icon_file)) {
-						$fh->setFilename("{$prefix}{$icon_name}.jpg");
-						
-						if ($fh->open('write')) {
-							$fh->write($icon_file);
-							$fh->close();
-						}
-					}
-				}
-				
-				$blog->icontime = time();
-			}
+			$blog->saveIconFromUploadedFile('icon');
 		}
 		
 		// remove sticky form entries

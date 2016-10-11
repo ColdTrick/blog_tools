@@ -24,7 +24,7 @@ class DeleteHandler {
 		if (!($object instanceof \ElggBlog)) {
 			return;
 		}
-			
-		blog_tools_remove_blog_icon($object);
+		
+		$object->deleteIcon();
 	}
 }
