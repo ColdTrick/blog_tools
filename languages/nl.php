@@ -1,10 +1,12 @@
 <?php
 /**
- * This file was created by Translation Editor v5.0
- * On 2016-03-08 13:23
+ * This file was created by Translation Editor v5.2
+ * On 2016-11-01 15:06
  */
 
 return array (
+  'admin:upgrades:blog_tools_move_icons' => 'Verhuis blog iconen',
+  'admin:upgrades:blog_tools_move_icons:description' => 'De blog iconen moeten worden opgeslagen op een nieuwe locatie, deze upgrade zal alle huidige iconen verhuizen naar de nieuwe locatie. Als de blogs geen iconen hebben, voer dan deze upgrade uit en de iconen keren terug.',
   'blog_tools:view:related' => 'Gerelateerde blogs',
   'blog_tools:label:show_owner' => 'Toon informatie over jezelf onder het blog',
   'blog_tools:settings:full' => 'Blog detail weergave instellingen',
