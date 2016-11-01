@@ -25,12 +25,11 @@ function blog_tools_init() {
 	elgg_extend_view('blog/sidebar', 'blog_tools/full/related');
 	
 	// register event handlers
-	elgg_register_event_handler('delete', 'object', '\ColdTrick\BlogTools\DeleteHandler::cleanupBlogIcon');
+	elgg_register_event_handler('upgrade', 'system', '\ColdTrick\BlogTools\Upgrade::moveBlogIcons');
 	
 	// register plugin hook handlers
 	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\BlogTools\Widgets::widgetUrl');
 	elgg_register_plugin_hook_handler('cron', 'daily', '\ColdTrick\BlogTools\Cron::daily');
-	elgg_register_plugin_hook_handler('entity:icon:file', 'object', '\ColdTrick\BlogTools\EntityIcon::blogIconFile');
 	elgg_register_plugin_hook_handler('route', 'blog', '\ColdTrick\BlogTools\Router::blog');
 	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\BlogTools\EntityMenu::register');
 	elgg_register_plugin_hook_handler('group_tool_widgets', 'widget_manager', '\ColdTrick\BlogTools\Widgets::groupTools');
@@ -59,5 +58,6 @@ function blog_tools_init() {
 	
 	// register actions
 	elgg_register_action('blog_tools/toggle_metadata', dirname(__FILE__) . '/actions/toggle_metadata.php', 'admin');
+	elgg_register_action('blog_tools/upgrades/move_icons', dirname(__FILE__) . '/actions/upgrades/move_icons.php', 'admin');
 	
 }
