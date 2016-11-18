@@ -1,6 +1,11 @@
 Version history
 ===============
 
+6.1 (2016-11-18):
+
+- changed: moved blog icons to default Elgg location
+- removed: custom icon handling
+
 6.0 (2016-10-06):
 
 - changed: get iconsizes using the new Elgg API
