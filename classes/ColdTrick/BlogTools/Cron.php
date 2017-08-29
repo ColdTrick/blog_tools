@@ -27,6 +27,9 @@ class Cron {
 			return;
 		}
 		
+		echo 'Starting BlogTools advanced publications' . PHP_EOL;
+		elgg_log('Starting BlogTools advanced publications', 'NOTICE');
+		
 		$time = (int) elgg_extract('time', $params, time());
 		
 		// ignore access
@@ -37,6 +40,9 @@ class Cron {
 		
 		// reset access
 		elgg_set_ignore_access($ia);
+		
+		echo 'Done with BlogTools advanced publications' . PHP_EOL;
+		elgg_log('Done with BlogTools advanced publications', 'NOTICE');
 	}
 	
 	/**
