@@ -1,6 +1,10 @@
 Version history
 ===============
 
+6.1.1 (2017-09-06):
+
+- several small chores/fixes
+
 6.1 (2016-11-18):
 
 - changed: moved blog icons to default Elgg location
