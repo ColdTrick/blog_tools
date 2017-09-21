@@ -16,14 +16,12 @@ $href = elgg_extract('href', $vars, $entity->getURL());
 $plugin_settings = elgg_extract('plugin_settings', $vars, false);
 $full_view = (bool) elgg_extract('full_view', $vars, false);
 
-$class = ['blog_tools_blog_image'];
-if (isset($vars['class'])) {
-	$class[] = $vars['class'];
-}
+$class = elgg_extract_class($vars, ['blog_tools_blog_image']);
 
 $image_params = [
-	'alt' => $entity->title,
-	'class' => elgg_extract('img_class', $vars, ''),
+	'alt' => $entity->getDisplayName(),
+	'class' => elgg_extract('img_class', $vars, []),
+	'data-highres-url' => $entity->getIconURL(['size' => 'master']),
 ];
 
 // which view
