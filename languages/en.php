@@ -44,6 +44,8 @@ You can view your blog here:
 	'blog_tools:label:expiration_date' => "Expiration date (optional)",
 	'blog_tools:expiration_date:description' => "The blog will no longer be published after the selected date.",
 
+	'blog_tools:force_notification' => "Send a publish notification to all users when the blog is published",
+
 	// settings
 	'blog_tools:settings:image' => "Blog image settings",
 	'blog_tools:settings:other' => "Other settings",
@@ -76,6 +78,9 @@ You can view your blog here:
 	
 	'blog_tools:settings:advanced_publication' => "Allow advanced publication options",
 	'blog_tools:settings:advanced_publication:description' => "With this users can select a publication and expiration date for blogs. Requires a working daily CRON.",
+	
+	'blog_tools:settings:force_notification' => "Force notifications for new blogs",
+	'blog_tools:settings:force_notification:help' => "Gives blog creators the ability to notify all users when a new blog is created. The notification preferences of the receiving users will still be respected. This only is available for personal blogs.",
 	
 	// actions
 	'blog_tools:action:toggle_metadata:error' => "An unknown error occured while editing the entity, please try agian",

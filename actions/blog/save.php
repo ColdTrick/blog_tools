@@ -60,6 +60,7 @@ $values = array(
 	'publication_date' => '',
 	'expiration_date' => '',
 	'show_owner' => 'no',
+	'force_notifications' => 0,
 );
 
 // fail if a required entity isn't set

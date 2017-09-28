@@ -17,11 +17,6 @@ $size_options = [
 	'master' => elgg_echo('blog_tools:settings:size:master'),
 ];
 
-$strapline_options = [
-	'default' => elgg_echo('blog_tools:settings:strapline:default'),
-	'time' => elgg_echo('blog_tools:settings:strapline:time'),
-];
-
 $yesno_options = [
 	'yes' => elgg_echo('option:yes'),
 	'no' => elgg_echo('option:no'),
@@ -29,155 +24,104 @@ $yesno_options = [
 
 $noyes_options = array_reverse($yesno_options);
 
-$show_full_owner_options = [
-	'no' => elgg_echo('option:no'),
-	'optional' => elgg_echo('blog_tools:settings:full:show_full_owner:optional'),
-	'yes' => elgg_echo('option:yes'),
-];
-
-$show_full_related_options = [
-	'no' => elgg_echo('option:no'),
-	'full_view' => elgg_echo('blog_tools:settings:full:show_full_related:full_view'),
-	'sidebar' => elgg_echo('blog_tools:settings:full:show_full_related:sidebar'),
-];
-
-// get settings
-$listing_align = $plugin->listing_align;
-$listing_size = $plugin->listing_size;
-$full_align = $plugin->full_align;
-$full_size = $plugin->full_size;
-
-// make default settings
-if (empty($listing_align)) {
-	$listing_align = 'right';
-}
-
-if (empty($listing_size)) {
-	$listing_size = 'small';
-}
-
-if (empty($full_align)) {
-	$full_align = 'right';
-}
-
-if (empty($full_size)) {
-	$full_size = 'large';
-}
-
 // icon settings
-$settings_image = '<table>';
-
-$settings_image .= '<tr>';
-$settings_image .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:listing:strapline'));
-$settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_image = elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:listing:strapline'),
 	'name' => 'params[listing_strapline]',
-	'options_values' => $strapline_options,
+	'options_values' => [
+		'default' => elgg_echo('blog_tools:settings:strapline:default'),
+		'time' => elgg_echo('blog_tools:settings:strapline:time'),
+	],
 	'value' => $plugin->listing_strapline,
-	'class' => 'mls',
-]));
-$settings_image .= '</tr>';
+]);
 
-$settings_image .= '<tr>';
-$settings_image .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:listing:image_align'));
-$settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_image .= elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:listing:image_align'),
 	'name' => 'params[listing_align]',
 	'options_values' => $align_options,
-	'value' => $listing_align,
-	'class' => 'mls',
-]));
-$settings_image .= '</tr>';
+	'value' => $plugin->listing_align ?: 'right',
+]);
 
-$settings_image .= '<tr>';
-$settings_image .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:listing:image_size'));
-$settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_image .= elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:listing:image_size'),
 	'name' => 'params[listing_size]',
 	'options_values' => $size_options,
-	'value' => $listing_size,
-	'class' => 'mls',
-]));
-$settings_image .= '</tr>';
+	'value' => $plugin->listing_size ?: 'small',
+]);
 
-$settings_image .= '<tr>';
-$settings_image .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:full:image_align'));
-$settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_image .= elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:full:image_align'),
 	'name' => 'params[full_align]',
 	'options_values' => $align_options,
-	'value' => $full_align,
-	'class' => 'mls',
-]));
-$settings_image .= '</tr>';
+	'value' => $plugin->full_align ?: 'right',
+]);
 
-$settings_image .= '<tr>';
-$settings_image .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:full:image_size'));
-$settings_image .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_image .= elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:full:image_size'),
 	'name' => 'params[full_size]',
 	'options_values' => $size_options,
-	'value' => $full_size,
-	'class' => 'mls',
-]));
-$settings_image .= '</tr>';
-
-$settings_image .= '</table>';
+	'value' => $plugin->full_size ?: 'large',
+]);
 
 echo elgg_view_module('inline', elgg_echo('blog_tools:settings:image'), $settings_image);
 
 // full view options
-$settings_full = '<table>';
-
-$settings_full .= '<tr>';
-$settings_full .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:full:show_full_navigation'));
-$settings_full .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_full = elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:full:show_full_navigation'),
 	'name' => 'params[show_full_navigation]',
 	'options_values' => $noyes_options,
 	'value' => $plugin->show_full_navigation,
-	'class' => 'mls',
-]));
-$settings_full .= '</tr>';
+]);
 
-$settings_full .= '<tr>';
-$settings_full .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:full:show_full_owner'));
-$settings_full .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_full .= elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:full:show_full_owner'),
 	'name' => 'params[show_full_owner]',
-	'options_values' => $show_full_owner_options,
+	'options_values' => [
+		'no' => elgg_echo('option:no'),
+		'optional' => elgg_echo('blog_tools:settings:full:show_full_owner:optional'),
+		'yes' => elgg_echo('option:yes'),
+	],
 	'value' => $plugin->show_full_owner,
-	'class' => 'mls',
-]));
-$settings_full .= '</tr>';
+]);
 
-$settings_full .= '<tr>';
-$settings_full .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:full:show_full_related'));
-$settings_full .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_full .= elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:full:show_full_related'),
 	'name' => 'params[show_full_related]',
-	'options_values' => $show_full_related_options,
+	'options_values' => [
+		'no' => elgg_echo('option:no'),
+		'full_view' => elgg_echo('blog_tools:settings:full:show_full_related:full_view'),
+		'sidebar' => elgg_echo('blog_tools:settings:full:show_full_related:sidebar'),
+	],
 	'value' => $plugin->show_full_related,
-	'class' => 'mls',
-]));
-$settings_full .= '</tr>';
-
-$settings_full .= '</table>';
+]);
 
 echo elgg_view_module('inline', elgg_echo('blog_tools:settings:full'), $settings_full);
 
 // other settings
-$settings_other = '<table>';
-
-$settings_other .= '<tr>';
-$settings_other .= elgg_format_element('td', [], elgg_echo('blog_tools:settings:advanced_publication'));
-$settings_other .= elgg_format_element('td', [], elgg_view('input/select', [
+$settings_other = elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:advanced_publication'),
+	'#help' => elgg_echo('blog_tools:settings:advanced_publication:description'),
 	'name' => 'params[advanced_publication]',
 	'options_values' => $noyes_options,
 	'value' => $plugin->advanced_publication,
-	'class' => 'mls',
-]));
-$settings_other .= '</tr>';
+]);
 
-$settings_other .= '<tr>';
-$settings_other .= elgg_format_element('td', [
-	'colspan' => 2,
-	'class' => 'elgg-subtext',
-], elgg_echo('blog_tools:settings:advanced_publication:description'));
-$settings_other .= '</tr>';
-
-$settings_other .= '</table>';
+$settings_other .= elgg_view_field([
+	'#type' => 'select',
+	'#label' => elgg_echo('blog_tools:settings:force_notification'),
+	'#help' => elgg_echo('blog_tools:settings:force_notification:help'),
+	'name' => 'params[force_notification]',
+	'options_values' => $noyes_options,
+	'value' => $plugin->force_notification,
+]);
 
 echo elgg_view_module('inline', elgg_echo('blog_tools:settings:other'), $settings_other);

@@ -63,60 +63,6 @@ if ($vars['guid']) {
 	$saved = elgg_echo('never');
 }
 
-// publication options
-$status = "<div class='mbs'>";
-$status .= "<label for='blog_status'>" . elgg_echo('status') . "</label>";
-$status .= elgg_view('input/select', [
-	'name' => 'status',
-	'id' => 'blog_status',
-	'value' => $vars['status'],
-	'options_values' => [
-		'draft' => elgg_echo('status:draft'),
-		'published' => elgg_echo('status:published')
-	],
-	'class' => 'mls',
-]);
-$status .= "</div>";
-
-// advanced publication options
-$publication_options = $status;
-if (blog_tools_use_advanced_publication_options()) {
-	if (!empty($blog)) {
-		$publication_date_value = elgg_extract('publication_date', $vars, $blog->publication_date);
-		$expiration_date_value = elgg_extract('expiration_date', $vars, $blog->expiration_date);
-	} else {
-		$publication_date_value = elgg_extract('publication_date', $vars);
-		$expiration_date_value = elgg_extract('expiration_date', $vars);
-	}
-	
-	if (empty($publication_date_value)) {
-		$publication_date_value = '';
-	}
-	if (empty($expiration_date_value)) {
-		$expiration_date_value = '';
-	}
-	
-	$publication_date = "<div class='mbs'>";
-	$publication_date .= "<label for='publication_date'>" . elgg_echo("blog_tools:label:publication_date") . "</label>";
-	$publication_date .= elgg_view('input/date', [
-		'name' => 'publication_date',
-		'value' => $publication_date_value,
-	]);
-	$publication_date .= "<div class='elgg-subtext'>" . elgg_echo("blog_tools:publication_date:description") . "</div>";
-	$publication_date .= "</div>";
-	
-	$expiration_date = "<div class='mbs'>";
-	$expiration_date .= "<label for='expiration_date'>" . elgg_echo("blog_tools:label:expiration_date") . "</label>";
-	$expiration_date .= elgg_view('input/date', [
-		'name' => 'expiration_date',
-		'value' => $expiration_date_value,
-	]);
-	$expiration_date .= "<div class='elgg-subtext'>" . elgg_echo("blog_tools:expiration_date:description") . "</div>";
-	$expiration_date .= "</div>";
-	
-	$publication_options = elgg_view_module('info', elgg_echo('blog_tools:label:publication_options'), $status . $publication_date . $expiration_date);
-}
-
 // show owner
 $show_owner_setting = elgg_get_plugin_setting('show_full_owner', 'blog_tools');
 if (empty($show_owner_setting)) {
@@ -243,8 +189,9 @@ echo elgg_view('input/access', [
 ]);
 echo "</div>";
 
-// advanced publication options
-echo $publication_options;
+echo elgg_view('blog_tools/edit/force_notification', $vars);
+
+echo elgg_view('blog_tools/edit/publication_options', $vars);
 
 // buttons and hidden inputs
 echo "<div class='elgg-foot'>";

@@ -30,6 +30,7 @@ function blog_tools_init() {
 	// register plugin hook handlers
 	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\BlogTools\Widgets::widgetUrl');
 	elgg_register_plugin_hook_handler('cron', 'daily', '\ColdTrick\BlogTools\Cron::daily');
+	elgg_register_plugin_hook_handler('get', 'subscriptions', '\ColdTrick\BlogTools\Notifications::forceAddSubscriptions');
 	elgg_register_plugin_hook_handler('route', 'blog', '\ColdTrick\BlogTools\Router::blog');
 	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\BlogTools\EntityMenu::register');
 	elgg_register_plugin_hook_handler('group_tool_widgets', 'widget_manager', '\ColdTrick\BlogTools\Widgets::groupTools');
