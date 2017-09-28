@@ -23,7 +23,7 @@ class Cron {
 	public static function daily($hook, $type, $return_value, $params) {
 		
 		// only do if this is configured
-		if (!blog_tools_use_advanced_publication_options()) {
+		if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 			return;
 		}
 		

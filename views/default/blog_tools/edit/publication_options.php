@@ -11,7 +11,7 @@ $status = elgg_view_field([
 	],
 ]);
 
-if (!blog_tools_use_advanced_publication_options()) {
+if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 	echo $status;
 	return;
 }

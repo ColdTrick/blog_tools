@@ -3,8 +3,6 @@
  * The main file for this plugin
  */
 
-require_once(dirname(__FILE__) . '/lib/functions.php');
-
 // register default elgg events
 elgg_register_event_handler('init', 'system', 'blog_tools_init');
 
