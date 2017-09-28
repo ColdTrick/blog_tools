@@ -37,8 +37,26 @@ if (!$sidebar && ($setting !== 'full_view')) {
 } elseif ($sidebar && ($setting !== 'sidebar')) {
 	return;
 }
+	
+$tag_values = $entity->tags;
+if (!is_array($tag_values)) {
+	$tag_values = [$tag_values];
+}
 
-$blogs = blog_tools_get_related_blogs($entity);
+$blogs = elgg_get_entities_from_metadata([
+	'type' => 'object',
+	'subtype' => 'blog',
+	'metadata_name' => 'tags',
+	'metadata_values' => $tag_values,
+	'wheres' => [
+		"(e.guid <> {$entity->getGUID()})",
+	],
+	'group_by' => 'e.guid',
+	'order_by' => 'count(msn.id) DESC',
+	'limit' => 4,
+]);
+
+
 if (empty($blogs)) {
 	return;
 }
