@@ -1,6 +1,15 @@
 Version history
 ===============
 
+7.0 (2017-10-03):
+
+- added: ability for blog poster to force notification to all users
+- added: support for image_enlarger on blog icon
+- changed: increased minimal Elgg version requirement to 2.3
+- removed: function blog_tools_get_related_blogs
+- removed: function blog_tools_use_advanced_publication_options
+- removed: unused function blog_tools_remove_blog_icon
+
 6.1.1 (2017-09-06):
 
 - several small chores/fixes
