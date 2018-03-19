@@ -2,6 +2,7 @@
 
 return [
 	'actions' => [
+		'blog/save' => [],
 		'blog_tools/toggle_metadata' => [
 			'access' => 'admin',
 		],

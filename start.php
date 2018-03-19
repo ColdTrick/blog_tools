@@ -43,7 +43,4 @@ function blog_tools_init() {
 		'href' => 'blog/featured',
 		'priority' => 600
 	]));
-	
-	// overrule blog actions
-	elgg_register_action('blog/save', dirname(__FILE__) . '/actions/blog/save.php');
 }

@@ -17,39 +17,32 @@ elgg_make_sticky_form('blog');
 // save or preview
 $save = (bool) get_input('save');
 
-// store errors to pass along
-$error = false;
-$error_forward_url = REFERER;
 $user = elgg_get_logged_in_user_entity();
 
 // edit or create a new entity
-$guid = get_input('guid');
+$guid = (int) get_input('guid');
 
 if ($guid) {
 	$entity = get_entity($guid);
-	if (elgg_instanceof($entity, 'object', 'blog') && $entity->canEdit()) {
+	if ($entity instanceof ElggBlog && $entity->canEdit()) {
 		$blog = $entity;
 	} else {
-		register_error(elgg_echo('blog:error:post_not_found'));
-		forward(get_input('forward', REFERER));
+		return elgg_error_response(elgg_echo('blog:error:post_not_found'));
 	}
 
 	// save some data for revisions once we save the new edit
 	$revision_text = $blog->description;
-	$new_post = $blog->new_post;
+	$new_post = (bool) $blog->new_post;
 } else {
-	$blog = new ElggBlog();
-	$blog->subtype = 'blog';
-	$blog->container_guid = (int) get_input('container_guid');
-	
-	$new_post = TRUE;
+	$blog = new \ElggBlog();
+	$new_post = true;
 }
 
 // set the previous status for the hooks to update the time_created and river entries
 $old_status = $blog->status;
 
 // set defaults and required values.
-$values = array(
+$values = [
 	'title' => '',
 	'description' => '',
 	'status' => 'draft',
@@ -57,26 +50,27 @@ $values = array(
 	'comments_on' => 'On',
 	'excerpt' => '',
 	'tags' => '',
+	'container_guid' => (int) get_input('container_guid'),
+	// ColdTrick additions
 	'publication_date' => '',
 	'expiration_date' => '',
 	'show_owner' => 'no',
 	'force_notifications' => 0,
-);
+];
 
 // fail if a required entity isn't set
-$required = array('title', 'description');
+$required = ['title', 'description'];
 
 // load from POST and do sanity and access checking
 foreach ($values as $name => $default) {
 	if ($name === 'title') {
-		$value = htmlspecialchars(get_input('title', $default, false), ENT_QUOTES, 'UTF-8');
+		$value = elgg_get_title_input();
 	} else {
 		$value = get_input($name, $default);
 	}
 	
 	if (in_array($name, $required) && empty($value)) {
-		$error = elgg_echo("blog:error:missing:$name");
-		break;
+		return elgg_error_response(elgg_echo("blog:error:missing:{$name}"));
 	}
 
 	switch ($name) {
@@ -90,7 +84,22 @@ foreach ($values as $name => $default) {
 			}
 			break;
 
+		case 'container_guid':
+			// this can't be empty or saving the base entity fails
+			if (!empty($value)) {
+				$container = get_entity($value);
+				if ($container && $container->canWriteToContainer(0, 'object', 'blog')) {
+					$values[$name] = $value;
+				} else {
+					return elgg_error_response(elgg_echo('blog:error:cannot_write_to_container'));
+				}
+			} else {
+				unset($values[$name]);
+			}
+			break;
+
 		case 'publication_date':
+			// ColdTrick addition
 			if (!empty($value)) {
 				$values[$name] = $value;
 				
@@ -102,13 +111,14 @@ foreach ($values as $name => $default) {
 			break;
 			
 		case 'expiration_date':
+			// ColdTrick addition
 			if (!empty($value)) {
 				$values[$name] = $value;
 				
 				if ($new_post) {
 					// new blogs can't expire directly
 					if (strtotime($value) < time()) {
-						$error = elgg_echo('blog_tools:action:save:error:expiration_date');
+						return elgg_error_response(elgg_echo('blog_tools:action:save:error:expiration_date'));
 					}
 				} else {
 					// if expiration is passed, set as draft
@@ -137,76 +147,70 @@ if ($values['status'] == 'draft') {
 }
 
 // assign values to the entity, stopping on error.
-if (!$error) {
-	foreach ($values as $name => $value) {
-		$blog->$name = $value;
-	}
+foreach ($values as $name => $value) {
+	$blog->$name = $value;
 }
 
-// only try to save base entity if no errors
-if (!$error) {
-	if ($blog->save()) {
-		// handle icon upload
-		if (get_input('remove_icon') == 'yes') {
-			// remove existing icons
-			$blog->deleteIcon();
-		} else {
-			$blog->saveIconFromUploadedFile('icon');
-		}
-		
-		// remove sticky form entries
-		elgg_clear_sticky_form('blog');
+if (!$blog->save()) {
+	return elgg_error_response(elgg_echo('blog:error:cannot_save'));
+}
 
-		// remove autosave draft if exists
-		$blog->deleteAnnotations('blog_auto_save');
-
-		// no longer a brand new post.
-		$blog->deleteMetadata('new_post');
-
-		// if this was an edit, create a revision annotation
-		if (!$new_post && $revision_text) {
-			$blog->annotate('blog_revision', $revision_text);
-		}
-
-		system_message(elgg_echo('blog:message:saved'));
-
-		$status = $blog->status;
-		
-		// add to river if changing status or published, regardless of new post
-		// because we remove it for drafts.
-		if (($new_post || $old_status === 'draft') && $status === 'published') {
-			elgg_create_river_item(array(
-				'view' => 'river/object/blog/create',
-				'action_type' => 'create',
-				'subject_guid' => $blog->owner_guid,
-				'object_guid' => $blog->getGUID(),
-			));
-			
-			// we only want notifications sent when post published
-			elgg_trigger_event('publish', 'object', $blog);
-			
-			// reset the creation time for posts that move from draft to published
-			if ($guid) {
-				$blog->time_created = time();
-				$blog->save();
-			}
-		} elseif ($old_status === 'published' && $status === 'draft') {
-			elgg_delete_river(array(
-				'object_guid' => $blog->guid,
-				'action_type' => 'create',
-			));
-		}
-
-		if ($blog->status === 'published' || $save === false) {
-			forward($blog->getURL());
-		} else {
-			forward("blog/edit/$blog->guid");
-		}
-	} else {
-		register_error(elgg_echo('blog:error:cannot_save'));
-		forward($error_forward_url);
-	}
+// ColdTrick addition
+// handle icon upload
+if (get_input('remove_icon') == 'yes') {
+	// remove existing icons
+	$blog->deleteIcon();
 } else {
-	register_error($error);
-	forward($error_forward_url);
+	$blog->saveIconFromUploadedFile('icon');
 }
+
+// remove sticky form entries
+elgg_clear_sticky_form('blog');
+
+// remove autosave draft if exists
+$blog->deleteAnnotations('blog_auto_save');
+
+// no longer a brand new post.
+$blog->deleteMetadata('new_post');
+
+// if this was an edit, create a revision annotation
+if (!$new_post && $revision_text) {
+	$blog->annotate('blog_revision', $revision_text);
+}
+
+$status = $blog->status;
+
+// add to river if changing status or published, regardless of new post
+// because we remove it for drafts.
+if (($new_post || $old_status === 'draft') && $status === 'published') {
+	elgg_create_river_item([
+		'view' => 'river/object/blog/create',
+		'action_type' => 'create',
+		'subject_guid' => $blog->owner_guid,
+		'object_guid' => $blog->getGUID(),
+	]);
+	
+	elgg_trigger_event('publish', 'object', $blog);
+	
+	// reset the creation time for posts that move from draft to published
+	if ($guid) {
+		$blog->time_created = time();
+		$blog->save();
+	}
+} elseif ($old_status === 'published' && $status === 'draft') {
+	elgg_delete_river([
+		'object_guid' => $blog->guid,
+		'action_type' => 'create',
+		'limit' => false,
+	]);
+}
+
+if ($blog->status == 'published' || $save == false) {
+	$forward_url = $blog->getURL();
+} else {
+	$forward_url = elgg_generate_url('edit:object:blog', [
+		'guid' => $blog->guid,
+	]);
+}
+
+return elgg_ok_response('', elgg_echo('blog:message:saved'), $forward_url);
