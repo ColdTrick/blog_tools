@@ -47,16 +47,10 @@ function blog_tools_init() {
 		'priority' => 600
 	]));
 	
-	// register index widget
-	elgg_register_widget_type('index_blog', elgg_echo('blog'), elgg_echo('blog_tools:widgets:index_blog:description'), ['index'], true);
-	elgg_register_widget_type('blog', elgg_echo('blog'), elgg_echo('blog:widget:description'), ['profile', 'dashboard', 'groups']);
-	
 	// overrule blog actions
 	elgg_register_action('blog/save', dirname(__FILE__) . '/actions/blog/save.php');
 	elgg_register_action('blog/auto_save_revision', dirname(__FILE__) . '/actions/blog/auto_save_revision.php');
 	
 	// register actions
-	elgg_register_action('blog_tools/toggle_metadata', dirname(__FILE__) . '/actions/toggle_metadata.php', 'admin');
 	elgg_register_action('blog_tools/upgrades/move_icons', dirname(__FILE__) . '/actions/upgrades/move_icons.php', 'admin');
-	
 }

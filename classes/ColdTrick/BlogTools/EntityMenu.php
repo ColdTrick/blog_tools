@@ -13,17 +13,14 @@ class EntityMenu {
 	/**
 	 * Add some menu items to the entity menu
 	 *
-	 * @param string         $hook        'register'
-	 * @param string         $entity_type 'menu:entity'
-	 * @param ElggMenuItem[] $returnvalue the current menu items
-	 * @param array          $params      supplied params
+	 * @param \Elgg\Hook $hook 'register', 'menu:entity'
 	 *
-	 * @return void|ElggMenuItem[]
+	 * @return void|\ElggMenuItem[]
 	 */
-	public static function register($hook, $entity_type, $returnvalue, $params) {
+	public static function register(\Elgg\Hook $hook) {
 		
-		$entity = elgg_extract('entity', $params);
-		if (!($entity instanceof \ElggBlog)) {
+		$entity = $hook->getEntityParam();
+		if (!($entity instanceof \ElggBlog) || !elgg_is_admin_logged_in()) {
 			return;
 		}
 		
@@ -32,45 +29,32 @@ class EntityMenu {
 			return;
 		}
 		
-		if (!elgg_in_context('widgets') && elgg_is_admin_logged_in()) {
-			elgg_require_js('blog_tools/site');
-			
-			$returnvalue[] = \ElggMenuItem::factory([
-				'name' => 'blog-feature',
-				'text' => elgg_echo('blog_tools:toggle:feature'),
-				'href' => "action/blog_tools/toggle_metadata?guid={$entity->getGUID()}&metadata=featured",
-				'item_class' => empty($entity->featured) ? '' : 'hidden',
-				'is_action' => true,
-				'priority' => 175,
-			]);
-			$returnvalue[] = \ElggMenuItem::factory([
-				'name' => 'blog-unfeature',
-				'text' => elgg_echo('blog_tools:toggle:unfeature'),
-				'href' => "action/blog_tools/toggle_metadata?guid={$entity->getGUID()}&metadata=featured",
-				'item_class' => empty($entity->featured) ? 'hidden' : '',
-				'is_action' => true,
-				'priority' => 176,
-			]);
-		}
+		$returnvalue = $hook->getValue();
 		
-		if ($entity->canComment()) {
-			$returnvalue[] = \ElggMenuItem::factory([
-				'name' => 'comments',
-				'text' => elgg_view_icon('speech-bubble'),
-				'title' => elgg_echo('comment:this'),
-				'href' => "{$entity->getURL()}#comments",
-			]);
-			
-			$comment_count = $entity->countComments();
-			if ($comment_count) {
-				$returnvalue[] = \ElggMenuItem::factory([
-					'name' => 'comments_count',
-					'text' => $comment_count,
-					'title' => elgg_echo('comments'),
-					'href' => "{$entity->getURL()}#comments",
-				]);
-			}
-		}
+		$returnvalue[] = \ElggMenuItem::factory([
+			'name' => 'blog-feature',
+			'text' => elgg_echo('blog_tools:toggle:feature'),
+			'icon' => 'level-up',
+			'href' => elgg_generate_action_url('blog_tools/toggle_metadata', [
+				'guid' => $entity->guid,
+				'metadata' => 'featured',
+			]),
+			'item_class' => empty($entity->featured) ? '' : 'hidden',
+			'priority' => 175,
+			'data-toggle' => 'blog-unfeature',
+		]);
+		$returnvalue[] = \ElggMenuItem::factory([
+			'name' => 'blog-unfeature',
+			'text' => elgg_echo('blog_tools:toggle:unfeature'),
+			'icon' => 'level-down',
+			'href' => elgg_generate_action_url('blog_tools/toggle_metadata', [
+				'guid' => $entity->guid,
+				'metadata' => 'featured',
+			]),
+			'item_class' => empty($entity->featured) ? 'hidden' : '',
+			'priority' => 176,
+			'data-toggle' => 'blog-feature',
+		]);
 		
 		return $returnvalue;
 	}

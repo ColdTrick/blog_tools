@@ -1,5 +1,6 @@
 <?php
-	
+
+/* @var $plugin Elggplugin */
 $plugin = elgg_extract('entity', $vars);
 
 // define possible values
@@ -17,12 +18,10 @@ $size_options = [
 	'master' => elgg_echo('blog_tools:settings:size:master'),
 ];
 
-$yesno_options = [
-	'yes' => elgg_echo('option:yes'),
+$noyes_options = [
 	'no' => elgg_echo('option:no'),
+	'yes' => elgg_echo('option:yes'),
 ];
-
-$noyes_options = array_reverse($yesno_options);
 
 // icon settings
 $settings_image = elgg_view_field([
@@ -41,7 +40,7 @@ $settings_image .= elgg_view_field([
 	'#label' => elgg_echo('blog_tools:settings:listing:image_align'),
 	'name' => 'params[listing_align]',
 	'options_values' => $align_options,
-	'value' => $plugin->listing_align ?: 'right',
+	'value' => $plugin->listing_align,
 ]);
 
 $settings_image .= elgg_view_field([
@@ -49,7 +48,7 @@ $settings_image .= elgg_view_field([
 	'#label' => elgg_echo('blog_tools:settings:listing:image_size'),
 	'name' => 'params[listing_size]',
 	'options_values' => $size_options,
-	'value' => $plugin->listing_size ?: 'small',
+	'value' => $plugin->listing_size,
 ]);
 
 $settings_image .= elgg_view_field([
@@ -57,7 +56,7 @@ $settings_image .= elgg_view_field([
 	'#label' => elgg_echo('blog_tools:settings:full:image_align'),
 	'name' => 'params[full_align]',
 	'options_values' => $align_options,
-	'value' => $plugin->full_align ?: 'right',
+	'value' => $plugin->full_align,
 ]);
 
 $settings_image .= elgg_view_field([
@@ -65,10 +64,10 @@ $settings_image .= elgg_view_field([
 	'#label' => elgg_echo('blog_tools:settings:full:image_size'),
 	'name' => 'params[full_size]',
 	'options_values' => $size_options,
-	'value' => $plugin->full_size ?: 'large',
+	'value' => $plugin->full_size,
 ]);
 
-echo elgg_view_module('inline', elgg_echo('blog_tools:settings:image'), $settings_image);
+echo elgg_view_module('info', elgg_echo('blog_tools:settings:image'), $settings_image);
 
 // full view options
 $settings_full = elgg_view_field([
@@ -103,7 +102,7 @@ $settings_full .= elgg_view_field([
 	'value' => $plugin->show_full_related,
 ]);
 
-echo elgg_view_module('inline', elgg_echo('blog_tools:settings:full'), $settings_full);
+echo elgg_view_module('info', elgg_echo('blog_tools:settings:full'), $settings_full);
 
 // other settings
 $settings_other = elgg_view_field([
@@ -124,4 +123,4 @@ $settings_other .= elgg_view_field([
 	'value' => $plugin->force_notification,
 ]);
 
-echo elgg_view_module('inline', elgg_echo('blog_tools:settings:other'), $settings_other);
+echo elgg_view_module('info', elgg_echo('blog_tools:settings:other'), $settings_other);

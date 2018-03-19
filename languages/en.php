@@ -7,9 +7,6 @@ return array(
 	'blog_tools:toggle:unfeature' => "Unfeature",
 	'blog_tools:readmore' => "read more",
 	
-	// widget
-	'blog_tools:widget:featured' => "Show only featured blogs?",
-	
 	// notifications
 	'blog_tools:notify:publish:subject' => "A blog has been published",
 	'blog_tools:notify:publish:message' => "Hi,
@@ -83,13 +80,13 @@ You can view your blog here:
 	'blog_tools:settings:force_notification:help' => "Gives blog creators the ability to notify all users when a new blog is created. The notification preferences of the receiving users will still be respected. This only is available for personal blogs.",
 	
 	// actions
-	'blog_tools:action:toggle_metadata:error' => "An unknown error occured while editing the entity, please try agian",
-	'blog_tools:action:toggle_metadata:success' => "The entity was successfully edited",
-	
 	'blog_tools:action:save:error:expiration_date' => "The expiration date can't be before today",
 	
 	// widget
-	'blog_tools:widgets:index_blog:description' => "Show the latest blogs on your community",
+	'blog_tools:widget:featured' => "Show only featured blogs?",
+	
+	'widgets:index_blog:name' => "Blog posts",
+	'widgets:index_blog:description' => "Show the latest blogs on your community",
 	
 	'blog_tools:widgets:index_blog:view_mode' => "How to view the blogs",
 	'blog_tools:widgets:index_blog:view_mode:list' => "List",
