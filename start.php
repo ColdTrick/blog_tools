@@ -22,9 +22,6 @@ function blog_tools_init() {
 	elgg_extend_view('object/blog', 'blog_tools/full/related');
 	elgg_extend_view('blog/sidebar', 'blog_tools/full/related');
 	
-	// register event handlers
-	elgg_register_event_handler('upgrade', 'system', '\ColdTrick\BlogTools\Upgrade::moveBlogIcons');
-	
 	// register plugin hook handlers
 	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\BlogTools\Widgets::widgetUrl');
 	elgg_register_plugin_hook_handler('cron', 'daily', '\ColdTrick\BlogTools\Cron::daily');
@@ -50,7 +47,4 @@ function blog_tools_init() {
 	// overrule blog actions
 	elgg_register_action('blog/save', dirname(__FILE__) . '/actions/blog/save.php');
 	elgg_register_action('blog/auto_save_revision', dirname(__FILE__) . '/actions/blog/auto_save_revision.php');
-	
-	// register actions
-	elgg_register_action('blog_tools/upgrades/move_icons', dirname(__FILE__) . '/actions/upgrades/move_icons.php', 'admin');
 }

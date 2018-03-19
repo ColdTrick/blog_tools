@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 	'blog_tools' => "Blog tools",
 	
 	'blog_tools:toggle:feature' => "Feature",
@@ -26,8 +26,7 @@ You can view your blog here:
 	
 	// views
 	'blog_tools:view:related' => "Related blogs",
-		
-		
+	
 	// blog edit
 	'blog_tools:label:icon:exists' => "Upload icon (leave empty to keep current icon)",
 	'blog_tools:label:icon:new' => "Upload icon",
@@ -93,8 +92,4 @@ You can view your blog here:
 	'blog_tools:widgets:index_blog:view_mode:preview' => "Preview",
 	'blog_tools:widgets:index_blog:view_mode:slider' => "Slider",
 	'blog_tools:widgets:index_blog:view_mode:simple' => "Simple",
-	
-	// upgrades
-	'admin:upgrades:blog_tools_move_icons' => "Move blog icons",
-	'admin:upgrades:blog_tools_move_icons:description' => "The blog icons need to be stored in a new location, this upgrade will move all the existing icons to the new location. If the blogs currently have no icons, run this upgrade and they will return.",
-);
+];
