@@ -7,6 +7,12 @@ return [
 			'access' => 'admin',
 		],
 	],
+	'routes' => [
+		'collection:object:blog:featured' => [
+			'path' => '/blog/featured',
+			'resource' => 'blog/featured',
+		],
+	],
 	'settings' => [
 		'listing_align' => 'right',
 		'listing_size' => 'small',

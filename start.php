@@ -28,19 +28,8 @@ function blog_tools_init() {
 	elgg_register_plugin_hook_handler('get', 'subscriptions', '\ColdTrick\BlogTools\Notifications::forceAddSubscriptions');
 	elgg_register_plugin_hook_handler('route', 'blog', '\ColdTrick\BlogTools\Router::blog');
 	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\BlogTools\EntityMenu::register');
+	elgg_register_plugin_hook_handler('filter_tabs', 'blog', '\ColdTrick\BlogTools\FilterTabs::addFeatured');
 	elgg_register_plugin_hook_handler('group_tool_widgets', 'widget_manager', '\ColdTrick\BlogTools\Widgets::groupTools');
 	elgg_register_plugin_hook_handler('permissions_check:comment', 'object', '\ColdTrick\BlogTools\Access::blogCanComment');
 	elgg_register_plugin_hook_handler('view_vars', 'input/form', '\ColdTrick\BlogTools\Views::blogEditFormVars');
-	
-	// extend editmenu
-	elgg_extend_view('editmenu', 'blog_tools/editmenu');
-	
-	// add featured filter menu item
-	elgg_register_menu_item('filter', ElggMenuItem::factory([
-		'name' => 'featured',
-		'text' => elgg_echo('status:featured'),
-		'context' => 'blog',
-		'href' => 'blog/featured',
-		'priority' => 600
-	]));
 }
