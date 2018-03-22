@@ -7,13 +7,13 @@ return array(
 	'blog_tools:toggle:unfeature'  => "Retirer de la section «En vedette »",
 	'blog_tools:readmore' => "Lire d'avantage",
 			
-	// menu		
+	// menu
 	'blog_tools:menu:filter:featured' => "En vedette",
 				
-	// widget		
+	// widget
 	'blog_tools:widget:featured' => "Afficher seulement les blogue qui sont en vedette?",
 			
-	// notifications		
+	// notifications
 	'blog_tools:notify:publish:subject' => "Un blogue à été publié",
 	'blog_tools:notify:publish:message' => "Bonjour,
 
@@ -30,11 +30,11 @@ votre blogue « %s » est expirer et n'est plus visible par la communauté.
 Vous pouvez le visionner ici:
 %s",
 		
-	// views		
+	// views
 	'blog_tools:view:related' => "Blogues connexe",
 				
 		
-	// blog edit		
+	// blog edit
 	'blog_tools:label:icon:exists' => "Télécharger un icône (laisser vide afin d'utiliser l'icône courant)",
 	'blog_tools:label:icon:new' => "Télécharger un icône",
 	'blog_tools:label:icon:remove' => "Retirer l'icône",
@@ -47,7 +47,7 @@ Vous pouvez le visionner ici:
 	'blog_tools:label:expiration_date' => "Date d'expiration (optionnelle)",
 	'blog_tools:expiration_date:description' => "Le blogue ne sera plus publié après la date sélectionnée.",
 		
-	// settings		
+	// settings
 	'blog_tools:settings:image' => "Paramètre des images des blogues",
 	'blog_tools:settings:other' => "Autre paramètre",
 			
@@ -58,12 +58,9 @@ Vous pouvez le visionner ici:
 	'blog_tools:settings:full:image_size' => "Paramètres de grandeur d'image de l'affichage complet du blogue",
 			
 	'blog_tools:settings:full' => "Paramètres d'affichage complet du blogue",
-	'blog_tools:settings:full:show_full_navigation' =>  "Show previous/next navigation",		
+	'blog_tools:settings:full:show_full_navigation' =>  "Show previous/next navigation",
 	'blog_tools:settings:full:show_full_owner' => "Afficher les informations sur le propriétaire sous le blogue",
 	'blog_tools:settings:full:show_full_owner:optional' => "Décision prise par le propriétaire",
-	'blog_tools:settings:full:show_full_related' => "Afficher les blogues connexe",
-	'blog_tools:settings:full:show_full_related:full_view' => "Sous le blogue",
-	'blog_tools:settings:full:show_full_related:sidebar' => "Dans la barre latérale",
 			
 	'blog_tools:settings:align:none' => "Pas d'image",
 	'blog_tools:settings:align:left' => "Gauche",
@@ -85,13 +82,13 @@ Vous pouvez le visionner ici:
 	'blog_tools:settings:advanced_publication' => "Permettre les options avancé de publication",
 	'blog_tools:settings:advanced_publication:description' => "Avec cet utilisateur peut sélectionner une publication et date d'expiration pour les blogs . Nécessite un CRON quotidien.",
 			
-	// actions		
+	// actions
 	'blog_tools:action:toggle_metadata:error' => "Une erreur inconnue est survenue lors de la modification de l'entité, s'il vous plaît réessayer plus tard",
 	'blog_tools:action:toggle_metadata:success' => "L'entité a été modifier avec succès",
 			
 	'blog_tools:action:save:error:expiration_date' => "La date d'expiration ne peu être avant aujourd'hui",
 			
-	// widget		
+	// widget
 	'blog_tools:widgets:index_blog:description' => "Afficher les blogues les plus récent sur votre communauté",
 			
 	'blog_tools:widgets:index_blog:view_mode' => "Comment les blogues seront afficher",

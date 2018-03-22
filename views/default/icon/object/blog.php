@@ -64,4 +64,8 @@ if (!empty($href)) {
 	$content = elgg_view('output/url', $params);
 }
 
-echo elgg_format_element('div', ['class' => $class], $content);
+if (elgg_extract('icon_wrapper', $vars)) {
+	echo elgg_format_element('div', ['class' => $class], $content);
+} else {
+	echo $content;
+}

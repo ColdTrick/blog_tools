@@ -58,9 +58,6 @@ Puedes verla en el siguiente enlace:
 	'blog_tools:settings:full:show_full_navigation' => "Mostrar links a publicaciones anteriores y siguientes",
 	'blog_tools:settings:full:show_full_owner' => "Mostrar información del autor de la publicación",
 	'blog_tools:settings:full:show_full_owner:optional' => "Opcional, cada autor decide",
-	'blog_tools:settings:full:show_full_related' => "Mostrar pulicaciones relacionadas",
-	'blog_tools:settings:full:show_full_related:full_view' => "Al pie de la publicación",
-	'blog_tools:settings:full:show_full_related:sidebar' => "En la barra lateral",
 	
 	'blog_tools:settings:align:none' => "Sin imagen",
 	

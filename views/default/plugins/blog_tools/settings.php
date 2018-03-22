@@ -83,15 +83,13 @@ $settings_full = elgg_view_field([
 ]);
 
 $settings_full .= elgg_view_field([
-	'#type' => 'select',
+	'#type' => 'checkbox',
 	'#label' => elgg_echo('blog_tools:settings:full:show_full_related'),
 	'name' => 'params[show_full_related]',
-	'options_values' => [
-		'no' => elgg_echo('option:no'),
-		'full_view' => elgg_echo('blog_tools:settings:full:show_full_related:full_view'),
-		'sidebar' => elgg_echo('blog_tools:settings:full:show_full_related:sidebar'),
-	],
-	'value' => $plugin->show_full_related,
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->show_full_related === 'yes',
+	'switch' => true,
 ]);
 
 echo elgg_view_module('info', elgg_echo('blog_tools:settings:full'), $settings_full);

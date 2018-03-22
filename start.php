@@ -20,14 +20,12 @@ function blog_tools_init() {
 	
 	// extra blog views
 	elgg_extend_view('object/elements/full/body', 'blog_tools/full/owner');
-	elgg_extend_view('object/blog', 'blog_tools/full/related');
-	elgg_extend_view('blog/sidebar', 'blog_tools/full/related');
+	elgg_extend_view('object/blog/elements/sidebar', 'blog_tools/sidebar/related');
 	
 	// register plugin hook handlers
 	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\BlogTools\Widgets::widgetUrl');
 	elgg_register_plugin_hook_handler('cron', 'daily', '\ColdTrick\BlogTools\Cron::daily');
 	elgg_register_plugin_hook_handler('get', 'subscriptions', '\ColdTrick\BlogTools\Notifications::forceAddSubscriptions');
-	elgg_register_plugin_hook_handler('route', 'blog', '\ColdTrick\BlogTools\Router::blog');
 	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\BlogTools\EntityMenu::register');
 	elgg_register_plugin_hook_handler('filter_tabs', 'blog', '\ColdTrick\BlogTools\FilterTabs::addFeatured');
 	elgg_register_plugin_hook_handler('group_tool_widgets', 'widget_manager', '\ColdTrick\BlogTools\Widgets::groupTools');
