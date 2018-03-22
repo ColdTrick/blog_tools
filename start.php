@@ -3,6 +3,8 @@
  * The main file for this plugin
  */
 
+require_once(__DIR__ . '/lib/functions.php');
+
 // register default elgg events
 elgg_register_event_handler('init', 'system', 'blog_tools_init');
 
@@ -18,7 +20,7 @@ function blog_tools_init() {
 	
 	// extra blog views
 	elgg_extend_view('object/blog', 'blog_tools/full/navigation');
-	elgg_extend_view('object/blog', 'blog_tools/full/owner');
+	elgg_extend_view('object/elements/full/body', 'blog_tools/full/owner');
 	elgg_extend_view('object/blog', 'blog_tools/full/related');
 	elgg_extend_view('blog/sidebar', 'blog_tools/full/related');
 	

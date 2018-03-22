@@ -7,9 +7,7 @@
  */
 
 $entity = elgg_extract('entity', $vars);
-$full_view = (bool) elgg_extract('full_view', $vars, false);
-
-if (!$full_view) {
+if (!$entity instanceof ElggBlog) {
 	return;
 }
 

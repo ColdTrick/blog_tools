@@ -68,8 +68,8 @@ You can view your blog here:
 	'blog_tools:settings:size:large' => "Large (200x200)",
 	'blog_tools:settings:size:master' => "Master (550x550)",
 	
-	'blog_tools:settings:listing:strapline' => "Show strapline in listing",
-	'blog_tools:settings:strapline:default' => "Default (owner and tags)",
+	'blog_tools:settings:listing:strapline' => "How to show the imprint in listings",
+	'blog_tools:settings:strapline:default' => "Default (owner, group, access, tags, etc.)",
 	'blog_tools:settings:strapline:time' => "Time only",
 	
 	'blog_tools:settings:advanced_publication' => "Allow advanced publication options",

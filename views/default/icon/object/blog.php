@@ -1,4 +1,11 @@
 <?php
+/**
+ * Render a blog icon
+ *
+ * @uses $vars['entity'] the blog entity
+ * @uses $vars['size']   the icon size
+ * @uses $vars['align']  the icon alignment (right|left|none)
+ */
 
 $entity = elgg_extract('entity', $vars);
 
@@ -7,118 +14,51 @@ if (!($entity instanceof ElggBlog)) {
 	return;
 }
 
-// does the blog have an image
-if (!$entity->icontime) {
+$icon_sizes = elgg_get_icon_sizes($entity->getType(), $entity->getSubtype());
+$size = elgg_extract('size', $vars);
+if (!array_key_exists($size, $icon_sizes)) {
+	$size = 'medium';
+}
+
+$align = elgg_extract('align', $vars);
+
+// does the blog have an image, or not allowed to render
+if (!$entity->hasIcon($size) || $align === 'none') {
+	echo elgg_format_element('i');
 	return;
 }
 
-$href = elgg_extract('href', $vars, $entity->getURL());
-$plugin_settings = elgg_extract('plugin_settings', $vars, false);
-$full_view = (bool) elgg_extract('full_view', $vars, false);
-
-$class = elgg_extract_class($vars, ['blog_tools_blog_image']);
-
-$image_params = [
-	'alt' => $entity->getDisplayName(),
-	'class' => elgg_extract('img_class', $vars, []),
-	'data-highres-url' => $entity->getIconURL(['size' => 'master']),
-];
-
-// which view
-if (empty($plugin_settings)) {
-	// default image behaviour
-	$image_params['src'] = $entity->getIconURL(elgg_extract('size', $vars, 'medium'));
-} elseif ($full_view) {
-	// full view of a blog
-	static $blog_tools_full_image_size;
-	static $blog_tools_full_image_align;
-	
-	if (!isset($blog_tools_full_image_align)) {
-		$blog_tools_full_image_align = 'right';
-	
-		$setting = elgg_get_plugin_setting('full_align', 'blog_tools');
-		if (!empty($setting)) {
-			$blog_tools_full_image_align = $setting;
-		}
-	}
-	
-	if ($blog_tools_full_image_align === 'none') {
-		// no image
-		echo ' ';
-		return;
-	}
-	
-	if (!isset($blog_tools_full_image_size)) {
-		$blog_tools_full_image_size = 'large';
-		
-		$setting = elgg_get_plugin_setting('full_size', 'blog_tools');
-		if (!empty($setting)) {
-			$blog_tools_full_image_size = $setting;
-		}
-	}
-	
-	$href = false;
-	$image_params['src'] = $entity->getIconURL($blog_tools_full_image_size);
-	
-	$class[] = "blog-tools-blog-image-{$blog_tools_full_image_size}";
-	
-	if ($blog_tools_full_image_size !== 'master') {
-		if ($blog_tools_full_image_align === 'right') {
-			$class[] = 'float-alt';
-		} else {
-			$class[] = 'float';
-		}
-	}
-} else {
-	// listing view of a blog
-	// full view of a blog
-	static $blog_tools_lising_image_size;
-	static $blog_tools_listing_image_align;
-	
-	if (!isset($blog_tools_listing_image_align)) {
-		$blog_tools_listing_image_align = 'right';
-	
-		$setting = elgg_get_plugin_setting('listing_align', 'blog_tools');
-		if (!empty($setting)) {
-			$blog_tools_listing_image_align = $setting;
-		}
-	}
-	
-	if ($blog_tools_listing_image_align === 'none') {
-		// no image
-		echo ' ';
-		return;
-	}
-	
-	if (!isset($blog_tools_lising_image_size)) {
-		$blog_tools_lising_image_size = 'small';
-		
-		$setting = elgg_get_plugin_setting('listing_size', 'blog_tools');
-		if (!empty($setting)) {
-			$blog_tools_lising_image_size = $setting;
-		}
-	}
-	
-	$image_params['src'] = $entity->getIconURL($blog_tools_lising_image_size);
-	
-	$class[] = "blog-tools-blog-image-{$blog_tools_lising_image_size}";
-	
-	if ($blog_tools_listing_image_align === 'right') {
-		$class[] = 'float-alt';
-	} else {
-		$class[] = 'float';
-	}
+$class = elgg_extract_class($vars, [
+	'blog-tools-blog-image',
+	"blog-tools-blog-image-{$size}",
+]);
+if ($align === 'right') {
+	$class[] = 'float';
+} elseif ($align === 'left') {
+	$class[] = 'float-alt';
 }
 
-$image = elgg_view('output/img', $image_params);
+$href = elgg_extract('href', $vars, $entity->getURL());
 
-$content = $image;
+$title = htmlspecialchars($entity->getDisplayName(), ENT_QUOTES, 'UTF-8', false);
+
+$image_params = [
+	'src' => $entity->getIconURL(['size' => $size]),
+	'alt' => $title,
+	'title' => $title,
+	'class' => elgg_extract_class($vars, [],'img_class'),
+	'data-highres-url' => $entity->getIconURL(['size' => 'master']),
+	'width' => ($size !== 'master') ? $icon_sizes[$size]['w'] : null,
+	'height' => ($size !== 'master') ? $icon_sizes[$size]['h'] : null,
+];
+
+$content = elgg_view('output/img', $image_params);
 if (!empty($href)) {
 	$params = [
 		'href' => $href,
-		'text' => $image,
+		'text' => $content,
 		'is_trusted' => true,
-		'class' => elgg_extract('link_class', $vars, ''),
+		'class' => elgg_extract_class($vars, [], 'link_class'),
 	];
 	
 	$content = elgg_view('output/url', $params);
