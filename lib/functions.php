@@ -13,7 +13,7 @@ function blog_tools_get_icon_settings(\ElggBlog $entity, $full_view = false) {
 	$full_view = (bool) $full_view;
 	
 	if (isset($settings)) {
-		return $full ? $settings['full'] : $settings['listing'];
+		return $full_view ? $settings['full'] : $settings['listing'];
 	}
 	
 	$plugin_settings = elgg_get_plugin_from_id('blog_tools')->getAllSettings();
@@ -29,5 +29,5 @@ function blog_tools_get_icon_settings(\ElggBlog $entity, $full_view = false) {
 		],
 	];
 	
-	return $full ? $settings['full'] : $settings['listing'];
+	return $full_view ? $settings['full'] : $settings['listing'];
 }
