@@ -19,7 +19,6 @@ function blog_tools_init() {
 	elgg_extend_view('css/elgg', 'css/blog_tools/site.css');
 	
 	// extra blog views
-	elgg_extend_view('object/blog', 'blog_tools/full/navigation');
 	elgg_extend_view('object/elements/full/body', 'blog_tools/full/owner');
 	elgg_extend_view('object/blog', 'blog_tools/full/related');
 	elgg_extend_view('blog/sidebar', 'blog_tools/full/related');

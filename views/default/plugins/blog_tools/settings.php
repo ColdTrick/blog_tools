@@ -72,14 +72,6 @@ echo elgg_view_module('info', elgg_echo('blog_tools:settings:image'), $settings_
 // full view options
 $settings_full = elgg_view_field([
 	'#type' => 'select',
-	'#label' => elgg_echo('blog_tools:settings:full:show_full_navigation'),
-	'name' => 'params[show_full_navigation]',
-	'options_values' => $noyes_options,
-	'value' => $plugin->show_full_navigation,
-]);
-
-$settings_full .= elgg_view_field([
-	'#type' => 'select',
 	'#label' => elgg_echo('blog_tools:settings:full:show_full_owner'),
 	'name' => 'params[show_full_owner]',
 	'options_values' => [
