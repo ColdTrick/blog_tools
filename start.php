@@ -22,6 +22,10 @@ function blog_tools_init() {
 	elgg_extend_view('object/elements/full/body', 'blog_tools/full/owner');
 	elgg_extend_view('object/blog/elements/sidebar', 'blog_tools/sidebar/related');
 	
+	elgg_extend_view('forms/blog/save', 'blog_tools/edit/show_owner');
+	elgg_extend_view('forms/blog/save', 'blog_tools/edit/force_notification');
+	elgg_extend_view('forms/blog/save', 'blog_tools/edit/publication_options');
+	
 	// register plugin hook handlers
 	elgg_register_plugin_hook_handler('entity:url', 'object', '\ColdTrick\BlogTools\Widgets::widgetUrl');
 	elgg_register_plugin_hook_handler('cron', 'daily', '\ColdTrick\BlogTools\Cron::daily');

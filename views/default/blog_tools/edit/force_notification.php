@@ -10,9 +10,9 @@ if (!($page_owner instanceof ElggUser)) {
 	return;
 }
 
-$blog = elgg_extract('entity', $vars);
-if ($blog) {
-	$checked = (bool) elgg_extract('force_notifications', $vars, $blog->force_notifications);
+$entity = get_entity(elgg_extract('guid', $vars));
+if ($entity instanceof ElggBlog) {
+	$checked = (bool) elgg_extract('force_notifications', $vars, $entity->force_notifications);
 } else {
 	$checked = (bool) elgg_extract('force_notifications', $vars, false);
 }
@@ -23,4 +23,5 @@ echo elgg_view_field([
 	'name' => 'force_notifications',
 	'value' => 1,
 	'checked' => $checked,
+	'switch' => true,
 ]);
