@@ -22,6 +22,9 @@ class Cron {
 	 */
 	public static function daily($hook, $type, $return_value, $params) {
 		
+		// @todo revisit this
+		return;
+		
 		// only do if this is configured
 		if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 			return;

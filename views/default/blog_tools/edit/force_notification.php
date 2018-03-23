@@ -1,6 +1,7 @@
 <?php
 
-if (elgg_get_plugin_setting('force_notification', 'blog_tools', 'no') !== 'yes') {
+// @todo revisit this
+if (true || elgg_get_plugin_setting('force_notification', 'blog_tools', 'no') !== 'yes') {
 	return;
 }
 

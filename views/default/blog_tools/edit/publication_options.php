@@ -12,7 +12,8 @@ $status = elgg_view_field([
 	],
 ]);
 
-if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
+// @todo revisit this
+if (true || elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 	echo $status;
 	return;
 }

@@ -15,6 +15,10 @@ class Notifications {
 	 * @return void|array
 	 */
 	public static function forceAddSubscriptions($hook, $type, $returnvalue, $params) {
+		
+		// @todo revisit this
+		return;
+		
 		/* @var $event \Elgg\Notifications\Event */
 		$event = elgg_extract('event', $params);
 		if (!($event instanceof \Elgg\Notifications\Event)) {

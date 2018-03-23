@@ -95,22 +95,23 @@ $settings_full .= elgg_view_field([
 echo elgg_view_module('info', elgg_echo('blog_tools:settings:full'), $settings_full);
 
 // other settings
-$settings_other = elgg_view_field([
-	'#type' => 'select',
-	'#label' => elgg_echo('blog_tools:settings:advanced_publication'),
-	'#help' => elgg_echo('blog_tools:settings:advanced_publication:description'),
-	'name' => 'params[advanced_publication]',
-	'options_values' => $noyes_options,
-	'value' => $plugin->advanced_publication,
-]);
+// @todo revisit this
+// $settings_other = elgg_view_field([
+// 	'#type' => 'select',
+// 	'#label' => elgg_echo('blog_tools:settings:advanced_publication'),
+// 	'#help' => elgg_echo('blog_tools:settings:advanced_publication:description'),
+// 	'name' => 'params[advanced_publication]',
+// 	'options_values' => $noyes_options,
+// 	'value' => $plugin->advanced_publication,
+// ]);
 
-$settings_other .= elgg_view_field([
-	'#type' => 'select',
-	'#label' => elgg_echo('blog_tools:settings:force_notification'),
-	'#help' => elgg_echo('blog_tools:settings:force_notification:help'),
-	'name' => 'params[force_notification]',
-	'options_values' => $noyes_options,
-	'value' => $plugin->force_notification,
-]);
+// $settings_other .= elgg_view_field([
+// 	'#type' => 'select',
+// 	'#label' => elgg_echo('blog_tools:settings:force_notification'),
+// 	'#help' => elgg_echo('blog_tools:settings:force_notification:help'),
+// 	'name' => 'params[force_notification]',
+// 	'options_values' => $noyes_options,
+// 	'value' => $plugin->force_notification,
+// ]);
 
-echo elgg_view_module('info', elgg_echo('blog_tools:settings:other'), $settings_other);
+// echo elgg_view_module('info', elgg_echo('blog_tools:settings:other'), $settings_other);
