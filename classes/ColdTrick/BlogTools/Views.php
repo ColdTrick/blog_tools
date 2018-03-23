@@ -16,17 +16,13 @@ class Views {
 	 */
 	public static function blogEditFormVars($hook, $type, $return_value, $params) {
 		
-		$id = elgg_extract('id', $return_value);
 		$action_name = elgg_extract('action_name', $return_value);
-		if (($id !== 'blog-post-edit') || ($action_name !== 'blog/save')) {
+		if ($action_name !== 'blog/save') {
 			return;
 		}
 		
 		// add ability to upload icon
 		$return_value['enctype'] = 'multipart/form-data';
-		
-		// @todo find out why this is needed
-		$return_value['name'] = 'blog_post';
 		
 		return $return_value;
 	}

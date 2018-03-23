@@ -33,14 +33,18 @@ class Widgets {
 		
 		switch ($widget->handler) {
 			case 'index_blog':
-				$return_value = 'blog/all';
+				$return_value = elgg_generate_url('collection:object:blog:all');
 				break;
 			case 'blog':
 				$owner = $widget->getOwnerEntity();
 				if ($owner instanceof \ElggUser) {
-					$return_value = "blog/owner/{$owner->username}";
+					$return_value = elgg_generate_url('collection:object:blog:owner', [
+						'username' => $owner->username,
+					]);
 				} elseif ($owner instanceof \ElggGroup) {
-					$return_value = "blog/group/{$owner->getGUID()}/all";
+					$return_value = elgg_generate_url('collection:object:blog:group', [
+						'guid' => $owner->guid,
+					]);
 				}
 				break;
 		}
