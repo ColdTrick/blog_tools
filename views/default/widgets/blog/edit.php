@@ -1,32 +1,25 @@
 <?php
 
+/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
-
-$num = (int) $widget->num_display;
-if ($num < 1) {
-	$num = 4;
-}
 
 $noyes_options = [
 	'no' => elgg_echo('option:no'),
 	'yes' => elgg_echo('option:yes'),
 ];
 
-echo '<div>';
-echo elgg_echo('blog:numbertodisplay');
-echo elgg_view('input/select', [
-	'options' => range(1, 10),
-	'value' => $num,
-	'name' => 'params[num_display]',
-	'class' => 'mls',
+echo elgg_view('object/widget/edit/num_display', [
+	'entity' => $widget,
+	'label' => elgg_echo('blog:numbertodisplay'),
+	'default' => 4,
 ]);
-echo '</div>';
 
-echo '<div>';
-echo elgg_echo('blog_tools:widget:featured');
-echo elgg_view('input/select', [
-	'options_values' => $noyes_options,
-	'value' => $widget->show_featured,
+echo elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('blog_tools:widget:featured'),
 	'name' => 'params[show_featured]',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $widget->show_featured === 'yes',
+	'switch' => true,
 ]);
-echo '</div>';

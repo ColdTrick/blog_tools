@@ -1,5 +1,6 @@
 <?php
 
+/* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
 // get widget settings
@@ -8,25 +9,7 @@ if ($count < 1) {
 	$count = 8;
 }
 
-// get view mode
-$view_mode = $widget->view_mode;
-
-// backup context and set
-switch($view_mode){
-	case 'slider':
-		elgg_push_context('slider');
-		break;
-	case 'preview':
-		elgg_push_context('preview');
-		break;
-	case 'simple':
-		elgg_push_context('simple');
-		break;
-	default:
-		elgg_push_context('listing');
-		break;
-}
-
+// listing options
 $options = [
 	'type' => 'object',
 	'subtype' => 'blog',
@@ -35,6 +18,23 @@ $options = [
 	'pagination' => false,
 	'metadata_name_value_pairs' => [],
 ];
+
+// get view mode
+$view_mode = $widget->view_mode;
+
+// backup context and set
+switch ($view_mode) {
+	case 'simple':
+		$options['item_view'] = 'widgets/index_blog/blog/simple';
+		break;
+	case 'preview':
+		// default entity listing
+	case 'slider':
+		break;
+	default:
+		$options['item_view'] = 'widgets/index_blog/blog/listing';
+		break;
+}
 
 // only show published blogs to non admins
 if (!elgg_is_admin_logged_in()) {
@@ -45,74 +45,57 @@ if (!elgg_is_admin_logged_in()) {
 }
 
 // limit to featured blogs?
-if ($widget->show_featured == 'yes') {
+if ($widget->show_featured === 'yes') {
 	$options['metadata_name_value_pairs'][] = [
 		'name' => 'featured',
 		'value' => true,
 	];
 }
 
-$blogs = elgg_list_entities_from_metadata($options);
-
-// restore context
-elgg_pop_context();
-
-if (empty($blogs)) {
-	echo elgg_echo('blog:noblogs');
+$blog_entities = elgg_get_entities($options);
+if (empty($blog_entities)) {
+	echo elgg_echo('blog:none');
 	return;
 }
 
-if ($view_mode !== 'slider') {
+$blogs = elgg_view_entity_list($blog_entities, $options);
+
+if ($view_mode !== 'slider' || count($blog_entities) === 1) {
 	echo $blogs;
 	return;
 }
 
 // blog container
 $container_attr = [
-	'id' => "blog_tools_widget_items_container_{$widget->getGUID()}",
-	 'class' => 'blog_tools_widget_items_container',
+	'class' => 'blog-tools-widget-items-container',
 ];
 echo elgg_format_element('div', $container_attr, $blogs);
 
 // navigator
-$blog_entities = elgg_get_entities_from_metadata($options);
-
 $navigator_attr = [
-	'id' => "blog_tools_widget_items_navigator_{$widget->getGUID()}",
-	'class' => 'elgg-widget-more blog_tools_widget_items_navigator',
+	'class' => [
+		'elgg-widget-more',
+		'blog-tools-widget-items-navigator',
+	],
 ];
 
-$spans = [];
+$lis = [];
 foreach ($blog_entities as $key => $blog) {
-	$spans[] = elgg_format_element('span', ['rel' => $blog->getGUID()], ($key + 1));
+	$span = elgg_format_element('span', ['rel' => $blog->guid], ($key + 1));
+	
+	$li_attr = [];
+	if ($key === 0) {
+		$li_attr['class'] = 'elgg-state-selected';
+	}
+	
+	$lis[] = elgg_format_element('li', $li_attr, $span);
 }
-echo elgg_format_element('div', $navigator_attr, implode('', $spans));
+echo elgg_format_element('ul', $navigator_attr, implode(PHP_EOL, $lis));
 
 ?>
 <script type='text/javascript'>
-	function rotateBlogItems<?php echo $widget->getGUID(); ?>(){
-		if ($('#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> .active').next().length === 0) {
-			$('#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?>>span:first').click();
-		} else {
-			$('#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> .active').next().click();
-		}
-	}
-
-	$(document).ready(function(){
-		$('#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?>>span:first').addClass('active');
-		var active = $('#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?>>span:first').attr('rel');
-
-		$('#blog_tools_widget_items_container_<?php echo $widget->getGUID(); ?> #elgg-object-' + active).show();
-
-		$('#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> span').click(function(){
-			$('#blog_tools_widget_items_navigator_<?php echo $widget->getGUID(); ?> span.active').removeClass('active');
-			$(this).addClass('active');
-
-			$('#blog_tools_widget_items_container_<?php echo $widget->getGUID(); ?> .elgg-item').hide();
-			var active = $(this).attr('rel');
-			$('#blog_tools_widget_items_container_<?php echo $widget->getGUID(); ?> #elgg-object-' + active).show();
-		});
-		
-		setInterval (rotateBlogItems<?php echo $widget->getGUID(); ?>, 10000);
+	require(['widgets/index_blog/slider'], function(Slider) {
+		var slider = new Slider();
+		slider.init(<?php echo $widget->guid; ?>);
 	});
 </script>
