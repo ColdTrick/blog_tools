@@ -2,7 +2,7 @@
 .blog-tools-blog-image {
 	margin: 5px;
 	padding: 5px;
-	border: 1px solid #CECECE;
+	border: 1px solid $(border-color-soft);
 }
 
 .blog-tools-blog-image-master {
@@ -13,14 +13,6 @@
 	img {
 		width: 100%;
 	}
-}
-
-.blog-tools-full-owner {
-	border: 1px solid #4690D6;
-	background: #E4ECF5;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
 }
 
 .blog-tools-widget-items-container { 
