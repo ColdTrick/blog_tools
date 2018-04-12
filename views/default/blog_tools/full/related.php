@@ -52,7 +52,7 @@ $blogs = elgg_get_entities_from_metadata([
 		"(e.guid <> {$entity->getGUID()})",
 	],
 	'group_by' => 'e.guid',
-	'order_by' => 'count(msn.id) DESC, e.time_created ASC',
+	'order_by' => 'count(msn.id) DESC, e.time_created DESC',
 	'limit' => 4,
 ]);
 
