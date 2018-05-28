@@ -1,6 +1,11 @@
 <?php
 
+use ColdTrick\BlogTools\Bootstrap;
+
+require_once(__DIR__ . '/lib/functions.php');
+
 return [
+	'bootstrap' => Bootstrap::class,
 	'actions' => [
 		'blog/save' => [],
 		'blog_tools/toggle_metadata' => [
