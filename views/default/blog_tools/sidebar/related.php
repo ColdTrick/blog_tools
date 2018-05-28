@@ -50,6 +50,7 @@ $blogs = elgg_get_entities([
 	],
 	'order_by' => [
 		new OrderByClause('total', 'DESC'),
+		new OrderByClause('time_created', 'DESC'),
 	],
 	'limit' => 4,
 ]);
