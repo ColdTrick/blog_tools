@@ -81,8 +81,8 @@ class FilterTabs {
 			'child_menu' => [
 				'display' => 'dropdown',
 				'data-position' => json_encode([
-					'my' => 'left top',
-					'at' => 'left bottom+8px',
+					'my' => 'right top',
+					'at' => 'right bottom+8px',
 					'collision' => 'fit fit',
 				]),
 			],
@@ -156,8 +156,8 @@ class FilterTabs {
 			'child_menu' => [
 				'display' => 'dropdown',
 				'data-position' => json_encode([
-					'my' => 'left top',
-					'at' => 'left bottom+8px',
+					'my' => 'right top',
+					'at' => 'right bottom+8px',
 					'collision' => 'fit fit',
 				]),
 			],
