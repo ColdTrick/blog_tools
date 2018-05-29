@@ -45,6 +45,12 @@ You can view your blog here:
 	// settings
 	'blog_tools:settings:image' => "Blog image settings",
 	'blog_tools:settings:other' => "Other settings",
+	'blog_tools:settings:menu' => "Menu settings",
+	
+	'blog_tools:settings:featured_menu' => "Add featured tab to blog listing pages",
+	'blog_tools:settings:featured_menu:help' => "To show an easy list of all the featured blogs",
+	'blog_tools:settings:archive_menu' => "Move blog archive sidebar to filter menu",
+	'blog_tools:settings:archive_menu:help' => "On listing pages an archive is shown in the sidebar, with this setting the archive can be moved to the filter menu tabs.",
 	
 	'blog_tools:settings:listing:image_align' => "Blog listing image align",
 	'blog_tools:settings:listing:image_size' => "Blog listing image size",

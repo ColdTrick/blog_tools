@@ -1,6 +1,6 @@
 <?php
 
-/* @var $plugin Elggplugin */
+/* @var $plugin ElggPlugin */
 $plugin = elgg_extract('entity', $vars);
 
 // define possible values
@@ -22,6 +22,29 @@ $noyes_options = [
 	'no' => elgg_echo('option:no'),
 	'yes' => elgg_echo('option:yes'),
 ];
+
+// menu settings
+$menu = elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('blog_tools:settings:featured_menu'),
+	'#help' => elgg_echo('blog_tools:settings:featured_menu:help'),
+	'name' => 'params[featured_menu]',
+	'value' => 1,
+	'checked' => (bool) $plugin->featured_menu,
+	'switch' => true,
+]);
+
+$menu .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('blog_tools:settings:archive_menu'),
+	'#help' => elgg_echo('blog_tools:settings:archive_menu:help'),
+	'name' => 'params[archive_menu]',
+	'value' => 1,
+	'checked' => (bool) $plugin->archive_menu,
+	'switch' => true,
+]);
+
+echo elgg_view_module('info', elgg_echo('blog_tools:settings:menu'), $menu);
 
 // icon settings
 $settings_image = elgg_view_field([

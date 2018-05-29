@@ -23,6 +23,8 @@ return [
 		'listing_size' => 'small',
 		'full_align' => 'right',
 		'full_size' => 'large',
+		'featured_menu' => 1,
+		'archive_menu' => 0,
 	],
 	'widgets' => [
 		'blog' => [

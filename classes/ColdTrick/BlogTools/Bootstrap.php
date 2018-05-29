@@ -24,13 +24,16 @@ class Bootstrap extends DefaultPluginBootstrap {
 		
 		// register plugin hook handlers
 		$hooks = $this->elgg()->hooks;
-		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::widgetUrl');
 		$hooks->registerHandler('cron', 'daily', __NAMESPACE__ . '\Cron::daily');
-		$hooks->registerHandler('get', 'subscriptions', __NAMESPACE__ . '\Notifications::forceAddSubscriptions');
-		$hooks->registerHandler('register', 'menu:entity', __NAMESPACE__ . '\EntityMenu::register');
+		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::widgetUrl');
 		$hooks->registerHandler('filter_tabs', 'blog', __NAMESPACE__ . '\FilterTabs::addFeatured');
+		$hooks->registerHandler('filter_tabs', 'blog', __NAMESPACE__ . '\FilterTabs::addArchive');
+		$hooks->registerHandler('get', 'subscriptions', __NAMESPACE__ . '\Notifications::forceAddSubscriptions');
 		$hooks->registerHandler('group_tool_widgets', 'widget_manager', __NAMESPACE__ . '\Widgets::groupTools');
 		$hooks->registerHandler('permissions_check:comment', 'object', __NAMESPACE__ . '\Access::blogCanComment');
+		$hooks->registerHandler('register', 'menu:entity', __NAMESPACE__ . '\EntityMenu::register');
+		$hooks->registerHandler('register', 'menu:filter:blog/group', __NAMESPACE__ . '\FilterTabs::groupTabs');
 		$hooks->registerHandler('view_vars', 'input/form', __NAMESPACE__ . '\Views::blogEditFormVars');
+		$hooks->registerHandler('view_vars', 'blog/sidebar/archives', __NAMESPACE__ . '\Views::preventBlogArchiveSidebar');
 	}
 }
