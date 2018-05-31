@@ -53,13 +53,22 @@ class FilterTabs {
 		}
 		
 		$selected = $hook->getParam('selected');
-		if (!in_array($selected, ['all', 'mine', 'none'])) {
+		if (!in_array($selected, ['all', 'mine', 'none', 'friends'])) {
 			return;
+		}
+		
+		if ($selected === 'none') {
+			$route = _elgg_services()->request->getRoute();
+			if ($route->getName() === 'collection:object:blog:friends') {
+				$selected = 'friends';
+			} else {
+				$selected = 'owner';
+			}
 		}
 		
 		$page_owner = elgg_get_page_owner_entity();
 		$archive = elgg()->menus->getUnpreparedMenu('blog_archive', [
-			'page' => $selected === 'all' ? 'all': 'owner',
+			'page' => $selected,
 			'entity' => $page_owner,
 		]);
 		if (empty($archive) || !$archive instanceof UnpreparedMenu) {
