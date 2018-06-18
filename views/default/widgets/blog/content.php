@@ -37,7 +37,7 @@ if ($widget->show_featured === 'yes') {
 
 $content = elgg_list_entities($options);
 if (empty($content)) {
-	echo elgg_echo('blog:noblogs');
+	echo elgg_echo('blog:none');
 	return;
 }
 
