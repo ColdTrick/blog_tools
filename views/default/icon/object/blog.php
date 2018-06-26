@@ -24,7 +24,8 @@ $align = elgg_extract('align', $vars);
 
 // does the blog have an image, or not allowed to render
 if (!$entity->hasIcon($size) || $align === 'none') {
-	echo elgg_format_element('i');
+	// output a space, otherwise default icon behaviour will be used to output an icon
+	echo ' ';
 	return;
 }
 
