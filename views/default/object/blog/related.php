@@ -19,18 +19,11 @@ if ($entity->hasIcon($icon_size)) {
 	$icon = elgg_view_entity_icon($entity->getOwnerEntity(), $icon_size, ['use_hover' => false]);
 }
 
-$excerpt = $entity->excerpt;
-if (empty($excerpt)) {
-	$excerpt = $entity->description;
-}
-
-$excerpt = elgg_get_excerpt($excerpt, $excerpt_length);
-
 echo elgg_view('object/elements/summary', [
 	'entity' => $entity,
 	'icon' => $icon,
 	'subtitle' => false,
 	'metadata' => false,
 	'tags' => false,
-	'content' => $excerpt,
+	'content' => $entity->getExcerpt($excerpt_length),
 ]);

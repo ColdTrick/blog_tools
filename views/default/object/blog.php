@@ -60,10 +60,7 @@ if ($full) {
 	]);
 } else {
 	// brief view
-	$excerpt = $entity->excerpt;
-	if (!$excerpt) {
-		$excerpt = elgg_get_excerpt($entity->description);
-	}
+	$excerpt = $entity->getExcerpt();
 
 	$params = [
 		'content' => elgg_format_element('div', ['class' => 'clearfix'], $blog_icon . $excerpt),
