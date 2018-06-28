@@ -8,7 +8,7 @@ return [
 	'bootstrap' => Bootstrap::class,
 	'actions' => [
 		'blog/save' => [],
-		'blog_tools/toggle_metadata' => [
+		'blog_tools/toggle_featured' => [
 			'access' => 'admin',
 		],
 	],

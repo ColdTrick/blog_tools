@@ -31,7 +31,8 @@ if (!elgg_is_admin_logged_in() && !($widget->owner_guid === elgg_get_logged_in_u
 if ($widget->show_featured === 'yes') {
 	$options['metadata_name_value_pairs'][] = [
 		'name' => 'featured',
-		'value' => true,
+		'value' => '0',
+		'operand' => '>',
 	];
 }
 

@@ -83,8 +83,8 @@ Vous pouvez le visionner ici:
 	'blog_tools:settings:advanced_publication:description' => "Avec cet utilisateur peut sélectionner une publication et date d'expiration pour les blogs . Nécessite un CRON quotidien.",
 			
 	// actions
-	'blog_tools:action:toggle_metadata:error' => "Une erreur inconnue est survenue lors de la modification de l'entité, s'il vous plaît réessayer plus tard",
-	'blog_tools:action:toggle_metadata:success' => "L'entité a été modifier avec succès",
+	'blog_tools:action:toggle_featured:error' => "Une erreur inconnue est survenue lors de la modification de l'entité, s'il vous plaît réessayer plus tard",
+	'blog_tools:action:toggle_featured:success' => "L'entité a été modifier avec succès",
 			
 	'blog_tools:action:save:error:expiration_date' => "La date d'expiration ne peu être avant aujourd'hui",
 			
