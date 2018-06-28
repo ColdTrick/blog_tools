@@ -34,7 +34,7 @@ class EntityMenu {
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-feature',
 			'text' => elgg_echo('blog_tools:toggle:feature'),
-			'icon' => 'level-up',
+			'icon' => 'arrow-up',
 			'href' => elgg_generate_action_url('blog_tools/toggle_metadata', [
 				'guid' => $entity->guid,
 				'metadata' => 'featured',
@@ -46,7 +46,7 @@ class EntityMenu {
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-unfeature',
 			'text' => elgg_echo('blog_tools:toggle:unfeature'),
-			'icon' => 'level-down',
+			'icon' => 'arrow-down',
 			'href' => elgg_generate_action_url('blog_tools/toggle_metadata', [
 				'guid' => $entity->guid,
 				'metadata' => 'featured',
