@@ -5,7 +5,7 @@
 
 $object = $vars['item']->getObjectEntity();
 
-$excerpt = $entity->getExcerpt();
+$excerpt = $object->getExcerpt();
 
 if ($object->hasIcon('small')) {
 	$icon = elgg_view_entity_icon($object, 'small', [
