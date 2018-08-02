@@ -2,45 +2,54 @@
 /**
  * View for blog objects
  *
- * @package Blog
+ * @uses $vars['entity'] ElggBlog entity to show
  */
 
 $full = (bool) elgg_extract('full_view', $vars, false);
-$blog = elgg_extract('entity', $vars, false);
+$entity = elgg_extract('entity', $vars);
 
-if (!($blog instanceof \ElggBlog)) {
+if (!$entity instanceof \ElggBlog) {
 	return;
 }
 
-$owner = $blog->getOwnerEntity();
+if ($entity->status && $entity->status !== 'published') {
+	$vars['imprint'] = [
+		[
+			'icon_name' => 'warning',
+			'content' => elgg_echo("status:{$entity->status}"),
+			'class' => 'elgg-listing-blog-status',
+		],
+	];
+}
+
+$owner = $entity->getOwnerEntity();
 $owner_icon = elgg_view_entity_icon($owner, 'small');
 
 // blog icon
-$blog_icon_settings = blog_tools_get_icon_settings($blog, $full);
+$blog_icon_settings = blog_tools_get_icon_settings($entity, $full);
 $blog_icon = '';
 if (!empty($blog_icon_settings)) {
 	$size = elgg_extract('size', $blog_icon_settings);
-	if ($blog->hasIcon($size)) {
+	if ($entity->hasIcon($size)) {
 		$blog_icon_params = $blog_icon_settings + $vars;
-		$blog_icon = elgg_view_entity_icon($blog, $size, $blog_icon_params);
+		$blog_icon = elgg_view_entity_icon($entity, $size, $blog_icon_params);
 	}
 }
 
 if ($full) {
 	$body = elgg_view('output/longtext', [
-		'value' => $blog->description,
+		'value' => $entity->description,
 		'class' => 'blog-post',
 	]);
 
 	$params = [
-		'entity' => $blog,
 		'title' => false,
 	];
 	$params = $params + $vars;
 	$summary = elgg_view('object/elements/summary', $params);
 
 	echo elgg_view('object/elements/full', [
-		'entity' => $blog,
+		'entity' => $entity,
 		'summary' => $summary,
 		'icon' => $owner_icon,
 		'body' => $blog_icon . $body,
@@ -51,13 +60,9 @@ if ($full) {
 	]);
 } else {
 	// brief view
-	$excerpt = $blog->excerpt;
-	if (!$excerpt) {
-		$excerpt = elgg_get_excerpt($blog->description);
-	}
+	$excerpt = $entity->getExcerpt();
 
 	$params = [
-		'entity' => $blog,
 		'content' => elgg_format_element('div', ['class' => 'clearfix'], $blog_icon . $excerpt),
 		'icon' => $owner_icon,
 	];

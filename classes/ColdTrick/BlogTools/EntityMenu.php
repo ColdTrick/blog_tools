@@ -34,10 +34,9 @@ class EntityMenu {
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-feature',
 			'text' => elgg_echo('blog_tools:toggle:feature'),
-			'icon' => 'level-up',
-			'href' => elgg_generate_action_url('blog_tools/toggle_metadata', [
+			'icon' => 'arrow-up',
+			'href' => elgg_generate_action_url('blog_tools/toggle_featured', [
 				'guid' => $entity->guid,
-				'metadata' => 'featured',
 			]),
 			'item_class' => empty($entity->featured) ? '' : 'hidden',
 			'priority' => 175,
@@ -46,10 +45,9 @@ class EntityMenu {
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-unfeature',
 			'text' => elgg_echo('blog_tools:toggle:unfeature'),
-			'icon' => 'level-down',
-			'href' => elgg_generate_action_url('blog_tools/toggle_metadata', [
+			'icon' => 'arrow-down',
+			'href' => elgg_generate_action_url('blog_tools/toggle_featured', [
 				'guid' => $entity->guid,
-				'metadata' => 'featured',
 			]),
 			'item_class' => empty($entity->featured) ? 'hidden' : '',
 			'priority' => 176,

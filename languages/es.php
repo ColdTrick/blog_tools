@@ -75,8 +75,8 @@ Puedes verla en el siguiente enlace:
 	'blog_tools:settings:advanced_publication:description' => "Con esto los usuarios pueden elegeri una fecha de publicación futura y de expiración para cada publicación. Requiere configurar correctamente CRON.",
 	
 	// actions
-	'blog_tools:action:toggle_metadata:error' => "Un error desconocido ha ocurrido al editar la publicación, por favor intentelo de nuevo.",
-	'blog_tools:action:toggle_metadata:success' => "La publicación se editó correctamente.",
+	'blog_tools:action:toggle_featured:error' => "Un error desconocido ha ocurrido al editar la publicación, por favor intentelo de nuevo.",
+	'blog_tools:action:toggle_featured:success' => "La publicación se editó correctamente.",
 	
 	'blog_tools:action:save:error:expiration_date' => "La fecha de expiración no puede ser anterior a la fecha de hoy",
 	

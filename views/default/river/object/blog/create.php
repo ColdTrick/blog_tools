@@ -5,10 +5,8 @@
 
 $object = $vars['item']->getObjectEntity();
 
-$excerpt = $object->excerpt ? $object->excerpt : $object->description;
-$excerpt = elgg_get_excerpt($excerpt);
+$excerpt = $object->getExcerpt();
 
-$message = $excerpt;
 if ($object->hasIcon('small')) {
 	$icon = elgg_view_entity_icon($object, 'small', [
 		'icon_wrapper' => true,
@@ -17,5 +15,5 @@ if ($object->hasIcon('small')) {
 	$message = elgg_format_element('div', ['class' => 'blog-tools-river-item clearfix'], $icon . $excerpt);
 }
 
-$vars['message'] = $message;
+$vars['message'] = $excerpt;
 echo elgg_view('river/elements/layout', $vars);

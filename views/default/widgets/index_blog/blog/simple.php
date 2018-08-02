@@ -10,12 +10,8 @@ if (!$entity instanceof ElggBlog) {
 	return;
 }
 
-$excerpt = $entity->excerpt;
-if (empty($excerpt)) {
-	$excerpt = $entity->description;
-}
+$excerpt = $entity->getExcerpt();
 
-$excerpt = elgg_get_excerpt($excerpt);
 if (substr($excerpt, -3) === '...') {
 	$more_link = elgg_view('output/url', [
 		'text' => elgg_echo('blog_tools:readmore'),
