@@ -116,6 +116,10 @@ $fields = [
 ];
 
 foreach ($fields as $field) {
+	if (empty($field)) {
+		continue;
+	}
+	
 	echo elgg_view_field($field);
 }
 
