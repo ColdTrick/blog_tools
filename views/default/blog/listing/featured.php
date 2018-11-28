@@ -8,9 +8,6 @@
 $defaults = [
 	'type' => 'object',
 	'subtype' => 'blog',
-	'full_view' => false,
-	'preload_owners' => true,
-	'preload_containers' => true,
 	'metadata_name_value_pairs' => [
 		[
 			'name' => 'status',
