@@ -9,8 +9,6 @@
  * - added icon upload/remove
  */
 
-elgg_require_js('elgg/blog/save_draft');
-
 $blog = get_entity($vars['guid']);
 $vars['entity'] = $blog;
 
