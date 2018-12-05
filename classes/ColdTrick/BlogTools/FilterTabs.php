@@ -156,6 +156,7 @@ class FilterTabs {
 			'href' => elgg_generate_url('collection:object:blog:group', [
 				'guid' => $page_owner->guid,
 			]),
+			'priority' => 200,
 		]);
 		
 		$return[] = \ElggMenuItem::factory([
@@ -170,6 +171,7 @@ class FilterTabs {
 					'collision' => 'fit fit',
 				]),
 			],
+			'priority' => 500,
 		]);
 		
 		/* @var $menu_item \ElggMenuItem */
