@@ -53,13 +53,10 @@ class FilterTabs {
 		}
 		
 		$selected = $hook->getParam('selected');
-		if (!in_array($selected, ['all', 'mine', 'none', 'friends'])) {
-			return;
-		}
-		
 		if ($selected === 'none') {
+			// selected is passed as 'none' on owner/friends not current user
 			$route = _elgg_services()->request->getRoute();
-			if ($route->getName() === 'collection:object:blog:friends') {
+			if (!empty($route) && $route->getName() === 'collection:object:blog:friends') {
 				$selected = 'friends';
 			} else {
 				$selected = 'owner';
@@ -136,7 +133,7 @@ class FilterTabs {
 		$return = $hook->getValue();
 		
 		$archive = elgg()->menus->getUnpreparedMenu('blog_archive', [
-			'page' => 'group',
+			'page' => $hook->getParam('filter_value', $hook->getParam('selected')),
 			'entity' => $page_owner,
 		]);
 		if (empty($archive) || !$archive instanceof UnpreparedMenu) {
