@@ -3,11 +3,6 @@
 /* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
-$noyes_options = [
-	'no' => elgg_echo('option:no'),
-	'yes' => elgg_echo('option:yes'),
-];
-
 echo elgg_view('object/widget/edit/num_display', [
 	'entity' => $widget,
 	'label' => elgg_echo('blog:numbertodisplay'),
