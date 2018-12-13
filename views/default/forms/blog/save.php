@@ -30,7 +30,11 @@ $fields = [
 		'value' => elgg_extract('title', $vars),
 	],
 	[
-		'#html' => elgg_view('entity/edit/icon', ['entity' => $blog]),
+		'#html' => elgg_view('entity/edit/icon', [
+			'entity' => $blog,
+			'entity_type' => 'object',
+			'entity_subtype' => 'blog',
+		]),
 	],
 	[
 		'#label' => elgg_echo('blog:excerpt'),
