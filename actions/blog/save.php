@@ -157,7 +157,7 @@ if (!$blog->save()) {
 
 // ColdTrick addition
 // handle icon upload
-if (get_input('remove_icon') == 'yes') {
+if (get_input('icon_remove')) {
 	// remove existing icons
 	$blog->deleteIcon();
 } else {

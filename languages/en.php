@@ -28,10 +28,6 @@ You can view your blog here:
 	'blog_tools:view:related' => "Related blogs",
 	
 	// blog edit
-	'blog_tools:label:icon:exists' => "Upload icon (leave empty to keep current icon)",
-	'blog_tools:label:icon:new' => "Upload icon",
-	'blog_tools:label:icon:remove' => "Remove icon",
-	
 	'blog_tools:label:show_owner' => "Show information about yourself below the blog",
 	
 	'blog_tools:label:publication_options' => "Publication options",
@@ -64,12 +60,6 @@ You can view your blog here:
 	'blog_tools:settings:full:show_full_related' => "Show related blogs in the sidebar",
 	
 	'blog_tools:settings:align:none' => "No image",
-	
-	'blog_tools:settings:size:tiny' => "Tiny (16x16)",
-	'blog_tools:settings:size:small' => "Small (40x40)",
-	'blog_tools:settings:size:medium' => "Medium (100x100)",
-	'blog_tools:settings:size:large' => "Large (200x200)",
-	'blog_tools:settings:size:master' => "Master (550x550)",
 	
 	'blog_tools:settings:listing:strapline' => "How to show the imprint in listings",
 	'blog_tools:settings:strapline:default' => "Default (owner, group, access, tags, etc.)",

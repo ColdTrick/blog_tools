@@ -20,28 +20,6 @@ if ($draft_warning) {
 $categories_vars = $vars;
 $categories_vars['#type'] = 'categories';
 
-$remove_icon = [];
-if ($blog instanceof ElggBlog && $blog->hasIcon('medium')) {
-	$remove_icon = [
-		'#type' => 'fieldset',
-		'fields' => [
-			[
-				'#html' => elgg_view_entity_icon($blog, 'small', [
-					'img_class' => 'mrm',
-				]),
-			],
-			[
-				'#type' => 'checkbox',
-				'#label' => elgg_echo('blog_tools:label:icon:remove'),
-				'name' => 'remove_icon',
-				'value' => 'yes',
-				'switch' => true,
-			],
-		],
-		'align' => 'horizontal',
-	];
-}
-
 $fields = [
 	[
 		'#label' => elgg_echo('title'),
@@ -52,11 +30,8 @@ $fields = [
 		'value' => elgg_extract('title', $vars),
 	],
 	[
-		'#label' => ($blog instanceof ElggBlog) ? elgg_echo('blog_tools:label:icon:exists') : elgg_echo('blog_tools:label:icon:new'),
-		'#type' => 'file',
-		'name' => 'icon',
+		'#html' => elgg_view('entity/edit/icon', ['entity' => $blog]),
 	],
-	$remove_icon,
 	[
 		'#label' => elgg_echo('blog:excerpt'),
 		'#type' => 'text',

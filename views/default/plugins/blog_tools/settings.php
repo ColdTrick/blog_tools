@@ -10,13 +10,21 @@ $align_options = [
 	'right' => elgg_echo('right'),
 ];
 
-$size_options = [
-	'tiny' => elgg_echo('blog_tools:settings:size:tiny'),
-	'small' => elgg_echo('blog_tools:settings:size:small'),
-	'medium' => elgg_echo('blog_tools:settings:size:medium'),
-	'large' => elgg_echo('blog_tools:settings:size:large'),
-	'master' => elgg_echo('blog_tools:settings:size:master'),
-];
+$icon_sizes = elgg_get_icon_sizes('object', 'blog');
+$size_options = [];
+foreach ($icon_sizes as $size => $config) {
+	$label = $size;
+	if (elgg_language_key_exists("icon:size:{$size}")) {
+		$label = elgg_echo("icon:size:{$size}");
+	}
+	
+	$width = (int) elgg_extract('w', $config);
+	$height = (int) elgg_extract('h', $config);
+	
+	$label .= " ({$width} x {$height})";
+	
+	$size_options[$size] = $label;
+}
 
 $noyes_options = [
 	'no' => elgg_echo('option:no'),
