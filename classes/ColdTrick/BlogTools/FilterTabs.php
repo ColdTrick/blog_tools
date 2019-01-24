@@ -61,6 +61,8 @@ class FilterTabs {
 			} else {
 				$selected = 'owner';
 			}
+		} elseif ($selected === 'mine') {
+			$selected = 'owner';
 		}
 		
 		$page_owner = elgg_get_page_owner_entity();
