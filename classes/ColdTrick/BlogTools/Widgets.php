@@ -65,7 +65,7 @@ class Widgets {
 	public static function groupTools($hook, $type, $return_value, $params) {
 		
 		$entity = elgg_extract('entity', $params);
-		if (!($entity instanceof \ElggGroup)) {
+		if (!$entity instanceof \ElggGroup) {
 			return;
 		}
 		
@@ -75,7 +75,7 @@ class Widgets {
 		}
 		
 		// check different group tools for which we supply widgets
-		if ($entity->blog_enable == 'yes') {
+		if ($entity->isToolEnabled('blog')) {
 			$return_value['enable'][] = 'blog';
 		} else {
 			$return_value['disable'][] = 'blog';
