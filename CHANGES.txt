@@ -1,6 +1,10 @@
 Version history
 ===============
 
+7.0.1 (2018-04-19):
+
+- changed: equal related blogs now shows newest first
+
 7.0 (2017-10-03):
 
 - added: ability for blog poster to force notification to all users
