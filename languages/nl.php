@@ -1,10 +1,14 @@
 <?php
 /**
  * This file was created by Translation Editor v7.0-beta
- * On 2018-12-14 13:40
+ * On 2019-03-27 10:35
  */
 
 return array (
+  'blog_tools:action:toggle_feature:success:feature' => 'De blog is aangeraden',
+  'blog_tools:action:toggle_feature:success:unfeature' => 'De blog is niet meer aangeraden',
+  'blog_tools:action:toggle_feature:error:feature' => 'Er is een fout opgetreden tijdens het aanraden van de blog',
+  'blog_tools:action:toggle_feature:error:unfeature' => 'Er is een fout opgetreden tijdens het niet meer aanraden van de blog',
   'blog_tools:settings:menu' => 'Menu instellingen',
   'blog_tools:settings:featured_menu' => 'Voeg een aangeraden tab toe aan blog lijst pagina\'s',
   'blog_tools:force_notification' => 'Stuur een publicatie notificatie naar alle gebruikers wanneer deze blog is gepubliceerd',

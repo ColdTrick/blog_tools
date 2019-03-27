@@ -74,6 +74,11 @@ You can view your blog here:
 	// actions
 	'blog_tools:action:save:error:expiration_date' => "The expiration date can't be before today",
 	
+	'blog_tools:action:toggle_feature:success:feature' => "The blog was featured",
+	'blog_tools:action:toggle_feature:success:unfeature' => "The blog is no longer featured",
+	'blog_tools:action:toggle_feature:error:feature' => "An error occured while featuring the blog",
+	'blog_tools:action:toggle_feature:error:unfeature' => "An error occured while unfeaturing the blog",
+	
 	// widget
 	'blog_tools:widget:featured' => "Show only featured blogs?",
 	
