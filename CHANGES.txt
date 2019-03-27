@@ -1,6 +1,27 @@
 Version history
 ===============
 
+8.0 (2019-03-27):
+
+- added: option to move archive sidebar to filter menu
+- changed: do not output an element as that influences layout
+- changed: draft JS loaded with status field
+- changed: featured blogs moved to named route
+- changed: increased Elgg version requirement to 3.0
+- changed: moved start.php to Bootstrap class
+- changed: moved widget and actions to elgg-plugin.php
+- changed: related blogs when enabled will always be in the sidebar
+- changed: rely on archive menu output
+- changed: replaced toggle_metadata action with toggle_featured
+- changed: use core views for entity icon upload handling
+- fixed: action response text is more descriptive
+- fixed: blog archive not showing on owner page
+- fixed: river layout
+- fixed: skip empty field config on edit form
+- removed: icon placement upgrade
+- removed: plugin setting for pre/next navigation
+- revmoed: overrule of core auto_save_revision action file
+
 7.0.1 (2018-04-19):
 
 - changed: equal related blogs now shows newest first
