@@ -22,8 +22,17 @@ class Bootstrap extends DefaultPluginBootstrap {
 		elgg_extend_view('forms/blog/save', 'blog_tools/edit/force_notification');
 		elgg_extend_view('forms/blog/save', 'blog_tools/edit/publication_options');
 		
-		// register plugin hook handlers
+		$this->registerHooks();
+	}
+	
+	/**
+	 * Register plugin hooks
+	 *
+	 * @return void
+	 */
+	protected function registerHooks() {
 		$hooks = $this->elgg()->hooks;
+		
 		$hooks->registerHandler('cron', 'daily', __NAMESPACE__ . '\Cron::daily');
 		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::widgetUrl');
 		$hooks->registerHandler('filter_tabs', 'blog', __NAMESPACE__ . '\FilterTabs::addFeatured');
