@@ -13,14 +13,11 @@ class Cron {
 	/**
 	 * Publish blogs based on advanced publication options
 	 *
-	 * @param string $hook         'cron'
-	 * @param string $type         'daily'
-	 * @param string $return_value optional stdout text
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook 'cron', 'daily'
 	 *
 	 * @return void
 	 */
-	public static function daily($hook, $type, $return_value, $params) {
+	public static function daily(\Elgg\Hook $hook) {
 		
 		// @todo revisit this
 		return;
@@ -33,16 +30,13 @@ class Cron {
 		echo 'Starting BlogTools advanced publications' . PHP_EOL;
 		elgg_log('Starting BlogTools advanced publications', 'NOTICE');
 		
-		$time = (int) elgg_extract('time', $params, time());
+		$time = (int) $hook->getParam('time', time());
 		
 		// ignore access
-		$ia = elgg_set_ignore_access(true);
-		
-		self::publishBlogs($time);
-		self::unpublishBlogs();
-		
-		// reset access
-		elgg_set_ignore_access($ia);
+		elgg_call(ELGG_IGNORE_ACCESS, function() use ($time) {
+			self::publishBlogs($time);
+			self::unpublishBlogs();
+		});
 		
 		echo 'Done with BlogTools advanced publications' . PHP_EOL;
 		elgg_log('Done with BlogTools advanced publications', 'NOTICE');

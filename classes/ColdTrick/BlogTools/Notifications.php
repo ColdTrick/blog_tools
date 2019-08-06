@@ -7,27 +7,24 @@ class Notifications {
 	/**
 	 * Returns the 'forced' subscribers
 	 *
-	 * @param string $hook        the name of the hook
-	 * @param string $type        the type of the hook
-	 * @param bool   $returnvalue current return value
-	 * @param array  $params      supplied params
+	 * @param \Elgg\Hook $hook 'get', 'subscriptions'
 	 *
 	 * @return void|array
 	 */
-	public static function forceAddSubscriptions($hook, $type, $returnvalue, $params) {
+	public static function forceAddSubscriptions(\Elgg\Hook $hook) {
 		
 		// @todo revisit this
 		return;
 		
 		/* @var $event \Elgg\Notifications\Event */
-		$event = elgg_extract('event', $params);
-		if (!($event instanceof \Elgg\Notifications\Event)) {
+		$event = $hook->getParam('event');
+		if (!$event instanceof \Elgg\Notifications\Event) {
 			return;
 		}
 		
 		$action = $event->getAction();
 		$object = $event->getObject();
-		if (($action !== 'publish') || !($object instanceof \ElggBlog)) {
+		if (($action !== 'publish') || !$object instanceof \ElggBlog) {
 			return;
 		}
 
@@ -36,7 +33,7 @@ class Notifications {
 		}
 		
 		$container = $object->getContainerEntity();
-		if (!($container instanceof \ElggUser)) {
+		if (!$container instanceof \ElggUser) {
 			return;
 		}
 		
@@ -46,8 +43,9 @@ class Notifications {
 			'batch' => true,
 		]);
 		
+		$result = $hook->getValue();
 		foreach ($users as $user) {
-			if (array_key_exists($user->guid, $return_value)) {
+			if (array_key_exists($user->guid, $result)) {
 				continue;
 			}
 			
@@ -65,9 +63,9 @@ class Notifications {
 				continue;
 			}
 			
-			$return_value[$user->guid] = $res;
+			$result[$user->guid] = $res;
 		}
 		
-		return $return_value;
+		return $result;
 	}
 }

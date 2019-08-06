@@ -13,74 +13,67 @@ class Widgets {
 	/**
 	 * Support widget urls for Widget Manager
 	 *
-	 * @param string $hook         'widget_url'
-	 * @param string $type         'widget_manager'
-	 * @param string $return_value the current widget url
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook 'entity:url', 'object'
 	 *
 	 * @return void|string
 	 */
-	public static function widgetUrl($hook, $type, $return_value, $params) {
+	public static function widgetUrl(\Elgg\Hook $hook) {
 		
-		if (!empty($return_value)) {
+		if (!empty($hook->getValue())) {
 			return;
 		}
 		
-		$widget = elgg_extract('entity', $params);
-		if (!($widget instanceof \ElggWidget)) {
+		$widget = $hook->getEntityParam();
+		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
 		
 		switch ($widget->handler) {
 			case 'index_blog':
-				$return_value = elgg_generate_url('collection:object:blog:all');
-				break;
+				return elgg_generate_url('collection:object:blog:all');
+			
 			case 'blog':
 				$owner = $widget->getOwnerEntity();
 				if ($owner instanceof \ElggUser) {
-					$return_value = elgg_generate_url('collection:object:blog:owner', [
+					return elgg_generate_url('collection:object:blog:owner', [
 						'username' => $owner->username,
 					]);
 				} elseif ($owner instanceof \ElggGroup) {
-					$return_value = elgg_generate_url('collection:object:blog:group', [
+					return elgg_generate_url('collection:object:blog:group', [
 						'guid' => $owner->guid,
 					]);
 				}
 				break;
 		}
-		
-		return $return_value;
 	}
 	
 	/**
 	 * Add or remove widgets based on the group tool option
 	 *
-	 * @param string $hook         'group_tool_widgets'
-	 * @param string $type         'widget_manager'
-	 * @param array  $return_value current enable/disable widget handlers
-	 * @param array  $params       supplied params
+	 * @param \Elgg\Hook $hook 'group_tool_widgets', 'widget_manager'
 	 *
 	 * @return void|array
 	 */
-	public static function groupTools($hook, $type, $return_value, $params) {
+	public static function groupTools(\Elgg\Hook $hook) {
 		
-		$entity = elgg_extract('entity', $params);
+		$entity = $hook->getEntityParam();
 		if (!$entity instanceof \ElggGroup) {
 			return;
 		}
 		
-		if (!is_array($return_value)) {
+		$return = $hook->getValue();
+		if (!is_array($return)) {
 			// someone has other ideas
 			return;
 		}
 		
 		// check different group tools for which we supply widgets
 		if ($entity->isToolEnabled('blog')) {
-			$return_value['enable'][] = 'blog';
+			$return['enable'][] = 'blog';
 		} else {
-			$return_value['disable'][] = 'blog';
+			$return['disable'][] = 'blog';
 		}
 		
-		return $return_value;
+		return $return;
 	}
 }
