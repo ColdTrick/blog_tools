@@ -39,7 +39,6 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks->registerHandler('filter_tabs', 'blog', __NAMESPACE__ . '\FilterTabs::addArchive');
 		$hooks->registerHandler('get', 'subscriptions', __NAMESPACE__ . '\Notifications::forceAddSubscriptions');
 		$hooks->registerHandler('group_tool_widgets', 'widget_manager', __NAMESPACE__ . '\Widgets::groupTools');
-		$hooks->registerHandler('permissions_check:comment', 'object', __NAMESPACE__ . '\Access::blogCanComment');
 		$hooks->registerHandler('register', 'menu:entity', __NAMESPACE__ . '\EntityMenu::register');
 		$hooks->registerHandler('register', 'menu:filter:blog/group', __NAMESPACE__ . '\FilterTabs::groupTabs');
 		$hooks->registerHandler('view_vars', 'input/form', __NAMESPACE__ . '\Views::blogEditFormVars');
