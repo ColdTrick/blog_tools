@@ -27,10 +27,15 @@ You can view your blog here:
 	'blog_tools:publication_date:description' => "When you select a date here the blog will not be published until the selected date.",
 	'blog_tools:label:publication_time' => "Publication time ",
 	'blog_tools:publication_time:description' => "In combination with the publication date this will set the time for publication.",
-	'blog_tools:imprint:publication' => "Scheduled for publication: %s",
 	
 	'blog_tools:force_notification' => "Send a publish notification to all users when the blog is published",
 
+	'blog_tools:edit:access:help' => "Please select the access level of the blog for when the status is set to 'published'",
+	'blog_tools:edit:access:help:publication' => "When using a publication date/time, the access level will be set to privite until the publication date. Upon publication the selected access level will be used.",
+	
+	// view
+	'blog_tools:imprint:publication' => "Scheduled for publication: %s",
+	
 	// settings
 	'blog_tools:settings:image' => "Blog image settings",
 	'blog_tools:settings:other' => "Other settings",

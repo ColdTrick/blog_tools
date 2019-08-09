@@ -1,10 +1,15 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0-beta
- * On 2019-03-27 10:35
+ * This file was created by Translation Editor v7.0.3
+ * On 2019-08-09 12:10
  */
 
 return array (
+  'blog_tools:label:publication_time' => 'Publicatie tijd',
+  'blog_tools:publication_time:description' => 'In combinatie met de publicatie datum, stelt dit de tijd van publicatie in',
+  'blog_tools:edit:access:help' => 'Selecteer het toegangsniveau voor het moment dat de blog de status \'publiceer krijgt',
+  'blog_tools:edit:access:help:publication' => 'Indien er gebruik wordt gemaakt van een publicatie datum zal het toegangsniveau privé zijn totdat de blog wordt gepubliceerd. Op het moment van publicatie zal het gekozen toegangsniveau worden gebruikt.',
+  'blog_tools:imprint:publication' => 'Publicatie gepland voor: %s',
   'blog_tools:action:toggle_feature:success:feature' => 'De blog is aangeraden',
   'blog_tools:action:toggle_feature:success:unfeature' => 'De blog is niet meer aangeraden',
   'blog_tools:action:toggle_feature:error:feature' => 'Er is een fout opgetreden tijdens het aanraden van de blog',

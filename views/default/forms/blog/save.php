@@ -17,6 +17,11 @@ if ($draft_warning) {
 	echo '<span class="mbm elgg-text-help">' . $draft_warning . '</span>';
 }
 
+$access_help = elgg_echo('blog_tools:edit:access:help');
+if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') === 'yes') {
+	$access_help = elgg_echo('blog_tools:edit:access:help:publication');
+}
+
 $categories_vars = $vars;
 $categories_vars['#type'] = 'categories';
 
@@ -73,6 +78,7 @@ $fields = [
 	[
 		'#label' => elgg_echo('access'),
 		'#type' => 'access',
+		'#help' => $access_help,
 		'name' => 'access_id',
 		'id' => 'blog_access_id',
 		'value' => elgg_extract('access_id', $vars),
