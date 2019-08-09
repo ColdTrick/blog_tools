@@ -1,11 +1,11 @@
 <?php
-use Elgg\Values;
-
 /**
  * View for blog objects
  *
  * @uses $vars['entity'] ElggBlog entity to show
  */
+
+use Elgg\Values;
 
 $full = (bool) elgg_extract('full_view', $vars, false);
 $entity = elgg_extract('entity', $vars);
