@@ -25,6 +25,7 @@ return [
 		'full_size' => 'large',
 		'featured_menu' => 1,
 		'archive_menu' => 0,
+		'advanced_publication' => 'no',
 	],
 	'widgets' => [
 		'blog' => [

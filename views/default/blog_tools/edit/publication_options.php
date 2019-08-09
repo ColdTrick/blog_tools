@@ -2,7 +2,7 @@
 
 elgg_require_js('elgg/blog/save_draft');
 
-$status = elgg_view_field([
+echo elgg_view_field([
 	'#label' => elgg_echo('status'),
 	'#type' => 'select',
 	'name' => 'status',
@@ -14,44 +14,37 @@ $status = elgg_view_field([
 	],
 ]);
 
-// @todo revisit this
-if (true || elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
-	echo $status;
+if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 	return;
 }
 
 $entity = get_entity(elgg_extract('guid', $vars));
 if ($entity instanceof ElggBlog) {
 	$publication_date_value = elgg_extract('publication_date', $vars, $entity->publication_date);
-	$expiration_date_value = elgg_extract('expiration_date', $vars, $entity->expiration_date);
+	$publication_time_value = elgg_extract('publication_time', $vars, $entity->publication);
 } else {
 	$publication_date_value = elgg_extract('publication_date', $vars);
-	$expiration_date_value = elgg_extract('expiration_date', $vars);
+	$publication_time_value = elgg_extract('publication_time', $vars);
 }
 
-if (empty($publication_date_value)) {
-	$publication_date_value = '';
-}
-if (empty($expiration_date_value)) {
-	$expiration_date_value = '';
-}
-
-$content = $status;
-
-$content .= elgg_view_field([
-	'#type' => 'date',
-	'#label' => elgg_echo('blog_tools:label:publication_date'),
-	'#help' => elgg_echo('blog_tools:publication_date:description'),
-	'name' => 'publication_date',
-	'value' => $publication_date_value,
+echo elgg_view_field([
+	'#type' => 'fieldset',
+	'fields' => [
+		[
+			'#type' => 'date',
+			'#label' => elgg_echo('blog_tools:label:publication_date'),
+			'#help' => elgg_echo('blog_tools:publication_date:description'),
+			'name' => 'publication_date',
+			'value' => $publication_date_value,
+		],
+		[
+			'#type' => 'time',
+			'#label' => elgg_echo('blog_tools:label:publication_time'),
+			'#help' => elgg_echo('blog_tools:publication_time:description'),
+			'name' => 'publication_time',
+			'value' => $publication_time_value,
+			'timestamp' => true,
+		],
+	],
+	'align' => 'horizontal',
 ]);
-
-$content .= elgg_view_field([
-	'#type' => 'date',
-	'#label' => elgg_echo('blog_tools:label:expiration_date'),
-	'#help' => elgg_echo('blog_tools:expiration_date:description'),
-	'name' => 'expiration_date',
-	'value' => $expiration_date_value,
-]);
-
-echo elgg_view_module('info', elgg_echo('blog_tools:label:publication_options'), $content);

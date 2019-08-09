@@ -17,20 +17,11 @@ tu publicación\'%s\' ha sido publicada.
 
 Puedes verla en el siguiente enlace:
 %s',
-  'blog_tools:notify:expire:subject' => 'La publicación ha expirado',
-  'blog_tools:notify:expire:message' => 'Hola,
-
-tu publicación\'%s\' ha expirado y ya no es visible para el resto de la comunidad.
-
-Puedes verla en el siguiente enlace:
-%s',
   'blog_tools:view:related' => 'Publicaciones relacionadas',
   'blog_tools:label:show_owner' => 'Mostrar información sobre ti al pie de la publicación',
   'blog_tools:label:publication_options' => 'Opciones de publicación',
   'blog_tools:label:publication_date' => 'Fecha de publicación (opcional)',
   'blog_tools:publication_date:description' => 'Al indicar una fecha futura, la publicación no será públicada hasta ese día.',
-  'blog_tools:label:expiration_date' => 'Fecha de expiración (opcional)',
-  'blog_tools:expiration_date:description' => 'La publicación dejará de ser accesible luego de la fecha indicada.',
   'blog_tools:settings:image' => 'Configuración de imagenes del blog',
   'blog_tools:settings:other' => 'Otras configuraciones',
   'blog_tools:settings:listing:image_align' => 'Alineación de la imagen en el listado de publicaciones',
@@ -44,9 +35,6 @@ Puedes verla en el siguiente enlace:
   'blog_tools:settings:listing:strapline' => 'Mostrar línea de información en el listado',
   'blog_tools:settings:strapline:default' => 'Por defecto (autor y tags)',
   'blog_tools:settings:strapline:time' => 'Solo el tiempo de publicación',
-  'blog_tools:settings:advanced_publication' => 'Permitir opciones avanzadas de publicación',
-  'blog_tools:settings:advanced_publication:description' => 'Con esto los usuarios pueden elegeri una fecha de publicación futura y de expiración para cada publicación. Requiere configurar correctamente CRON.',
-  'blog_tools:action:save:error:expiration_date' => 'La fecha de expiración no puede ser anterior a la fecha de hoy',
   'blog_tools:widgets:index_blog:view_mode' => 'Cómo mostrar las publicaciones',
   'blog_tools:widgets:index_blog:view_mode:list' => 'Lista',
   'blog_tools:widgets:index_blog:view_mode:preview' => 'Vista previa',

@@ -26,11 +26,6 @@ foreach ($icon_sizes as $size => $config) {
 	$size_options[$size] = $label;
 }
 
-$noyes_options = [
-	'no' => elgg_echo('option:no'),
-	'yes' => elgg_echo('option:yes'),
-];
-
 // menu settings
 $menu = elgg_view_field([
 	'#type' => 'checkbox',
@@ -126,16 +121,18 @@ $settings_full .= elgg_view_field([
 echo elgg_view_module('info', elgg_echo('blog_tools:settings:full'), $settings_full);
 
 // other settings
-// @todo revisit this
-// $settings_other = elgg_view_field([
-// 	'#type' => 'select',
-// 	'#label' => elgg_echo('blog_tools:settings:advanced_publication'),
-// 	'#help' => elgg_echo('blog_tools:settings:advanced_publication:description'),
-// 	'name' => 'params[advanced_publication]',
-// 	'options_values' => $noyes_options,
-// 	'value' => $plugin->advanced_publication,
-// ]);
+$settings_other = elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('blog_tools:settings:advanced_publication'),
+	'#help' => elgg_echo('blog_tools:settings:advanced_publication:description'),
+	'name' => 'params[advanced_publication]',
+	'default' => 'no',
+	'value' => 'yes',
+	'checked' => $plugin->advanced_publication === 'yes',
+	'switch' => true,
+]);
 
+// @todo revisit this
 // $settings_other .= elgg_view_field([
 // 	'#type' => 'select',
 // 	'#label' => elgg_echo('blog_tools:settings:force_notification'),
@@ -145,4 +142,4 @@ echo elgg_view_module('info', elgg_echo('blog_tools:settings:full'), $settings_f
 // 	'value' => $plugin->force_notification,
 // ]);
 
-// echo elgg_view_module('info', elgg_echo('blog_tools:settings:other'), $settings_other);
+echo elgg_view_module('info', elgg_echo('blog_tools:settings:other'), $settings_other);

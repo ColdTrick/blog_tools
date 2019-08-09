@@ -1,4 +1,6 @@
 <?php
+use Elgg\Values;
+
 /**
  * View for blog objects
  *
@@ -12,13 +14,30 @@ if (!$entity instanceof \ElggBlog) {
 	return;
 }
 
+if (!isset($vars['imprint'])) {
+	$vars['imprint'] = [];
+}
+
 if ($entity->status && $entity->status !== 'published') {
-	$vars['imprint'] = [
-		[
-			'icon_name' => 'warning',
-			'content' => elgg_echo("status:{$entity->status}"),
-			'class' => 'elgg-listing-blog-status',
-		],
+	$vars['imprint'][] = [
+		'icon_name' => 'warning',
+		'content' => elgg_echo("status:{$entity->status}"),
+		'class' => 'elgg-listing-blog-status',
+	];
+}
+
+// publication is scheduled
+if ($entity->publication && $entity->publication > time() && $entity->canEdit()) {
+	$dt = Values::normalizeTime($entity->publication);
+	
+	$vars['imprint'][] = [
+		'icon_name' => 'calendar-alt',
+		'content' => elgg_format_element('span', [
+			'title' => elgg_echo('blog_tools:imprint:publication', [$dt->format(elgg_echo('friendlytime:date_format'))]),
+		], elgg_view('output/date', [
+			'value' => $entity->publication,
+			'format' => elgg_echo('friendlytime:date_format'),
+		])),
 	];
 }
 

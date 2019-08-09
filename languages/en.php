@@ -16,14 +16,6 @@ your blog '%s' has been published.
 You can view your blog here:
 %s",
 	
-	'blog_tools:notify:expire:subject' => "A blog has expired",
-	'blog_tools:notify:expire:message' => "Hi,
-
-your blog '%s' has expired and is no longer visible for the community.
-
-You can view your blog here:
-%s",
-	
 	// views
 	'blog_tools:view:related' => "Related blogs",
 	
@@ -33,9 +25,10 @@ You can view your blog here:
 	'blog_tools:label:publication_options' => "Publication options",
 	'blog_tools:label:publication_date' => "Publication date (optional)",
 	'blog_tools:publication_date:description' => "When you select a date here the blog will not be published until the selected date.",
-	'blog_tools:label:expiration_date' => "Expiration date (optional)",
-	'blog_tools:expiration_date:description' => "The blog will no longer be published after the selected date.",
-
+	'blog_tools:label:publication_time' => "Publication time ",
+	'blog_tools:publication_time:description' => "In combination with the publication date this will set the time for publication.",
+	'blog_tools:imprint:publication' => "Scheduled for publication: %s",
+	
 	'blog_tools:force_notification' => "Send a publish notification to all users when the blog is published",
 
 	// settings
@@ -66,14 +59,12 @@ You can view your blog here:
 	'blog_tools:settings:strapline:time' => "Time only",
 	
 	'blog_tools:settings:advanced_publication' => "Allow advanced publication options",
-	'blog_tools:settings:advanced_publication:description' => "With this users can select a publication and expiration date for blogs. Requires a working daily CRON.",
+	'blog_tools:settings:advanced_publication:description' => "With this users can select a publication date for blogs. Requires a working CRON.",
 	
 	'blog_tools:settings:force_notification' => "Force notifications for new blogs",
 	'blog_tools:settings:force_notification:help' => "Gives blog creators the ability to notify all users when a new blog is created. The notification preferences of the receiving users will still be respected. This only is available for personal blogs.",
 	
 	// actions
-	'blog_tools:action:save:error:expiration_date' => "The expiration date can't be before today",
-	
 	'blog_tools:action:toggle_feature:success:feature' => "The blog was featured",
 	'blog_tools:action:toggle_feature:success:unfeature' => "The blog is no longer featured",
 	'blog_tools:action:toggle_feature:error:feature' => "An error occured while featuring the blog",

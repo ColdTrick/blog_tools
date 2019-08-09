@@ -33,7 +33,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 	protected function registerHooks() {
 		$hooks = $this->elgg()->hooks;
 		
-		$hooks->registerHandler('cron', 'daily', __NAMESPACE__ . '\Cron::daily');
+		$hooks->registerHandler('cron', 'fifteenmin', __NAMESPACE__ . '\Cron::publication');
 		$hooks->registerHandler('entity:url', 'object', __NAMESPACE__ . '\Widgets::widgetUrl');
 		$hooks->registerHandler('filter_tabs', 'blog', __NAMESPACE__ . '\FilterTabs::addFeatured');
 		$hooks->registerHandler('filter_tabs', 'blog', __NAMESPACE__ . '\FilterTabs::addArchive');
