@@ -33,7 +33,7 @@ if ($entity->publication && $entity->publication > time() && $entity->canEdit())
 	$vars['imprint'][] = [
 		'icon_name' => 'calendar-alt',
 		'content' => elgg_format_element('span', [
-			'title' => elgg_echo('blog_tools:imprint:publication', [$dt->format(elgg_echo('friendlytime:date_format'))]),
+			'title' => elgg_echo('blog_tools:imprint:publication', [$dt->formatLocale(elgg_echo('friendlytime:date_format'))]),
 		], elgg_view('output/date', [
 			'value' => $entity->publication,
 			'format' => elgg_echo('friendlytime:date_format'),
