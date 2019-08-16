@@ -47,6 +47,11 @@ class Cron {
 	 */
 	protected static function publishBlogs($time) {
 		
+		// adjust for time drift of the cron start
+		// eg. CRON started @ 11:00:05
+		$time_min = $time - 60; // - 1 minute
+		$time_max = $time + 60; // + 1 minute
+		
 		$publish_options = [
 			'type' => 'object',
 			'subtype' => 'blog',
@@ -59,8 +64,14 @@ class Cron {
 				],
 				[
 					'name' => 'publication',
-					'value' => $time,
-					'operand' => '=',
+					'value' => $time_min,
+					'operand' => '>=',
+					'type' => ELGG_VALUE_INTEGER,
+				],
+				[
+					'name' => 'publication',
+					'value' => $time_max,
+					'operand' => '<=',
 					'type' => ELGG_VALUE_INTEGER,
 				],
 			],
