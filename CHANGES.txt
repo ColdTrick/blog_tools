@@ -1,6 +1,11 @@
 Version history
 ===============
 
+8.1 (2019-08-22):
+
+- added: re-enabled publication options
+- removed: unneeded hook for ElggBlog::canComment
+
 8.0 (2019-03-27):
 
 - added: option to move archive sidebar to filter menu
