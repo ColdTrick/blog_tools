@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0.3
- * On 2019-08-09 12:10
+ * This file was created by Translation Editor v7.0.4
+ * On 2019-11-19 11:56
  */
 
 return array (
+  'collection:object:blog:tag' => 'Blogs met de tag: %s',
   'blog_tools:label:publication_time' => 'Publicatie tijd',
   'blog_tools:publication_time:description' => 'In combinatie met de publicatie datum, stelt dit de tijd van publicatie in',
   'blog_tools:edit:access:help' => 'Selecteer het toegangsniveau voor het moment dat de blog de status \'publiceer krijgt',

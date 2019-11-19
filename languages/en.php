@@ -7,6 +7,8 @@ return [
 	'blog_tools:toggle:unfeature' => "Unfeature",
 	'blog_tools:readmore' => "read more",
 	
+	'collection:object:blog:tag' => "Blogs with the tag: %s",
+	
 	// notifications
 	'blog_tools:notify:publish:subject' => "A blog has been published",
 	'blog_tools:notify:publish:message' => "Hi,

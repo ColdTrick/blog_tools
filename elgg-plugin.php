@@ -17,6 +17,14 @@ return [
 			'path' => '/blog/featured',
 			'resource' => 'blog/featured',
 		],
+		'collection:object:blog:tag' => [
+			'path' => '/blog/tag/{tag}/{lower?}/{upper?}',
+			'resource' => 'blog/tag',
+			'requirements' => [
+				'lower' => '\d+',
+				'upper' => '\d+',
+			],
+		],
 	],
 	'settings' => [
 		'listing_align' => 'right',
