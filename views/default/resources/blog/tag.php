@@ -35,6 +35,7 @@ $content = elgg_view('blog/listing/all', [
 			[
 				'name' => 'tags',
 				'value' => $tag,
+				'case_sensitive' => false,
 			],
 		],
 		'container_guid' => $page_owner ? $page_owner->guid : null,
