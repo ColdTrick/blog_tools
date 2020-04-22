@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.2.1 (2020-04-22):
+
+- fixed: blog tag page is now case insensitive
+
 8.2 (2019-11-26):
 
 - added: blog tag listing page
