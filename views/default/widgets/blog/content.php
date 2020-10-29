@@ -17,6 +17,7 @@ $options = [
 	'limit' => $num,
 	'pagination' => false,
 	'metadata_name_value_pairs' => [],
+	'metadata_case_sensitive' => false,
 ];
 
 $owner = $widget->getOwnerEntity();
