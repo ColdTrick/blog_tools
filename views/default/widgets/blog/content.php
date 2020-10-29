@@ -14,12 +14,17 @@ if ($num < 1) {
 $options = [
 	'type' => 'object',
 	'subtype' => 'blog',
-	'container_guid' => $widget->container_guid,
 	'limit' => $num,
-	'full_view' => false,
 	'pagination' => false,
 	'metadata_name_value_pairs' => [],
 ];
+
+$owner = $widget->getOwnerEntity();
+if ($owner instanceof \ElggUser) {
+	$options['owner_guid'] = $owner->guid;
+} else {
+	$options['container_guid'] = $widget->container_guid;
+}
 
 if (!elgg_is_admin_logged_in() && !($widget->owner_guid === elgg_get_logged_in_user_guid())) {
 	$options['metadata_name_value_pairs'][] = [
@@ -44,23 +49,19 @@ if (empty($content)) {
 
 echo $content;
 
-$owner = $widget->getOwnerEntity();
 if ($owner instanceof ElggGroup) {
-	$more_link = elgg_view('output/url', [
-		'href' => elgg_generate_url('collection:object:blog:group', [
-			'guid' => $owner->guid,
-		]),
-		'text' => elgg_echo('blog:moreblogs'),
-		'is_trusted' => true,
-	]);
+	$url = elgg_generate_url('collection:object:blog:group', ['guid' => $owner->guid]);
 } else {
-	$more_link = elgg_view('output/url', [
-		'href' => elgg_generate_url('collection:object:blog:owner', [
-			'username' => $owner->username,
-		]),
-		'text' => elgg_echo('blog:moreblogs'),
-		'is_trusted' => true,
-	]);
+	$url = elgg_generate_url('collection:object:blog:owner', ['username' => $owner->username]);
 }
 
+if (empty($url)) {
+	return;
+}
+
+$more_link = elgg_view('output/url', [
+	'text' => elgg_echo('blog:moreblogs'),
+	'href' => $url,
+	'is_trusted' => true,
+]);
 echo elgg_format_element('div', ['class' => 'elgg-widget-more'], $more_link);
