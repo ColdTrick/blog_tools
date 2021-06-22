@@ -1,6 +1,11 @@
 Version history
 ===============
 
+8.3 (2021-06-22):
+
+- added: French translation
+- fixed: blog icon not shown in the river
+
 8.2.2 (2020-11-11):
 
 - fixed: blog widget content
