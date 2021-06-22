@@ -11,9 +11,7 @@ return [
 	
 	// notifications
 	'blog_tools:notify:publish:subject' => "A blog has been published",
-	'blog_tools:notify:publish:message' => "Hi,
-
-your blog '%s' has been published.
+	'blog_tools:notify:publish:message' => "your blog '%s' has been published.
 
 You can view your blog here:
 %s",
@@ -30,8 +28,6 @@ You can view your blog here:
 	'blog_tools:label:publication_time' => "Publication time ",
 	'blog_tools:publication_time:description' => "In combination with the publication date this will set the time for publication.",
 	
-	'blog_tools:force_notification' => "Send a publish notification to all users when the blog is published",
-
 	'blog_tools:edit:access:help' => "Please select the access level of the blog for when the status is set to 'published'",
 	'blog_tools:edit:access:help:publication' => "When using a publication date/time, the access level will be set to privite until the publication date. Upon publication the selected access level will be used.",
 	
@@ -67,9 +63,6 @@ You can view your blog here:
 	
 	'blog_tools:settings:advanced_publication' => "Allow advanced publication options",
 	'blog_tools:settings:advanced_publication:description' => "With this users can select a publication date for blogs. Requires a working CRON.",
-	
-	'blog_tools:settings:force_notification' => "Force notifications for new blogs",
-	'blog_tools:settings:force_notification:help' => "Gives blog creators the ability to notify all users when a new blog is created. The notification preferences of the receiving users will still be respected. This only is available for personal blogs.",
 	
 	// actions
 	'blog_tools:action:toggle_feature:success:feature' => "The blog was featured",

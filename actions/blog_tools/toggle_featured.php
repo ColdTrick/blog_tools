@@ -8,7 +8,7 @@ if (!$entity instanceof ElggBlog || !$entity->canEdit()) {
 }
 
 $old = $entity->featured;
-if ($old) {
+if (!empty($old)) {
 	unset($entity->featured);
 	
 	$success = elgg_echo('blog_tools:action:toggle_feature:success:unfeature');

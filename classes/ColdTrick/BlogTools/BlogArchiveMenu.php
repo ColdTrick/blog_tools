@@ -21,7 +21,7 @@ class BlogArchiveMenu {
 			return;
 		}
 		
-		$route = _elgg_services()->request->getRoute();
+		$route = elgg_get_current_route();
 		if (!$route instanceof Route) {
 			return;
 		}
@@ -46,7 +46,7 @@ class BlogArchiveMenu {
 			],
 		];
 		
-		$route_name = "collection:object:blog:tag";
+		$route_name = 'collection:object:blog:tag';
 		$route_params = [
 			'tag' => $tag,
 		];

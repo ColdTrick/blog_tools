@@ -2,12 +2,6 @@
 
 namespace ColdTrick\BlogTools;
 
-/**
- * Widget releated functions
- *
- * @package    ColdTrick
- * @subpackage BlogTools
- */
 class Widgets {
 	
 	/**

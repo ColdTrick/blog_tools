@@ -30,9 +30,7 @@ return array (
   'blog_tools:readmore' => 'Lire d\'avantage',
   'blog_tools:widget:featured' => 'Afficher seulement les blogue qui sont en vedette?',
   'blog_tools:notify:publish:subject' => 'Un blogue à été publié',
-  'blog_tools:notify:publish:message' => 'Bonjour,
-
-votre blogue « %s » a été publié.
+  'blog_tools:notify:publish:message' => 'votre blogue « %s » a été publié.
 
 Vous pouvez le visionner ici:
 %s',

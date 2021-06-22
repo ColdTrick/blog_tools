@@ -24,8 +24,6 @@ elgg_register_title_button('blog', 'add', 'object', 'blog');
 elgg_push_collection_breadcrumbs('object', 'blog', $page_owner ?: null);
 
 // page elements
-$title = elgg_echo('collection:object:blog:tag', [$tag]);
-
 $content = elgg_view('blog/listing/all', [
 	'created_after' => $lower,
 	'created_before' => $upper,
@@ -47,14 +45,10 @@ $sidebar = elgg_view('blog/sidebar', [
 	'page' => 'tag',
 ]);
 
-// build page
-$body = elgg_view_layout('default', [
-	'title' => $title,
+// draw page
+echo elgg_view_page(elgg_echo('collection:object:blog:tag', [$tag]), [
 	'content' => $content,
 	'sidebar' => $sidebar,
 	'filter_id' => ($page_owner instanceof ElggGroup) ? 'blog/group' : null,
 	'filter_value' => 'tag',
 ]);
-
-// draw page
-echo elgg_view_page($title, $body);

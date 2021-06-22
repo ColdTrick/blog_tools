@@ -2,12 +2,6 @@
 
 namespace ColdTrick\BlogTools;
 
-/**
- * Router handling
- *
- * @package    ColdTrick
- * @subpackage BlogTools
- */
 class EntityMenu {
 	
 	/**
@@ -20,7 +14,7 @@ class EntityMenu {
 	public static function register(\Elgg\Hook $hook) {
 		
 		$entity = $hook->getEntityParam();
-		if (!($entity instanceof \ElggBlog) || !elgg_is_admin_logged_in()) {
+		if (!$entity instanceof \ElggBlog || !elgg_is_admin_logged_in()) {
 			return;
 		}
 		

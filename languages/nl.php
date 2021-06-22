@@ -34,9 +34,7 @@ return array (
   'blog_tools:settings:advanced_publication' => 'Maak geavanceerde publicatie opties beschikbaar',
   'blog_tools:settings:advanced_publication:description' => 'Als dit is ingeschakeld kunnen gebruikers een publicatiedatum kiezen voor blogs. Dit vereist een werkende CRON.',
   'blog_tools:notify:publish:subject' => 'Een blog is gepubliceerd',
-  'blog_tools:notify:publish:message' => 'LS,
-
-je blog \'%s\' is gepubliceerd.
+  'blog_tools:notify:publish:message' => 'je blog \'%s\' is gepubliceerd.
 
 Je kunt je blog hier bekijken:
 %s',

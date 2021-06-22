@@ -11,9 +11,7 @@ return array (
   'blog_tools:readmore' => 'Leer mas',
   'blog_tools:widget:featured' => '¿Mostrar únicamente publicaciones destacadas?',
   'blog_tools:notify:publish:subject' => 'Un publicación ha sido publicada',
-  'blog_tools:notify:publish:message' => 'Hola,
-
-tu publicación\'%s\' ha sido publicada.
+  'blog_tools:notify:publish:message' => 'tu publicación\'%s\' ha sido publicada.
 
 Puedes verla en el siguiente enlace:
 %s',

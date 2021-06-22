@@ -2,12 +2,6 @@
 
 namespace ColdTrick\BlogTools;
 
-/**
- * Cron handling
- *
- * @package    ColdTrick
- * @subpackage BlogTools
- */
 class Cron {
 	
 	/**

@@ -132,14 +132,4 @@ $settings_other = elgg_view_field([
 	'switch' => true,
 ]);
 
-// @todo revisit this
-// $settings_other .= elgg_view_field([
-// 	'#type' => 'select',
-// 	'#label' => elgg_echo('blog_tools:settings:force_notification'),
-// 	'#help' => elgg_echo('blog_tools:settings:force_notification:help'),
-// 	'name' => 'params[force_notification]',
-// 	'options_values' => $noyes_options,
-// 	'value' => $plugin->force_notification,
-// ]);
-
 echo elgg_view_module('info', elgg_echo('blog_tools:settings:other'), $settings_other);

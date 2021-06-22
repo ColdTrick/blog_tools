@@ -2,7 +2,7 @@
 /**
  * show some information about the blog owner
  *
- * @uses $vars['entity'] to get the ownet of the blog
+ * @uses $vars['entity'] to get the owner of the blog
  * @users $vars['full_view'] only when in full view of the blog
  */
 
@@ -20,7 +20,7 @@ if (($setting === 'optional') && ($entity->show_owner !== 'yes')) {
 }
 
 $owner = $entity->getOwnerEntity();
-if (!($owner instanceof ElggUser)) {
+if (!$owner instanceof ElggUser) {
 	return;
 }
 

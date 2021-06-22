@@ -1,6 +1,4 @@
 <?php
-use Elgg\Values;
-
 /**
  * Save blog entity
  *
@@ -9,17 +7,15 @@ use Elgg\Values;
  * non-published drafts.
  *
  * Drafts are saved with the access set to private.
- *
- * @package Blog
  */
+
+use Elgg\Values;
 
 // start a new sticky form session in case of failure
 elgg_make_sticky_form('blog');
 
 // save or preview
 $save = (bool) get_input('save');
-
-$user = elgg_get_logged_in_user_entity();
 
 // edit or create a new entity
 $guid = (int) get_input('guid');
@@ -58,7 +54,6 @@ $values = [
 	'publication_time' => 0,
 	'publication' => null,
 	'show_owner' => 'no',
-	'force_notifications' => 0,
 ];
 
 // fail if a required entity isn't set
@@ -71,7 +66,7 @@ foreach ($values as $name => $default) {
 	} else {
 		$value = get_input($name, $default);
 	}
-	
+
 	if (in_array($name, $required) && empty($value)) {
 		return elgg_error_response(elgg_echo("blog:error:missing:{$name}"));
 	}
@@ -85,7 +80,7 @@ foreach ($values as $name => $default) {
 			// this can't be empty or saving the base entity fails
 			if (!empty($value)) {
 				$container = get_entity($value);
-				if ($container && $container->canWriteToContainer(0, 'object', 'blog')) {
+				if ($container && (!$new_post || $container->canWriteToContainer(0, 'object', 'blog'))) {
 					$values[$name] = $value;
 				} else {
 					return elgg_error_response(elgg_echo('blog:error:cannot_write_to_container'));
@@ -116,7 +111,7 @@ if (!empty($values['publication_date'])) {
 }
 
 // if preview, force status to be draft
-if ($save === false) {
+if (!$save) {
 	$values['status'] = 'draft';
 }
 
@@ -126,7 +121,7 @@ if ($values['status'] == 'draft') {
 	$values['access_id'] = ACCESS_PRIVATE;
 }
 
-// assign values to the entity, stopping on error.
+// assign values to the entity
 foreach ($values as $name => $value) {
 	$blog->$name = $value;
 }
@@ -169,9 +164,9 @@ if (($new_post || $old_status === 'draft') && $status === 'published') {
 		'subject_guid' => $blog->owner_guid,
 		'object_guid' => $blog->getGUID(),
 	]);
-	
+
 	elgg_trigger_event('publish', 'object', $blog);
-	
+
 	// reset the creation time for posts that move from draft to published
 	if ($guid) {
 		$blog->time_created = time();
@@ -185,7 +180,7 @@ if (($new_post || $old_status === 'draft') && $status === 'published') {
 	]);
 }
 
-if ($blog->status == 'published' || $save == false) {
+if ($blog->status == 'published' || !$save) {
 	$forward_url = $blog->getURL();
 } else {
 	$forward_url = elgg_generate_url('edit:object:blog', [

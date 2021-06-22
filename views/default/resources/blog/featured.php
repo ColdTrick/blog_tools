@@ -7,8 +7,6 @@
 elgg_register_title_button('blog', 'add', 'object', 'blog');
 
 // breadcrumb
-$title = elgg_echo('status:featured');
-
 elgg_push_collection_breadcrumbs('object', 'blog');
 
 // build page elements
@@ -18,13 +16,9 @@ $sidebar = elgg_view('blog/sidebar', [
 	'page' => 'featured',
 ]);
 
-// build page
-$body = elgg_view_layout('default', [
-	'title' => $title,
+// draw page
+echo elgg_view_page(elgg_echo('status:featured'), [
 	'content' => $content,
 	'sidebar' => $sidebar,
 	'filter_value' => 'featured',
 ]);
-
-// draw page
-echo elgg_view_page($title, $body);

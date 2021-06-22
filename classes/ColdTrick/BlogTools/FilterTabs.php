@@ -9,9 +9,9 @@ class FilterTabs {
 	/**
 	 * Add the featured tab to the blog filter menu
 	 *
-	 * @param \Elgg\Hook $hook 'filter_tabs', 'blog'
+	 * @param \Elgg\Hook $hook 'register', 'menu:filter:filter'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return void|\Elgg\Menu\MenuItems
 	 */
 	public static function addFeatured(\Elgg\Hook $hook) {
 		
@@ -38,9 +38,9 @@ class FilterTabs {
 	/**
 	 * Add the archive tab to the blog filter menu
 	 *
-	 * @param \Elgg\Hook $hook 'filter_tabs', 'blog'
+	 * @param \Elgg\Hook $hook 'register', 'menu:filter:filter'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return void|\Elgg\Menu\MenuItems
 	 */
 	public static function addArchive(\Elgg\Hook $hook) {
 		
@@ -52,10 +52,10 @@ class FilterTabs {
 			return;
 		}
 		
-		$selected = $hook->getParam('selected');
+		$selected = $hook->getParam('filter_value', 'all');
 		if ($selected === 'none') {
 			// selected is passed as 'none' on owner/friends not current user
-			$route = _elgg_services()->request->getRoute();
+			$route = elgg_get_current_route();
 			if (!empty($route) && $route->getName() === 'collection:object:blog:friends') {
 				$selected = 'friends';
 			} else {
@@ -70,7 +70,7 @@ class FilterTabs {
 			'page' => $selected,
 			'entity' => $page_owner,
 		]);
-		if (empty($archive) || !$archive instanceof UnpreparedMenu) {
+		if (!$archive instanceof UnpreparedMenu) {
 			// no archive to show
 			return;
 		}
@@ -135,7 +135,7 @@ class FilterTabs {
 		$return = $hook->getValue();
 		
 		$archive = elgg()->menus->getUnpreparedMenu('blog_archive', [
-			'page' => $hook->getParam('filter_value', $hook->getParam('selected')),
+			'page' => $hook->getParam('filter_value', 'group'),
 			'entity' => $page_owner,
 		]);
 		if (empty($archive) || !$archive instanceof UnpreparedMenu) {
