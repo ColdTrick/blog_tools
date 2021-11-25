@@ -24,6 +24,9 @@ if ($entity->status && $entity->status !== 'published') {
 		'content' => elgg_echo("status:{$entity->status}"),
 		'class' => 'elgg-listing-blog-status',
 	];
+	
+	// Show the access the blog will have when published
+	$vars['access'] = $entity->future_access;
 }
 
 // publication is scheduled
