@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.0.1 (2021-12-16):
+
+- fixed: show future access in imprint when a blog is in draft
+
 9.0 (2021-09-27):
 
 - changed: updated for Elgg 4.0
