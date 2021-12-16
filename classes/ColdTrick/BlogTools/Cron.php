@@ -51,6 +51,7 @@ class Cron {
 			'subtype' => 'blog',
 			'limit' => false,
 			'batch' => true,
+			'batch_inc_offset' => false,
 			'metadata_name_value_pairs' => [
 				[
 					'name' => 'status',
