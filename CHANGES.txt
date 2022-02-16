@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.0.2 (2022-02-16):
+
+- fixed: fetch correct entities during delayed publication cron job
+
 9.0.1 (2021-12-16):
 
 - fixed: show future access in imprint when a blog is in draft
