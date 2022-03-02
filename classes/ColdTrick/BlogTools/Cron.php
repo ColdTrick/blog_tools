@@ -104,6 +104,9 @@ class Cron {
 			$entity->access_id = $entity->future_access;
 			unset($entity->future_access);
 			
+			// Prevent double notification issues with Advanded Notifications plugin
+			unset($entity->advanced_notifications_delayed_action);
+			
 			// save everything
 			$entity->save();
 			
