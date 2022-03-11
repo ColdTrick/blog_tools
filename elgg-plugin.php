@@ -4,7 +4,7 @@ require_once(__DIR__ . '/lib/functions.php');
 
 return [
 	'plugin' => [
-		'version' => '9.0.2',
+		'version' => '9.0.3',
 		'dependencies' => [
 			'blog' => [
 				'position' => 'after',

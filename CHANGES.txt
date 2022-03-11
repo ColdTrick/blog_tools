@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.0.3 (2022-03-11):
+
+- fixed: notification conflict with advanced notifications
+
 9.0.2 (2022-02-16):
 
 - fixed: fetch correct entities during delayed publication cron job
