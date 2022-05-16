@@ -87,9 +87,9 @@ $fields = [
 		'entity_subtype' => 'blog',
 	],
 	[
-		'#type' => 'hidden',
-		'name' => 'container_guid',
-		'value' => elgg_get_page_owner_guid(),
+		'#type' => 'container_guid',
+		'entity_type' => 'object',
+		'entity_subtype' => 'blog',
 	],
 	[
 		'#type' => 'hidden',
