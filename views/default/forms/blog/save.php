@@ -39,6 +39,7 @@ $fields = [
 			'entity' => $blog,
 			'entity_type' => 'object',
 			'entity_subtype' => 'blog',
+			'cropper_enabled' => true,
 		]),
 	],
 	[
