@@ -1,6 +1,11 @@
 Version history
 ===============
 
+10.0 (2022-06-01):
+
+- changed: increased minimal Elgg version to 4.1
+- fixed: allow cropper on blog icon
+
 9.0.3 (2022-03-11):
 
 - fixed: notification conflict with advanced notifications
