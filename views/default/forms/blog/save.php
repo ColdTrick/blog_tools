@@ -9,6 +9,8 @@
  * - added icon upload/remove
  */
 
+elgg_require_js('elgg/blog/save_draft');
+
 $blog = get_entity($vars['guid']);
 $vars['entity'] = $blog;
 
@@ -127,10 +129,10 @@ $footer .= elgg_view('input/submit', [
 
 // published blogs do not get the preview button
 if (!$blog || $blog->status != 'published') {
-	$footer .= elgg_view('input/submit', [
+	$footer .= elgg_view('input/button', [
 		'value' => elgg_echo('preview'),
 		'name' => 'preview',
-		'class' => 'elgg-button-submit mls',
+		'class' => 'elgg-button-action mls',
 	]);
 }
 

@@ -1,7 +1,5 @@
 <?php
 
-elgg_require_js('elgg/blog/save_draft');
-
 echo elgg_view_field([
 	'#label' => elgg_echo('status'),
 	'#type' => 'select',
