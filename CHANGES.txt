@@ -1,6 +1,10 @@
 Version history
 ===============
 
+10.1 (2022-07-12):
+
+- changed: updated for Elgg 4.2.3 preview logic
+
 10.0 (2022-06-01):
 
 - changed: increased minimal Elgg version to 4.1
