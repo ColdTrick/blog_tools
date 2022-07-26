@@ -18,6 +18,7 @@ $options = [
 	'pagination' => false,
 	'metadata_name_value_pairs' => [],
 	'metadata_case_sensitive' => false,
+	'no_results' => elgg_echo('blog:none'),
 ];
 
 $owner = $widget->getOwnerEntity();
@@ -42,27 +43,14 @@ if ($widget->show_featured === 'yes') {
 	];
 }
 
-$content = elgg_list_entities($options);
-if (empty($content)) {
-	echo elgg_echo('blog:none');
-	return;
-}
-
-echo $content;
-
 if ($owner instanceof ElggGroup) {
 	$url = elgg_generate_url('collection:object:blog:group', ['guid' => $owner->guid]);
 } else {
 	$url = elgg_generate_url('collection:object:blog:owner', ['username' => $owner->username]);
 }
 
-if (empty($url)) {
-	return;
+if (!empty($url)) {
+	$options['widget_more'] = elgg_view_url($url, elgg_echo('blog:moreblogs'));
 }
 
-$more_link = elgg_view('output/url', [
-	'text' => elgg_echo('blog:moreblogs'),
-	'href' => $url,
-	'is_trusted' => true,
-]);
-echo elgg_format_element('div', ['class' => 'elgg-widget-more'], $more_link);
+echo elgg_list_entities($options);

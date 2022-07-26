@@ -75,7 +75,7 @@ echo elgg_format_element('div', $container_attr, $blogs);
 // navigator
 $navigator_attr = [
 	'class' => [
-		'elgg-widget-more',
+		'elgg-more',
 		'blog-tools-widget-items-navigator',
 	],
 ];
