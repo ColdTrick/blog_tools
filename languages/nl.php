@@ -1,7 +1,7 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0.4
- * On 2019-11-19 11:56
+ * This file was created by Translation Editor v11.0.1
+ * On 2023-01-09 14:29
  */
 
 return array (
@@ -17,13 +17,10 @@ return array (
   'blog_tools:action:toggle_feature:error:unfeature' => 'Er is een fout opgetreden tijdens het niet meer aanraden van de blog',
   'blog_tools:settings:menu' => 'Menu instellingen',
   'blog_tools:settings:featured_menu' => 'Voeg een aangeraden tab toe aan blog lijst pagina\'s',
-  'blog_tools:force_notification' => 'Stuur een publicatie notificatie naar alle gebruikers wanneer deze blog is gepubliceerd',
   'blog_tools:settings:featured_menu:help' => 'Toont een lijst met alle aangeraden blogs',
   'blog_tools:settings:archive_menu' => 'Verplaats het blog archief menu naar een tab',
   'blog_tools:settings:archive_menu:help' => 'Op blog lijst pagina\'s waar een archief wordt getoond in de zijbalk kan, middels deze instelling, dit menu verplaats worden naar een tab.',
   'blog_tools:settings:full:show_full_related' => 'Toon gerelateerde blogs in de zijbalk',
-  'blog_tools:settings:force_notification' => 'Forceer notificaties voor nieuwe blogs',
-  'blog_tools:settings:force_notification:help' => 'Deze instelling geeft blog auteurs de mogelijkheid om geforceerd alle gebruikers op de hoogte te brengen indien een nieuwe blog wordt gepubliceerd. De notificatie voorkeuren van de ontvangende gebruikers wordt hierin wel gerespecteerd. Deze actie is enkel mogelijk voor persoonlijke blogs.',
   'widgets:index_blog:name' => 'Blog berichten',
   'widgets:index_blog:description' => 'Toon de laatste blogs',
   'blog_tools:view:related' => 'Gerelateerde blogs',
