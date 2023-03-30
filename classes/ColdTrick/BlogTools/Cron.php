@@ -2,17 +2,19 @@
 
 namespace ColdTrick\BlogTools;
 
+/**
+ * Cron callbacks
+ */
 class Cron {
 	
 	/**
 	 * Publish blogs based on advanced publication options
 	 *
-	 * @param \Elgg\Hook $hook 'cron', 'fifteenmin'
+	 * @param \Elgg\Event $event 'cron', 'fifteenmin'
 	 *
 	 * @return void
 	 */
-	public static function publication(\Elgg\Hook $hook) {
-		
+	public static function publication(\Elgg\Event $event) {
 		// only do if this is configured
 		if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 			return;
@@ -21,7 +23,7 @@ class Cron {
 		echo 'Starting BlogTools advanced publications' . PHP_EOL;
 		elgg_log('Starting BlogTools advanced publications', 'NOTICE');
 		
-		$time = (int) $hook->getParam('time', time());
+		$time = (int) $event->getParam('time', time());
 		
 		// ignore access
 		elgg_call(ELGG_IGNORE_ACCESS, function() use ($time) {
@@ -73,8 +75,8 @@ class Cron {
 		];
 		
 		// backup logged in user
-		$session = elgg_get_session();
-		$backup_user = $session->getLoggedInUser();
+		$session_manager = elgg()->session_manager;
+		$backup_user = $session_manager->getLoggedInUser();
 		
 		// get unpublished blogs that need to be published
 		$entities = elgg_get_entities($publish_options);
@@ -84,7 +86,7 @@ class Cron {
 			$owner = $entity->getOwnerEntity();
 			
 			// fake logged in user, for notifications
-			$session->setLoggedInUser($owner);
+			$session_manager->setLoggedInUser($owner);
 			
 			// add river item
 			elgg_create_river_item([
@@ -126,9 +128,9 @@ class Cron {
 		
 		// restore logged in user
 		if ($backup_user instanceof \ElggUser) {
-			$session->setLoggedInUser($backup_user);
+			$session_manager->setLoggedInUser($backup_user);
 		} else {
-			$session->removeLoggedInUser();
+			$session_manager->removeLoggedInUser();
 		}
 	}
 }

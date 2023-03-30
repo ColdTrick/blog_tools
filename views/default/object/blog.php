@@ -7,9 +7,7 @@
 
 use Elgg\Values;
 
-$full = (bool) elgg_extract('full_view', $vars, false);
 $entity = elgg_extract('entity', $vars);
-
 if (!$entity instanceof \ElggBlog) {
 	return;
 }
@@ -44,58 +42,27 @@ if ($entity->publication && $entity->publication > time() && $entity->canEdit())
 	];
 }
 
-$owner = $entity->getOwnerEntity();
-$owner_icon = elgg_view_entity_icon($owner, 'small');
-
-// blog icon
-$blog_icon_settings = blog_tools_get_icon_settings($entity, $full);
-$blog_icon = '';
-if (!empty($blog_icon_settings)) {
-	$size = elgg_extract('size', $blog_icon_settings);
-	if ($entity->hasIcon($size)) {
-		$blog_icon_params = $blog_icon_settings + $vars;
-		$blog_icon = elgg_view_entity_icon($entity, $size, $blog_icon_params);
-	}
-}
-
-if ($full) {
+if (elgg_extract('full_view', $vars)) {
 	$body = elgg_view('output/longtext', [
 		'value' => $entity->description,
 		'class' => 'blog-post',
 	]);
 
 	$params = [
-		'title' => false,
+		'icon' => true,
+		'body' => $body,
+		'show_summary' => true,
+		'show_navigation' => true,
 	];
 	$params = $params + $vars;
-	$summary = elgg_view('object/elements/summary', $params);
-
-	echo elgg_view('object/elements/full', [
-		'entity' => $entity,
-		'summary' => $summary,
-		'icon' => $owner_icon,
-		'body' => $blog_icon . $body,
-		'show_navigation' => true,
-		'body_params' => [
-			'class' => 'clearfix',
-		],
-	]);
+	
+	echo elgg_view('object/elements/full', $params);
 } else {
 	// brief view
-	$excerpt = $entity->getExcerpt();
-
 	$params = [
-		'content' => elgg_format_element('div', ['class' => 'clearfix'], $blog_icon . $excerpt),
-		'icon' => $owner_icon,
+		'content' => $entity->getExcerpt(),
+		'icon' => true,
 	];
-	
-	// custom imprint
-	if (elgg_get_plugin_setting('listing_strapline', 'blog_tools') === 'time') {
-		$params['byline'] = false;
-		$params['access'] = false;
-		$params['tags'] = false;
-	}
-	
 	$params = $params + $vars;
 	echo elgg_view('object/elements/summary', $params);
 }

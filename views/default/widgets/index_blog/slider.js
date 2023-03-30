@@ -1,6 +1,4 @@
-define(function(require) {
-	
-	var $ = require('jquery');
+define(['jquery'], function($) {
 	
 	function slider() {
 		

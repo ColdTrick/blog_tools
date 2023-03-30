@@ -3,11 +3,7 @@
 /* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
-// get widget settings
-$count = (int) $widget->blog_count;
-if ($count < 1) {
-	$count = 8;
-}
+$count = (int) $widget->blog_count ?: 4;
 
 // listing options
 $options = [
@@ -67,10 +63,7 @@ if ($view_mode !== 'slider' || count($blog_entities) === 1) {
 }
 
 // blog container
-$container_attr = [
-	'class' => 'blog-tools-widget-items-container',
-];
-echo elgg_format_element('div', $container_attr, $blogs);
+echo elgg_format_element('div', ['class' => 'blog-tools-widget-items-container'], $blogs);
 
 // navigator
 $navigator_attr = [
@@ -91,6 +84,7 @@ foreach ($blog_entities as $key => $blog) {
 	
 	$lis[] = elgg_format_element('li', $li_attr, $span);
 }
+
 echo elgg_format_element('ul', $navigator_attr, implode(PHP_EOL, $lis));
 
 ?>

@@ -11,14 +11,12 @@
 
 use Elgg\Values;
 
-// start a new sticky form session in case of failure
-elgg_make_sticky_form('blog');
-
 // save or preview
 $save = (bool) get_input('save');
 
 // edit or create a new entity
 $guid = (int) get_input('guid');
+$new_post = true;
 
 if ($guid) {
 	$entity = get_entity($guid);
@@ -30,10 +28,9 @@ if ($guid) {
 
 	// save some data for revisions once we save the new edit
 	$revision_text = $blog->description;
-	$new_post = (bool) $blog->new_post;
+	$new_post = false;
 } else {
 	$blog = new \ElggBlog();
-	$new_post = true;
 }
 
 // set the previous status for the hooks to update the time_created and river entries
@@ -53,7 +50,6 @@ $values = [
 	'publication_date' => '',
 	'publication_time' => 0,
 	'publication' => null,
-	'show_owner' => 'no',
 ];
 
 // fail if a required entity isn't set
@@ -102,6 +98,7 @@ if (!empty($values['publication_date'])) {
 	if (!empty($values['publication_time'])) {
 		$date->modify("+{$values['publication_time']} seconds");
 	}
+	
 	$values['publication'] = $date->getTimestamp();
 	
 	// is publication it the future?
@@ -129,24 +126,6 @@ foreach ($values as $name => $value) {
 if (!$blog->save()) {
 	return elgg_error_response(elgg_echo('blog:error:cannot_save'));
 }
-
-// ColdTrick addition
-// handle icon upload
-if (get_input('icon_remove')) {
-	// remove existing icons
-	$blog->deleteIcon();
-} else {
-	$blog->saveIconFromUploadedFile('icon');
-}
-
-// remove sticky form entries
-elgg_clear_sticky_form('blog');
-
-// remove autosave draft if exists
-$blog->deleteAnnotations('blog_auto_save');
-
-// no longer a brand new post.
-$blog->deleteMetadata('new_post');
 
 // if this was an edit, create a revision annotation
 if (!$new_post && $revision_text) {
@@ -186,6 +165,12 @@ if ($blog->status == 'published' || !$save) {
 	$forward_url = elgg_generate_url('edit:object:blog', [
 		'guid' => $blog->guid,
 	]);
+}
+
+if (get_input('header_remove')) {
+	$blog->deleteIcon('header');
+} else {
+	$blog->saveIconFromUploadedFile('header', 'header');
 }
 
 return elgg_ok_response([

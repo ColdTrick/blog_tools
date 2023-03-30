@@ -25,10 +25,7 @@ if (substr($excerpt, -3) === '...') {
 $params = [
 	'entity' => $entity,
 	'content' => $excerpt,
-	'tags' => false,
-	'byline' => false,
-	'time' => false,
-	'access' => false,
+	'subtitle' => false,
 	'show_social_menu' => false,
 ];
 $params + $vars;

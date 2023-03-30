@@ -2,22 +2,25 @@
 
 namespace ColdTrick\BlogTools;
 
+/**
+ * Widget related callbacks
+ */
 class Widgets {
 	
 	/**
 	 * Support widget urls for Widget Manager
 	 *
-	 * @param \Elgg\Hook $hook 'entity:url', 'object'
+	 * @param \Elgg\Event $event 'entity:url', 'object'
 	 *
 	 * @return void|string
 	 */
-	public static function widgetUrl(\Elgg\Hook $hook) {
+	public static function widgetUrl(\Elgg\Event $event) {
 		
-		if (!empty($hook->getValue())) {
+		if (!empty($event->getValue())) {
 			return;
 		}
 		
-		$widget = $hook->getEntityParam();
+		$widget = $event->getEntityParam();
 		if (!$widget instanceof \ElggWidget) {
 			return;
 		}
@@ -44,18 +47,18 @@ class Widgets {
 	/**
 	 * Add or remove widgets based on the group tool option
 	 *
-	 * @param \Elgg\Hook $hook 'group_tool_widgets', 'widget_manager'
+	 * @param \Elgg\Event $event 'group_tool_widgets', 'widget_manager'
 	 *
 	 * @return void|array
 	 */
-	public static function groupTools(\Elgg\Hook $hook) {
+	public static function groupTools(\Elgg\Event $event) {
 		
-		$entity = $hook->getEntityParam();
+		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggGroup) {
 			return;
 		}
 		
-		$return = $hook->getValue();
+		$return = $event->getValue();
 		if (!is_array($return)) {
 			// someone has other ideas
 			return;

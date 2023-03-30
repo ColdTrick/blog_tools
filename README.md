@@ -2,8 +2,7 @@ Blog Tools
 ==========
 
 ![Elgg 4.3](https://img.shields.io/badge/Elgg-4.3-green.svg)
-[![Build Status](https://scrutinizer-ci.com/g/ColdTrick/blog_tools/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/blog_tools/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/blog_tools/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/blog_tools/?branch=master)
+![Lint Checks](https://github.com/ColdTrick/blog_tools/actions/workflows/lint.yml/badge.svg?event=push)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/blog_tools/v/stable.svg)](https://packagist.org/packages/coldtrick/blog_tools)
 [![License](https://poser.pugx.org/coldtrick/blog_tools/license.svg)](https://packagist.org/packages/coldtrick/blog_tools)
 
@@ -12,9 +11,6 @@ Offers additional functionality for Blogs
 Features
 --------
 
-- add an image to blogs
-- feature blogs
-- blog navigation
-- blog owner info
+- featured blogs
 - related blogs
-- exta widgets, including extra functionality in existing widgets
+- extra widgets, including extra functionality in existing widgets

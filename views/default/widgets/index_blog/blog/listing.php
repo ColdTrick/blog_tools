@@ -10,9 +10,6 @@ if (!$entity instanceof ElggBlog) {
 	return;
 }
 
-$params = [
-	'entity' => $entity,
-];
-$params + $vars;
+$vars['icon'] = true;
 
-echo elgg_view('object/elements/summary', $params);
+echo elgg_view('object/elements/summary', $vars);

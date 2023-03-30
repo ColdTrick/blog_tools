@@ -4,16 +4,19 @@ namespace ColdTrick\BlogTools;
 
 use Elgg\Menu\UnpreparedMenu;
 
+/**
+ * Filter Menu callbacks
+ */
 class FilterTabs {
 	
 	/**
 	 * Add the featured tab to the blog filter menu
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:filter:filter'
+	 * @param \Elgg\Event $event 'register', 'menu:filter:filter'
 	 *
 	 * @return void|\Elgg\Menu\MenuItems
 	 */
-	public static function addFeatured(\Elgg\Hook $hook) {
+	public static function addFeatured(\Elgg\Event $event) {
 		
 		if (!elgg_in_context('blog')) {
 			return;
@@ -23,7 +26,7 @@ class FilterTabs {
 			return;
 		}
 		
-		$return = $hook->getValue();
+		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
 			'name' => 'featured',
@@ -38,11 +41,11 @@ class FilterTabs {
 	/**
 	 * Add the archive tab to the blog filter menu
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:filter:filter'
+	 * @param \Elgg\Event $event 'register', 'menu:filter:filter'
 	 *
 	 * @return void|\Elgg\Menu\MenuItems
 	 */
-	public static function addArchive(\Elgg\Hook $hook) {
+	public static function addArchive(\Elgg\Event $event) {
 		
 		if (!elgg_in_context('blog')) {
 			return;
@@ -52,7 +55,7 @@ class FilterTabs {
 			return;
 		}
 		
-		$selected = $hook->getParam('filter_value', 'all');
+		$selected = $event->getParam('filter_value', 'all');
 		if ($selected === 'none') {
 			// selected is passed as 'none' on owner/friends not current user
 			$route = elgg_get_current_route();
@@ -74,13 +77,14 @@ class FilterTabs {
 			// no archive to show
 			return;
 		}
+		
 		$items = $archive->getItems();
 		if (!$items->count()) {
 			// no archive to show
 			return;
 		}
 		
-		$return = $hook->getValue();
+		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
 			'name' => 'collection:object:blog:group:archive',
@@ -113,15 +117,11 @@ class FilterTabs {
 	/**
 	 * Add tabs to the group blog listing
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:filter:blog/group'
+	 * @param \Elgg\Event $event 'register', 'menu:filter:blog/group'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function groupTabs(\Elgg\Hook $hook) {
-		
-		if (!elgg_in_context('blog')) {
-			return;
-		}
+	public static function groupTabs(\Elgg\Event $event) {
 		
 		if (!(bool) elgg_get_plugin_setting('archive_menu', 'blog_tools')) {
 			return;
@@ -132,16 +132,17 @@ class FilterTabs {
 			return;
 		}
 		
-		$return = $hook->getValue();
+		$return = $event->getValue();
 		
 		$archive = elgg()->menus->getUnpreparedMenu('blog_archive', [
-			'page' => $hook->getParam('filter_value', 'group'),
+			'page' => $event->getParam('filter_value', 'group'),
 			'entity' => $page_owner,
 		]);
 		if (empty($archive) || !$archive instanceof UnpreparedMenu) {
 			// no archive to show
 			return;
 		}
+		
 		$items = $archive->getItems();
 		if (!$items->count()) {
 			// no archive to show

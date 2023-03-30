@@ -3,17 +3,11 @@
 /* @var $widget ElggWidget */
 $widget = elgg_extract('entity', $vars);
 
-$count = (int) $widget->blog_count;
-if ($count < 1) {
-	$count = 8;
-}
-
-echo elgg_view_field([
-	'#type' => 'number',
-	'#label' => elgg_echo('blog:numbertodisplay'),
-	'name' => 'params[blog_count]',
-	'value' => $count,
-	'min' => '1',
+echo elgg_view('object/widget/edit/num_display', [
+	'entity' => $widget,
+	'label' => elgg_echo('blog:numbertodisplay'),
+	'name' => 'blog_count',
+	'default' => 4,
 ]);
 
 echo elgg_view_field([

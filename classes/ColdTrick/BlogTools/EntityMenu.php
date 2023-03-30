@@ -2,18 +2,21 @@
 
 namespace ColdTrick\BlogTools;
 
+/**
+ * Entity Menu callbacks
+ */
 class EntityMenu {
 	
 	/**
 	 * Add some menu items to the entity menu
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:entity'
+	 * @param \Elgg\Event $event 'register', 'menu:entity'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function register(\Elgg\Hook $hook) {
+	public static function register(\Elgg\Event $event) {
 		
-		$entity = $hook->getEntityParam();
+		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggBlog || !elgg_is_admin_logged_in()) {
 			return;
 		}
@@ -23,11 +26,11 @@ class EntityMenu {
 			return;
 		}
 		
-		$returnvalue = $hook->getValue();
+		$returnvalue = $event->getValue();
 		
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-feature',
-			'text' => elgg_echo('blog_tools:toggle:feature'),
+			'text' => elgg_echo('feature'),
 			'icon' => 'arrow-up',
 			'href' => elgg_generate_action_url('blog_tools/toggle_featured', [
 				'guid' => $entity->guid,
@@ -36,9 +39,10 @@ class EntityMenu {
 			'priority' => 175,
 			'data-toggle' => 'blog-unfeature',
 		]);
+		
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-unfeature',
-			'text' => elgg_echo('blog_tools:toggle:unfeature'),
+			'text' => elgg_echo('unfeature'),
 			'icon' => 'arrow-down',
 			'href' => elgg_generate_action_url('blog_tools/toggle_featured', [
 				'guid' => $entity->guid,

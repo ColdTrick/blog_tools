@@ -16,8 +16,8 @@ if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 	return;
 }
 
-$entity = get_entity(elgg_extract('guid', $vars));
-if ($entity instanceof ElggBlog) {
+$entity = elgg_extract('entity', $vars);
+if ($entity instanceof \ElggBlog) {
 	$publication_date_value = elgg_extract('publication_date', $vars, $entity->publication_date);
 	$publication_time_value = elgg_extract('publication_time', $vars, $entity->publication);
 } else {

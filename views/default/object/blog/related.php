@@ -6,22 +6,15 @@
  */
 
 $entity = elgg_extract('entity', $vars);
-if (!$entity instanceof ElggBlog) {
+if (!$entity instanceof \ElggBlog) {
 	return;
 }
 
-$icon_size = elgg_extract('icon_size', $vars, 'small');
 $excerpt_length = (int) elgg_extract('excerpt_size', $vars, 50);
-
-if ($entity->hasIcon($icon_size)) {
-	$icon = elgg_view_entity_icon($entity, $icon_size);
-} else {
-	$icon = elgg_view_entity_icon($entity->getOwnerEntity(), $icon_size, ['use_hover' => false]);
-}
 
 echo elgg_view('object/elements/summary', [
 	'entity' => $entity,
-	'icon' => $icon,
+	'icon' => true,
 	'subtitle' => false,
 	'metadata' => false,
 	'tags' => false,

@@ -1,22 +1,5 @@
-/** BlogTools CSS */
-.blog-tools-blog-image {
-	margin: 5px;
-	padding: 5px;
-	border: 1px solid $(border-color-soft);
-}
-
-.blog-tools-blog-image-master {
-	margin: 0;
-	padding: 0;
-	border: none;
-	
-	img {
-		width: 100%;
-	}
-}
-
-.blog-tools-widget-items-container { 
-	> ul.elgg-list-entity {
+.blog-tools-widget-items-container {
+	> .elgg-list-container > .elgg-list-entity {
 		> li.elgg-item {
 			display: none;
 			border: none;
@@ -44,11 +27,4 @@
 			border-color: $(border-color-highlight);
 		}
 	}
-}
-
-.blog-tools-river-item .blog-tools-blog-image {
-	margin: 0 5px 0 0;
-	padding: 0;
-	border: none;
-	float: left;
 }

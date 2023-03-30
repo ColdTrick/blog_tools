@@ -10,7 +10,7 @@ use Elgg\Database\Clauses\OrderByClause;
 use Elgg\Database\Clauses\GroupByClause;
 
 $entity = elgg_extract('entity', $vars);
-if (!$entity instanceof ElggBlog) {
+if (!$entity instanceof \ElggBlog) {
 	return;
 }
 

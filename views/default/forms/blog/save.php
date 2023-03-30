@@ -5,24 +5,24 @@
  * @package Blog
  *
  * Adjustments
+ * - custom help text for access
  * - status moved to blog_tools/edit/publication_options
- * - added icon upload/remove
  */
 
-elgg_require_js('elgg/blog/save_draft');
+elgg_require_js('forms/blog/save');
 
-$blog = get_entity($vars['guid']);
-$vars['entity'] = $blog;
-
-$draft_warning = elgg_extract('draft_warning', $vars);
-if ($draft_warning) {
-	echo '<span class="mbm elgg-text-help">' . $draft_warning . '</span>';
-}
+$blog = elgg_extract('entity', $vars);
 
 $access_help = elgg_echo('blog_tools:edit:access:help');
 if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') === 'yes') {
 	$access_help = elgg_echo('blog_tools:edit:access:help:publication');
 }
+
+echo elgg_view('entity/edit/header', [
+	'entity' => $blog,
+	'entity_type' => 'object',
+	'entity_subtype' => 'blog',
+]);
 
 $categories_vars = $vars;
 $categories_vars['#type'] = 'categories';
@@ -37,19 +37,11 @@ $fields = [
 		'value' => elgg_extract('title', $vars),
 	],
 	[
-		'#html' => elgg_view('entity/edit/icon', [
-			'entity' => $blog,
-			'entity_type' => 'object',
-			'entity_subtype' => 'blog',
-			'cropper_enabled' => true,
-		]),
-	],
-	[
 		'#label' => elgg_echo('blog:excerpt'),
 		'#type' => 'text',
 		'name' => 'excerpt',
 		'id' => 'blog_excerpt',
-		'value' => elgg_html_decode(elgg_extract('excerpt', $vars)),
+		'value' => elgg_extract('excerpt', $vars),
 	],
 	[
 		'#label' => elgg_echo('blog:body'),
@@ -69,14 +61,13 @@ $fields = [
 	$categories_vars,
 	[
 		'#label' => elgg_echo('comments'),
-		'#type' => 'select',
+		'#type' => 'checkbox',
 		'name' => 'comments_on',
 		'id' => 'blog_comments_on',
-		'value' => elgg_extract('comments_on', $vars),
-		'options_values' => [
-			'On' => elgg_echo('on'),
-			'Off' => elgg_echo('off'),
-		],
+		'default' => 'Off',
+		'value' => 'On',
+		'switch' => true,
+		'checked' => elgg_extract('comments_on', $vars) === 'On',
 	],
 	[
 		'#label' => elgg_echo('access'),
@@ -102,25 +93,13 @@ $fields = [
 ];
 
 foreach ($fields as $field) {
-	if (empty($field)) {
-		continue;
-	}
-	
 	echo elgg_view_field($field);
 }
 
-$save_status = elgg_echo('blog:save_status');
-if ($blog) {
-	$saved = date('F j, Y @ H:i', $blog->time_updated);
-} else {
-	$saved = elgg_echo('never');
-}
+$saved = $blog instanceof \ElggBlog ? elgg_view('output/friendlytime', ['time' => $blog->time_updated]) : elgg_echo('never');
+$saved = elgg_format_element('span', ['class' => 'blog-save-status-time'], $saved);
 
-$footer = <<<___HTML
-<div class="elgg-subtext mbm">
-	$save_status <span class="blog-save-status-time">$saved</span>
-</div>
-___HTML;
+$footer = elgg_format_element('div', ['class' => ['elgg-subtext', 'mbm']], elgg_echo('blog:save_status') . ' ' . $saved);
 
 $footer .= elgg_view('input/submit', [
 	'value' => elgg_echo('save'),
@@ -128,23 +107,11 @@ $footer .= elgg_view('input/submit', [
 ]);
 
 // published blogs do not get the preview button
-if (!$blog || $blog->status != 'published') {
+if (!$blog instanceof \ElggBlog || $blog->status != 'published') {
 	$footer .= elgg_view('input/button', [
 		'value' => elgg_echo('preview'),
 		'name' => 'preview',
 		'class' => 'elgg-button-action mls',
-	]);
-}
-
-if ($blog) {
-	// add a delete button if editing
-	$footer .= elgg_view('output/url', [
-		'href' => elgg_generate_action_url('entity/delete', [
-			'guid' => $blog->guid,
-		]),
-		'text' => elgg_echo('delete'),
-		'class' => 'elgg-button elgg-button-delete float-alt',
-		'confirm' => true,
 	]);
 }
 

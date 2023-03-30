@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/lib/functions.php');
+use ColdTrick\BlogTools\Upgrades\MoveHeaderIcons;
 
 return [
 	'plugin' => [
@@ -12,13 +12,12 @@ return [
 		],
 	],
 	'settings' => [
-		'listing_align' => 'right',
-		'listing_size' => 'small',
-		'full_align' => 'right',
-		'full_size' => 'large',
-		'featured_menu' => 1,
-		'archive_menu' => 0,
+		'featured_menu' => true,
+		'archive_menu' => false,
 		'advanced_publication' => 'no',
+	],
+	'upgrades' => [
+		MoveHeaderIcons::class,
 	],
 	'actions' => [
 		'blog/save' => [],
@@ -40,7 +39,7 @@ return [
 			],
 		],
 	],
-	'hooks' => [
+	'events' => [
 		'cron' => [
 			'fifteenmin' => [
 				'\ColdTrick\BlogTools\Cron::publication' => [],
@@ -79,14 +78,10 @@ return [
 	],
 	'view_extensions' => [
 		'css/elgg' => [
-			'css/blog_tools/site.css' => [],
+			'widgets/index_blog/content.css' => [],
 		],
 		'forms/blog/save' => [
-			'blog_tools/edit/show_owner' => [],
 			'blog_tools/edit/publication_options' => [],
-		],
-		'object/elements/full/body' => [
-			'blog_tools/full/owner' => [],
 		],
 		'object/blog/elements/sidebar' => [
 			'blog_tools/sidebar/related' => [],
