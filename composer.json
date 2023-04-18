@@ -1,27 +1,27 @@
 {
-	"name" : "coldtrick/blog_tools",
-	"description" : "Offers additional functionality for Blogs",
-	"homepage" : "https://www.coldtrick.com",
-	"type" : "elgg-plugin",
-	"keywords" : [
+	"name": "coldtrick/blog_tools",
+	"description": "Offers additional functionality for Blogs",
+	"homepage": "https://www.coldtrick.com",
+	"type": "elgg-plugin",
+	"keywords": [
 		"elgg",
 		"plugin",
 		"content"
 	],
-	"license" : "GPL-2.0-only",
-	"support" : {
-		"source" : "https://github.com/ColdTrick/blog_tools",
-		"issues" : "https://github.com/ColdTrick/blog_tools/issues"
+	"license": "GPL-2.0-only",
+	"support": {
+		"source": "https://github.com/ColdTrick/blog_tools",
+		"issues": "https://github.com/ColdTrick/blog_tools/issues"
 	},
-	"require" : {
-		"composer/installers" : "^1.0.8"
+	"require": {
+		"composer/installers": "^1.0.8"
 	},
-	"conflict" : {
-		"elgg/elgg" : "<4.3"
+	"conflict": {
+		"elgg/elgg": "<5.0"
 	},
-	"config" : {
-		"allow-plugins" : {
-			"composer/installers" : true
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
 		}
 	}
 }
