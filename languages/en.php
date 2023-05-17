@@ -18,9 +18,6 @@ You can view your blog here:
 	'blog_tools:view:related' => "Related blogs",
 	
 	// blog edit
-	'blog_tools:label:show_owner' => "Show information about yourself below the blog",
-	
-	'blog_tools:label:publication_options' => "Publication options",
 	'blog_tools:label:publication_date' => "Publication date (optional)",
 	'blog_tools:publication_date:description' => "When you select a date here the blog will not be published until the selected date.",
 	'blog_tools:label:publication_time' => "Publication time ",
@@ -41,7 +38,6 @@ You can view your blog here:
 	'blog_tools:settings:archive_menu' => "Move blog archive sidebar to filter menu",
 	'blog_tools:settings:archive_menu:help' => "On listing pages an archive is shown in the sidebar, with this setting the archive can be moved to the filter menu tabs.",
 	
-	'blog_tools:settings:full' => "Blog full view settings",
 	'blog_tools:settings:full:show_full_related' => "Show related blogs in the sidebar",
 		
 	'blog_tools:settings:advanced_publication' => "Allow advanced publication options",

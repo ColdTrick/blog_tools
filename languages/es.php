@@ -1,13 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0-beta
- * On 2018-12-14 13:41
+ * This file was created by Translation Editor v11.1
+ * On 2023-05-17 14:27
  */
 
 return array (
   'blog_tools' => 'Blog - Herramientas extra',
-  'blog_tools:toggle:feature' => 'Destacar',
-  'blog_tools:toggle:unfeature' => 'No destacar',
   'blog_tools:readmore' => 'Leer mas',
   'blog_tools:widget:featured' => '¿Mostrar únicamente publicaciones destacadas?',
   'blog_tools:notify:publish:subject' => 'Un publicación ha sido publicada',
@@ -16,20 +14,9 @@ return array (
 Puedes verla en el siguiente enlace:
 %s',
   'blog_tools:view:related' => 'Publicaciones relacionadas',
-  'blog_tools:label:show_owner' => 'Mostrar información sobre ti al pie de la publicación',
-  'blog_tools:label:publication_options' => 'Opciones de publicación',
   'blog_tools:label:publication_date' => 'Fecha de publicación (opcional)',
   'blog_tools:publication_date:description' => 'Al indicar una fecha futura, la publicación no será públicada hasta ese día.',
-  'blog_tools:settings:image' => 'Configuración de imagenes del blog',
   'blog_tools:settings:other' => 'Otras configuraciones',
-  'blog_tools:settings:listing:image_align' => 'Alineación de la imagen en el listado de publicaciones',
-  'blog_tools:settings:listing:image_size' => 'Tamaño de la imagen en el listado de publicaciones',
-  'blog_tools:settings:full:image_align' => 'Alineación de la imagen en la publicación completa',
-  'blog_tools:settings:full:image_size' => 'Tamaño de la imagen en la publicación completa',
-  'blog_tools:settings:full' => 'Configuración de la vista de la publicación completa',
-  'blog_tools:settings:full:show_full_owner' => 'Mostrar información del autor de la publicación',
-  'blog_tools:settings:full:show_full_owner:optional' => 'Opcional, cada autor decide',
-  'blog_tools:settings:align:none' => 'Sin imagen',
   'blog_tools:widgets:index_blog:view_mode' => 'Cómo mostrar las publicaciones',
   'blog_tools:widgets:index_blog:view_mode:list' => 'Lista',
   'blog_tools:widgets:index_blog:view_mode:preview' => 'Vista previa',
