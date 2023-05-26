@@ -1,31 +1,32 @@
 <?php
 
-namespace ColdTrick\BlogTools;
+namespace ColdTrick\BlogTools\Menus;
 
+use Elgg\Menu\MenuItems;
 use Elgg\Menu\UnpreparedMenu;
 
 /**
  * Filter Menu callbacks
  */
-class FilterTabs {
+class Filter {
 	
 	/**
 	 * Add the featured tab to the blog filter menu
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:filter:filter'
 	 *
-	 * @return void|\Elgg\Menu\MenuItems
+	 * @return null|MenuItems
 	 */
-	public static function addFeatured(\Elgg\Event $event) {
-		
+	public static function addFeatured(\Elgg\Event $event): ?MenuItems {
 		if (!elgg_in_context('blog')) {
-			return;
+			return null;
 		}
 		
 		if (!(bool) elgg_get_plugin_setting('featured_menu', 'blog_tools')) {
-			return;
+			return null;
 		}
 		
+		/* @var $return MenuItems */
 		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
@@ -43,16 +44,15 @@ class FilterTabs {
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:filter:filter'
 	 *
-	 * @return void|\Elgg\Menu\MenuItems
+	 * @return null|MenuItems
 	 */
-	public static function addArchive(\Elgg\Event $event) {
-		
+	public static function addArchive(\Elgg\Event $event): ?MenuItems {
 		if (!elgg_in_context('blog')) {
-			return;
+			return null;
 		}
 		
 		if (!(bool) elgg_get_plugin_setting('archive_menu', 'blog_tools')) {
-			return;
+			return null;
 		}
 		
 		$selected = $event->getParam('filter_value', 'all');
@@ -73,17 +73,14 @@ class FilterTabs {
 			'page' => $selected,
 			'entity' => $page_owner,
 		]);
-		if (!$archive instanceof UnpreparedMenu) {
-			// no archive to show
-			return;
-		}
 		
 		$items = $archive->getItems();
 		if (!$items->count()) {
 			// no archive to show
-			return;
+			return null;
 		}
 		
+		/* @var $return MenuItems */
 		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
@@ -119,34 +116,30 @@ class FilterTabs {
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:filter:blog/group'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function groupTabs(\Elgg\Event $event) {
-		
+	public static function groupTabs(\Elgg\Event $event): ?MenuItems {
 		if (!(bool) elgg_get_plugin_setting('archive_menu', 'blog_tools')) {
-			return;
+			return null;
 		}
 		
 		$page_owner = elgg_get_page_owner_entity();
 		if (!$page_owner instanceof \ElggGroup) {
-			return;
+			return null;
 		}
 		
+		/* @var $return MenuItems */
 		$return = $event->getValue();
 		
 		$archive = elgg()->menus->getUnpreparedMenu('blog_archive', [
 			'page' => $event->getParam('filter_value', 'group'),
 			'entity' => $page_owner,
 		]);
-		if (empty($archive) || !$archive instanceof UnpreparedMenu) {
-			// no archive to show
-			return;
-		}
 		
 		$items = $archive->getItems();
 		if (!$items->count()) {
 			// no archive to show
-			return;
+			return null;
 		}
 		
 		// add link to all blogs

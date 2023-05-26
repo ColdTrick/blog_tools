@@ -57,17 +57,17 @@ return [
 		],
 		'register' => [
 			'menu:blog_archive' => [
-				'\ColdTrick\BlogTools\BlogArchiveMenu::addArchive' => [],
+				'\ColdTrick\BlogTools\Menus\BlogArchive::addArchive' => [],
 			],
 			'menu:entity' => [
-				'\ColdTrick\BlogTools\EntityMenu::register' => [],
+				'\ColdTrick\BlogTools\Menus\Entity::register' => [],
 			],
 			'menu:filter:blog/group' => [
-				'\ColdTrick\BlogTools\FilterTabs::groupTabs' => [],
+				'\ColdTrick\BlogTools\Menus\Filter::groupTabs' => [],
 			],
 			'menu:filter:filter' => [
-				'\ColdTrick\BlogTools\FilterTabs::addFeatured' => [],
-				'\ColdTrick\BlogTools\FilterTabs::addArchive' => [],
+				'\ColdTrick\BlogTools\Menus\Filter::addFeatured' => [],
+				'\ColdTrick\BlogTools\Menus\Filter::addArchive' => [],
 			],
 		],
 		'view_vars' => [

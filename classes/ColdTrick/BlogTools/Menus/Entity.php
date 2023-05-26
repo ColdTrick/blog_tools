@@ -1,31 +1,33 @@
 <?php
 
-namespace ColdTrick\BlogTools;
+namespace ColdTrick\BlogTools\Menus;
+
+use Elgg\Menu\MenuItems;
 
 /**
  * Entity Menu callbacks
  */
-class EntityMenu {
+class Entity {
 	
 	/**
 	 * Add some menu items to the entity menu
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:entity'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function register(\Elgg\Event $event) {
-		
+	public static function register(\Elgg\Event $event): ?MenuItems {
 		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggBlog || !elgg_is_admin_logged_in()) {
-			return;
+			return null;
 		}
 		
 		// only published blogs
 		if ($entity->status === 'draft') {
-			return;
+			return null;
 		}
 		
+		/* @Var $returnvalue MenuItems */
 		$returnvalue = $event->getValue();
 		
 		$returnvalue[] = \ElggMenuItem::factory([

@@ -1,6 +1,6 @@
 <?php
 
-namespace ColdTrick\BlogTools;
+namespace ColdTrick\BlogTools\Menus;
 
 use Elgg\Menu\MenuItems;
 use Elgg\Router\Route;
@@ -8,30 +8,29 @@ use Elgg\Router\Route;
 /**
  * Blog Archive Menu callbacks
  */
-class BlogArchiveMenu {
+class BlogArchive {
 
 	/**
 	 * Register menu items to the blog archive menu
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:blog_archive'
 	 *
-	 * @return void|MenuItems
+	 * @return null|MenuItems
 	 */
-	public static function addArchive(\Elgg\Event $event) {
-		
+	public static function addArchive(\Elgg\Event $event): ?MenuItems {
 		$entity = $event->getParam('entity', elgg_get_page_owner_entity());
 		if ($event->getParam('page') !== 'tag') {
-			return;
+			return null;
 		}
 		
 		$route = elgg_get_current_route();
 		if (!$route instanceof Route) {
-			return;
+			return null;
 		}
 		
 		$tag = elgg_extract('tag', $route->getMatchedParameters());
 		if (elgg_is_empty($tag)) {
-			return;
+			return null;
 		}
 		
 		$options = [
@@ -62,7 +61,7 @@ class BlogArchiveMenu {
 		
 		$dates = elgg_get_entity_dates($options);
 		if (empty($dates)) {
-			return;
+			return null;
 		}
 		
 		$generate_url = function($lower = null, $upper = null) use ($route_name, $route_params) {
@@ -72,6 +71,7 @@ class BlogArchiveMenu {
 			return elgg_generate_url($route_name, $route_params);
 		};
 		
+		/* @var $return MenuItems */
 		$return = $event->getValue();
 		$years = [];
 		
