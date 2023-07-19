@@ -27,4 +27,23 @@ class Views {
 		
 		return $return;
 	}
+	
+	/**
+	 * Prevent double submit of the blog/save form
+	 *
+	 * @param \Elgg\Event $event 'view_vars', 'input/form'
+	 *
+	 * @return null|array
+	 * @todo remove in Elgg 5.1
+	 */
+	public static function preventDoubleSubmit(\Elgg\Event $event): ?array {
+		$vars = $event->getValue();
+		if (elgg_extract('action_name', $vars) !== 'blog/save') {
+			return null;
+		}
+		
+		$vars['prevent_double_submit'] = true;
+		
+		return $vars;
+	}
 }

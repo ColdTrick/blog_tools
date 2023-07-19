@@ -74,6 +74,9 @@ return [
 			'blog/sidebar/archives' => [
 				'\ColdTrick\BlogTools\Views::preventBlogArchiveSidebar' => [],
 			],
+			'input/form' => [
+				'\ColdTrick\BlogTools\Views::preventDoubleSubmit' => [],
+			],
 		],
 	],
 	'view_extensions' => [

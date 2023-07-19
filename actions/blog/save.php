@@ -12,7 +12,8 @@
 use Elgg\Values;
 
 // save or preview
-$save = (bool) get_input('save');
+// @todo check this in Elgg 5.1
+$save = !(bool) get_input('preview');
 
 // edit or create a new entity
 $guid = (int) get_input('guid');
