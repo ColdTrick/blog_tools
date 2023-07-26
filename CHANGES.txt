@@ -1,6 +1,11 @@
 Version history
 ===============
 
+12.0.1 (2023-07-26):
+
+- fixed: buttons have a discernible text
+- fixed: no longer prevent double submit of the blog/save form
+
 12.0 (2023-06-02):
 
 - changed: conflict with Elgg < 5.0

@@ -4,7 +4,7 @@ use ColdTrick\BlogTools\Upgrades\MoveHeaderIcons;
 
 return [
 	'plugin' => [
-		'version' => '12.0',
+		'version' => '12.0.1',
 		'dependencies' => [
 			'blog' => [
 				'position' => 'after',
