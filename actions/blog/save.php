@@ -12,8 +12,7 @@
 use Elgg\Values;
 
 // save or preview
-// @todo check this in Elgg 5.1
-$save = !(bool) get_input('preview');
+$preview = (bool) get_input('preview');
 
 // edit or create a new entity
 $guid = (int) get_input('guid');
@@ -34,7 +33,7 @@ if ($guid) {
 	$blog = new \ElggBlog();
 }
 
-// set the previous status for the hooks to update the time_created and river entries
+// set the previous status for the events to update the time_created and river entries
 $old_status = $blog->status;
 
 // set defaults and required values.
@@ -108,8 +107,8 @@ if (!empty($values['publication_date'])) {
 	}
 }
 
-// if preview, force status to be draft
-if (!$save) {
+// if this is a preview, force status to be draft
+if ($preview) {
 	$values['status'] = 'draft';
 }
 
@@ -160,7 +159,7 @@ if (($new_post || $old_status === 'draft') && $status === 'published') {
 	]);
 }
 
-if ($blog->status == 'published' || !$save) {
+if ($blog->status == 'published' || $preview) {
 	$forward_url = $blog->getURL();
 } else {
 	$forward_url = elgg_generate_url('edit:object:blog', [

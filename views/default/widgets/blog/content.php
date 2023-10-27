@@ -13,6 +13,7 @@ $options = [
 	'subtype' => 'blog',
 	'limit' => $num_display,
 	'pagination' => false,
+	'distinct' => false,
 	'metadata_name_value_pairs' => [],
 	'metadata_case_sensitive' => false,
 	'no_results' => elgg_echo('blog:none'),

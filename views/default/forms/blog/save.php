@@ -2,8 +2,6 @@
 /**
  * Edit blog form
  *
- * @package Blog
- *
  * Adjustments
  * - custom help text for access
  * - status moved to blog_tools/edit/publication_options

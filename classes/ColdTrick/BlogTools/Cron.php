@@ -20,18 +20,12 @@ class Cron {
 			return;
 		}
 		
-		echo 'Starting BlogTools advanced publications' . PHP_EOL;
-		elgg_log('Starting BlogTools advanced publications', 'NOTICE');
-		
 		$time = (int) $event->getParam('time', time());
 		
 		// ignore access
 		elgg_call(ELGG_IGNORE_ACCESS, function() use ($time) {
 			self::publishBlogs($time);
 		});
-		
-		echo 'Done with BlogTools advanced publications' . PHP_EOL;
-		elgg_log('Done with BlogTools advanced publications', 'NOTICE');
 	}
 	
 	/**
