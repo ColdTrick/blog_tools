@@ -103,7 +103,7 @@ if (!empty($values['publication_date'])) {
 	
 	// is publication it the future?
 	if ($values['publication'] > time()) {
-		$save = false;
+		$preview = true;
 	}
 }
 
