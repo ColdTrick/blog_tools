@@ -80,7 +80,7 @@ return [
 		],
 	],
 	'view_extensions' => [
-		'css/elgg' => [
+		'elgg.css' => [
 			'widgets/index_blog/content.css' => [],
 		],
 		'forms/blog/save' => [
