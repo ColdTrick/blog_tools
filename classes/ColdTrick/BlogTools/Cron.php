@@ -14,7 +14,7 @@ class Cron {
 	 *
 	 * @return void
 	 */
-	public static function publication(\Elgg\Event $event) {
+	public static function publication(\Elgg\Event $event): void {
 		// only do if this is configured
 		if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
 			return;
@@ -35,10 +35,9 @@ class Cron {
 	 *
 	 * @return void
 	 */
-	protected static function publishBlogs($time) {
-		
+	protected static function publishBlogs(int $time): void {
 		// adjust for time drift of the cron start
-		// eg. CRON started @ 11:00:05
+		// e.g. CRON started @ 11:00:05
 		$time_min = $time - 60; // - 1 minute
 		$time_max = $time + 60; // + 1 minute
 		

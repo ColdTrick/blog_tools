@@ -12,36 +12,20 @@ class Widgets {
 	 *
 	 * @param \Elgg\Event $event 'entity:url', 'object'
 	 *
-	 * @return void|string
+	 * @return null|string
 	 */
-	public static function widgetUrl(\Elgg\Event $event) {
-		
+	public static function widgetUrl(\Elgg\Event $event): ?string {
 		if (!empty($event->getValue())) {
-			return;
+			// url already provided
+			return null;
 		}
 		
 		$widget = $event->getEntityParam();
-		if (!$widget instanceof \ElggWidget) {
-			return;
+		if (!$widget instanceof \ElggWidget || $widget->handler !== 'index_blog') {
+			return null;
 		}
 		
-		switch ($widget->handler) {
-			case 'index_blog':
-				return elgg_generate_url('collection:object:blog:all');
-			
-			case 'blog':
-				$owner = $widget->getOwnerEntity();
-				if ($owner instanceof \ElggUser) {
-					return elgg_generate_url('collection:object:blog:owner', [
-						'username' => $owner->username,
-					]);
-				} elseif ($owner instanceof \ElggGroup) {
-					return elgg_generate_url('collection:object:blog:group', [
-						'guid' => $owner->guid,
-					]);
-				}
-				break;
-		}
+		return elgg_generate_url('collection:object:blog:all');
 	}
 	
 	/**
@@ -52,7 +36,6 @@ class Widgets {
 	 * @return void|array
 	 */
 	public static function groupTools(\Elgg\Event $event) {
-		
 		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggGroup) {
 			return;

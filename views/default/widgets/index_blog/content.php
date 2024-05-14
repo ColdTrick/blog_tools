@@ -88,9 +88,9 @@ foreach ($blog_entities as $key => $blog) {
 echo elgg_format_element('ul', $navigator_attr, implode(PHP_EOL, $lis));
 
 ?>
-<script type='text/javascript'>
-	require(['widgets/index_blog/slider'], function(Slider) {
-		var slider = new Slider();
-		slider.init(<?php echo $widget->guid; ?>);
-	});
+<script type='module'>
+	import Slider from 'widgets/index_blog/slider';
+	
+	var slider = new Slider();
+	slider.init(<?php echo $widget->guid; ?>);
 </script>

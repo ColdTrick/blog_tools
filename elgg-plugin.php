@@ -1,7 +1,5 @@
 <?php
 
-use ColdTrick\BlogTools\Upgrades\MoveHeaderIcons;
-
 return [
 	'plugin' => [
 		'version' => '13.0.1',
@@ -15,9 +13,6 @@ return [
 		'featured_menu' => true,
 		'archive_menu' => false,
 		'advanced_publication' => 'no',
-	],
-	'upgrades' => [
-		MoveHeaderIcons::class,
 	],
 	'actions' => [
 		'blog/save' => [],
@@ -73,9 +68,6 @@ return [
 		'view_vars' => [
 			'blog/sidebar/archives' => [
 				'\ColdTrick\BlogTools\Views::preventBlogArchiveSidebar' => [],
-			],
-			'input/form' => [
-				'\ColdTrick\BlogTools\Views::preventDoubleSubmit' => [],
 			],
 		],
 	],

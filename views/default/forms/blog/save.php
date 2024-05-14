@@ -7,7 +7,7 @@
  * - status moved to blog_tools/edit/publication_options
  */
 
-elgg_require_js('forms/blog/save');
+elgg_import_esm('forms/blog/save');
 
 $blog = elgg_extract('entity', $vars);
 

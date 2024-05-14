@@ -58,7 +58,4 @@ You can view your blog here:
 	'blog_tools:widgets:index_blog:view_mode:preview' => "Preview",
 	'blog_tools:widgets:index_blog:view_mode:slider' => "Slider",
 	'blog_tools:widgets:index_blog:view_mode:simple' => "Simple",
-	
-	'blog_tools:upgrade:2023032800:title' => "Move blog icons to header images",
-	'blog_tools:upgrade:2023032800:description' => "In Elgg 5 there is built in header image support. This migration moves old icons uploaded with blogs to this new location.",
 ];

@@ -28,6 +28,5 @@ $params = [
 	'subtitle' => false,
 	'show_social_menu' => false,
 ];
-$params + $vars;
-
+$params = $params + $vars;
 echo elgg_view('object/elements/summary', $params);

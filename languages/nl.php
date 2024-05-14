@@ -5,8 +5,6 @@
  */
 
 return array (
-  'blog_tools:upgrade:2023032800:title' => 'Verplaats blog iconen naar kopafbeeldingen',
-  'blog_tools:upgrade:2023032800:description' => 'In Elgg 5 is ondersteuning voor kopafbeeldingen. Deze migratie verplaatst de oude iconen naar de nieuwe locatie.',
   'collection:object:blog:tag' => 'Blogs met de tag: %s',
   'blog_tools:label:publication_time' => 'Publicatie tijd',
   'blog_tools:publication_time:description' => 'In combinatie met de publicatie datum, stelt dit de tijd van publicatie in',
