@@ -1,5 +1,8 @@
 <?php
 
+use ColdTrick\BlogTools\FieldsHandler;
+use ColdTrick\BlogTools\Forms\PrepareFields;
+
 return [
 	'plugin' => [
 		'version' => '14.0',
@@ -45,6 +48,16 @@ return [
 				'\ColdTrick\BlogTools\Widgets::widgetUrl' => [],
 			],
 		],
+		'fields' => [
+			'object:blog' => [
+				FieldsHandler::class => ['priority' => 501],
+			],
+		],
+		'form:prepare:fields' => [
+			'blog/save' => [
+				PrepareFields::class => [],
+			],
+		],
 		'group_tool_widgets' => [
 			'widget_manager' => [
 				'\ColdTrick\BlogTools\Widgets::groupTools' => [],
@@ -68,6 +81,9 @@ return [
 		'view_vars' => [
 			'blog/sidebar/archives' => [
 				'\ColdTrick\BlogTools\Views::preventBlogArchiveSidebar' => [],
+			],
+			'object/elements/imprint/contents' => [
+				'\ColdTrick\BlogTools\Views::addPublicationDateImprint' => [],
 			],
 		],
 	],
