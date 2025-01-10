@@ -19,7 +19,7 @@ class FieldsHandler {
 	public function __invoke(\Elgg\Event $event): ?array {
 		$result = $event->getValue();
 		
-		foreach ($result as $field) {
+		foreach ($result as &$field) {
 			if (elgg_extract('name', $field) !== 'access_id') {
 				continue;
 			}
