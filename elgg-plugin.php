@@ -5,7 +5,7 @@ use ColdTrick\BlogTools\Forms\PrepareFields;
 
 return [
 	'plugin' => [
-		'version' => '14.0',
+		'version' => '15.0',
 		'dependencies' => [
 			'blog' => [
 				'position' => 'after',

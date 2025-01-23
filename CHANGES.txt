@@ -1,6 +1,11 @@
 Version history
 ===============
 
+15.0 (2025-01-23):
+
+- changed: updated for Elgg 6.1
+- fixed: correctly add help text to access field
+
 14.0 (2024-06-28):
 
 - changed: updated for Elgg 6
