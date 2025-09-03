@@ -42,6 +42,6 @@ echo elgg_view_page(elgg_echo('collection:object:blog:tag', [$tag]), [
 		'entity' => $page_owner,
 		'page' => 'tag',
 	]),
-	'filter_id' => ($page_owner instanceof ElggGroup) ? 'blog/group' : null,
+	'filter_id' => ($page_owner instanceof \ElggGroup) ? 'blog/group' : null,
 	'filter_value' => 'tag',
 ]);

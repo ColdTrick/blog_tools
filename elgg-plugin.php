@@ -2,6 +2,7 @@
 
 use ColdTrick\BlogTools\FieldsHandler;
 use ColdTrick\BlogTools\Forms\PrepareFields;
+use ColdTrick\BlogTools\Notifications\PublishBlogOwnerHandler;
 
 return [
 	'plugin' => [
@@ -18,7 +19,13 @@ return [
 		'advanced_publication' => 'no',
 	],
 	'actions' => [
-		'blog/save' => [],
+		'blog/save' => [
+			'controller' => \ColdTrick\BlogTools\Controllers\EditAction::class,
+			'options' => [
+				'entity_type' => 'object',
+				'entity_subtype' => 'blog',
+			],
+		],
 		'blog_tools/toggle_featured' => [
 			'access' => 'admin',
 		],
@@ -84,6 +91,13 @@ return [
 			],
 			'object/elements/imprint/contents' => [
 				'\ColdTrick\BlogTools\Views::addPublicationDateImprint' => [],
+			],
+		],
+	],
+	'notifications' => [
+		'object' => [
+			'blog' => [
+				'publish:owner' => PublishBlogOwnerHandler::class,
 			],
 		],
 	],

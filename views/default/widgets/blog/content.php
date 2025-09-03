@@ -18,7 +18,7 @@ $options = [
 	'distinct' => false,
 	'metadata_name_value_pairs' => [],
 	'metadata_case_sensitive' => false,
-	'no_results' => elgg_echo('blog:none'),
+	'no_results' => true,
 	'widget_more' => elgg_view_url($widget->getURL(), elgg_echo('blog:moreblogs')),
 ];
 

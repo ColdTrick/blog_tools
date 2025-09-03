@@ -78,7 +78,7 @@ class Cron {
 			/* @var $owner \ElggUser */
 			$owner = $entity->getOwnerEntity();
 			
-			// fake logged in user, for notifications
+			// fake logged-in user, for notifications
 			$session_manager->setLoggedInUser($owner);
 			
 			// add river item
@@ -91,15 +91,15 @@ class Cron {
 			
 			// set correct time created
 			$entity->time_created = $time;
-				
+			
 			// publish blog
 			$entity->status = 'published';
-				
+			
 			// revert access
 			$entity->access_id = $entity->future_access;
 			unset($entity->future_access);
 			
-			// Prevent double notification issues with Advanded Notifications plugin
+			// Prevent double notification issues with advanced Notifications plugin
 			unset($entity->advanced_notifications_delayed_action);
 			
 			// save everything
@@ -107,16 +107,9 @@ class Cron {
 			
 			// send notifications when post published
 			elgg_trigger_event('publish', 'object', $entity);
-				
+			
 			// notify owner
-			notify_user($owner->guid,
-				elgg_get_site_entity()->guid,
-				elgg_echo('blog_tools:notify:publish:subject', [], $owner->getLanguage()),
-				elgg_echo('blog_tools:notify:publish:message', [
-					$entity->getDisplayName(),
-					$entity->getURL(),
-				], $owner->getLanguage())
-			);
+			$owner->notify('publish:owner', $entity);
 		}
 		
 		// restore logged in user
