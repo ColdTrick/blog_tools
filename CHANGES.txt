@@ -1,6 +1,10 @@
 Version history
 ===============
 
+16.0 (2025-11-13):
+
+- changed: updated for Elgg 6.3
+
 15.0 (2025-01-23):
 
 - changed: updated for Elgg 6.1
