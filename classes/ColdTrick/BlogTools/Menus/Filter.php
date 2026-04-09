@@ -26,7 +26,7 @@ class Filter {
 			return null;
 		}
 		
-		/* @var $return MenuItems */
+		/** @var MenuItems $return */
 		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
@@ -80,7 +80,7 @@ class Filter {
 			return null;
 		}
 		
-		/* @var $return MenuItems */
+		/** @var MenuItems $return */
 		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
@@ -98,7 +98,7 @@ class Filter {
 			'priority' => 600,
 		]);
 		
-		/* @var $menu_item \ElggMenuItem */
+		/** @var \ElggMenuItem $menu_item */
 		foreach ($items as $menu_item) {
 			if (!$menu_item->getParentName()) {
 				// years need a parent
@@ -128,7 +128,7 @@ class Filter {
 			return null;
 		}
 		
-		/* @var $return MenuItems */
+		/** @var MenuItems $return */
 		$return = $event->getValue();
 		
 		$archive = elgg()->menus->getUnpreparedMenu('blog_archive', [
@@ -167,7 +167,7 @@ class Filter {
 			'priority' => 500,
 		]);
 		
-		/* @var $menu_item \ElggMenuItem */
+		/** @var \ElggMenuItem $menu_item */
 		foreach ($items as $menu_item) {
 			if (!$menu_item->getParentName()) {
 				// years need a parent

@@ -5,23 +5,19 @@ $plugin = elgg_extract('entity', $vars);
 
 // menu settings
 $menu = elgg_view_field([
-	'#type' => 'checkbox',
+	'#type' => 'switch',
 	'#label' => elgg_echo('blog_tools:settings:featured_menu'),
 	'#help' => elgg_echo('blog_tools:settings:featured_menu:help'),
 	'name' => 'params[featured_menu]',
-	'value' => 1,
-	'checked' => (bool) $plugin->featured_menu,
-	'switch' => true,
+	'value' => $plugin->featured_menu,
 ]);
 
 $menu .= elgg_view_field([
-	'#type' => 'checkbox',
+	'#type' => 'switch',
 	'#label' => elgg_echo('blog_tools:settings:archive_menu'),
 	'#help' => elgg_echo('blog_tools:settings:archive_menu:help'),
 	'name' => 'params[archive_menu]',
-	'value' => 1,
-	'checked' => (bool) $plugin->archive_menu,
-	'switch' => true,
+	'value' => $plugin->archive_menu,
 ]);
 
 echo elgg_view_module('info', elgg_echo('blog_tools:settings:menu'), $menu);

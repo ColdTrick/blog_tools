@@ -2,8 +2,6 @@
 
 namespace ColdTrick\BlogTools;
 
-use Elgg\Blog\Forms\PrepareFields;
-
 /**
  * Handle blog form fields
  */

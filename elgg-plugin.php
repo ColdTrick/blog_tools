@@ -1,5 +1,6 @@
 <?php
 
+use ColdTrick\BlogTools\Controllers\ContentListing;
 use ColdTrick\BlogTools\FieldsHandler;
 use ColdTrick\BlogTools\Forms\PrepareFields;
 use ColdTrick\BlogTools\Notifications\PublishBlogOwnerHandler;
@@ -33,11 +34,17 @@ return [
 	'routes' => [
 		'collection:object:blog:featured' => [
 			'path' => '/blog/featured',
-			'resource' => 'blog/featured',
+			'controller' => ContentListing::class,
+			'options' => [
+				'sidebar_view' => 'blog/sidebar',
+			],
 		],
 		'collection:object:blog:tag' => [
 			'path' => '/blog/tag/{tag}/{lower?}/{upper?}',
-			'resource' => 'blog/tag',
+			'controller' => ContentListing::class,
+			'options' => [
+				'sidebar_view' => 'blog/sidebar',
+			],
 			'requirements' => [
 				'lower' => '\d+',
 				'upper' => '\d+',

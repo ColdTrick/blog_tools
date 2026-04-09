@@ -73,9 +73,9 @@ class Cron {
 		
 		// get unpublished blogs that need to be published
 		$entities = elgg_get_entities($publish_options);
-		/* @var $entity \ElggBlog */
+		/** @var \ElggBlog $entity */
 		foreach ($entities as $entity) {
-			/* @var $owner \ElggUser */
+			/** @var \ElggUser $owner */
 			$owner = $entity->getOwnerEntity();
 			
 			// fake logged-in user, for notifications
