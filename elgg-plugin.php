@@ -104,7 +104,9 @@ return [
 	'notifications' => [
 		'object' => [
 			'blog' => [
-				'publish:owner' => PublishBlogOwnerHandler::class,
+				'publish:owner' => [
+					PublishBlogOwnerHandler::class => [],
+				],
 			],
 		],
 	],
