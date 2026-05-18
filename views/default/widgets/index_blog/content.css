@@ -14,17 +14,17 @@
 .blog-tools-widget-items-navigator {
 	padding-top: 5px;
 	text-align: center;
-	border-top: 1px solid $(border-color-mild);
+	border-top: 1px solid var(--elgg-border-color-mild);
 	
 	> li {
 		display: inline-block;
-		border: 1px solid $(border-color-mild);
+		border: 1px solid var(--elgg-border-color-mild);
 		padding: 0.2rem 0.5rem;
 		cursor: pointer;
 		
 		&.elgg-state-selected {
-			color: $(text-color-highlight);
-			border-color: $(border-color-highlight);
+			color: var(--elgg-text-color-highlight);
+			border-color: var(--elgg-border-color-highlight);
 		}
 	}
 }
