@@ -20,7 +20,7 @@ return [
 		'advanced_publication' => 'no',
 	],
 	'actions' => [
-		'blog/save' => [
+		'blog/edit' => [
 			'controller' => \ColdTrick\BlogTools\Controllers\EditAction::class,
 			'options' => [
 				'entity_type' => 'object',
@@ -68,7 +68,7 @@ return [
 			],
 		],
 		'form:prepare:fields' => [
-			'blog/save' => [
+			'blog/edit' => [
 				PrepareFields::class => [],
 			],
 		],
@@ -114,7 +114,7 @@ return [
 		'elgg.css' => [
 			'widgets/index_blog/content.css' => [],
 		],
-		'forms/blog/save' => [
+		'forms/blog/edit' => [
 			'blog_tools/edit/publication_options' => [],
 		],
 		'object/blog/elements/sidebar' => [

@@ -1,6 +1,6 @@
 <?php
 /**
- * Extend the blog/save form with advanced publication options
+ * Extend the blog/edit form with advanced publication options
  */
 
 if (elgg_get_plugin_setting('advanced_publication', 'blog_tools') !== 'yes') {
