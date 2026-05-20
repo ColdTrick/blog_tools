@@ -2,8 +2,6 @@
 
 namespace ColdTrick\BlogTools\Controllers;
 
-use Elgg\Exceptions\Http\BadRequestException;
-
 /**
  * List blogs
  */
