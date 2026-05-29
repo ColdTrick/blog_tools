@@ -7,7 +7,7 @@ use ColdTrick\BlogTools\Notifications\PublishBlogOwnerHandler;
 
 return [
 	'plugin' => [
-		'version' => '16.0',
+		'version' => '17.0',
 		'dependencies' => [
 			'blog' => [
 				'position' => 'after',

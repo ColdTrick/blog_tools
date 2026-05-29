@@ -1,6 +1,11 @@
 Version history
 ===============
 
+17.0 (2026-05-29):
+
+- added: support for blog archive options in dropdown menu
+- changed: updated for ELgg 7.0
+
 16.0 (2025-11-13):
 
 - changed: updated for Elgg 6.3
