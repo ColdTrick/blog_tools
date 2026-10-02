@@ -71,7 +71,7 @@ class BlogArchive {
 			return elgg_generate_url($route_name, $route_params);
 		};
 		
-		/* @var $return MenuItems */
+		/** @var MenuItems $return */
 		$return = $event->getValue();
 		$years = [];
 		

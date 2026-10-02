@@ -27,7 +27,7 @@ class Entity {
 			return null;
 		}
 		
-		/* @Var $returnvalue MenuItems */
+		/** @var MenuItems $returnvalue */
 		$returnvalue = $event->getValue();
 		
 		$returnvalue[] = \ElggMenuItem::factory([

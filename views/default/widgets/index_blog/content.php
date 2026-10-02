@@ -1,6 +1,6 @@
 <?php
 
-/* @var $widget ElggWidget */
+/** @var ElggWidget $widget */
 $widget = elgg_extract('entity', $vars);
 
 $count = (int) $widget->blog_count ?: 4;
