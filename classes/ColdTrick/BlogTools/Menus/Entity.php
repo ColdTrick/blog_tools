@@ -32,26 +32,28 @@ class Entity {
 		
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-feature',
-			'text' => elgg_echo('feature'),
 			'icon' => 'arrow-up',
+			'text' => elgg_echo('feature'),
 			'href' => elgg_generate_action_url('blog_tools/toggle_featured', [
 				'guid' => $entity->guid,
 			]),
 			'item_class' => empty($entity->featured) ? '' : 'hidden',
 			'priority' => 175,
 			'data-toggle' => 'blog-unfeature',
+			'parent_name' => 'admin',
 		]);
 		
 		$returnvalue[] = \ElggMenuItem::factory([
 			'name' => 'blog-unfeature',
-			'text' => elgg_echo('unfeature'),
 			'icon' => 'arrow-down',
+			'text' => elgg_echo('unfeature'),
 			'href' => elgg_generate_action_url('blog_tools/toggle_featured', [
 				'guid' => $entity->guid,
 			]),
 			'item_class' => empty($entity->featured) ? 'hidden' : '',
 			'priority' => 176,
 			'data-toggle' => 'blog-feature',
+			'parent_name' => 'admin',
 		]);
 		
 		return $returnvalue;
