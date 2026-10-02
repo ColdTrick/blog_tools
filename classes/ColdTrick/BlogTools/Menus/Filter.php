@@ -18,6 +18,10 @@ class Filter {
 	 * @return null|MenuItems
 	 */
 	public static function addFeatured(\Elgg\Event $event): ?MenuItems {
+		if (elgg_get_page_owner_guid() && (elgg_get_page_owner_guid() !== elgg_get_logged_in_user_guid())) {
+			return null;
+		}
+		
 		if (!elgg_in_context('blog')) {
 			return null;
 		}
@@ -47,6 +51,11 @@ class Filter {
 	 * @return null|MenuItems
 	 */
 	public static function addArchive(\Elgg\Event $event): ?MenuItems {
+		$page_owner = elgg_get_page_owner_entity();
+		if ($page_owner instanceof \ElggEntity && ($page_owner->guid !== elgg_get_logged_in_user_guid())) {
+			return null;
+		}
+		
 		if (!elgg_in_context('blog')) {
 			return null;
 		}
@@ -70,7 +79,7 @@ class Filter {
 		
 		$archive = elgg()->menus->getUnpreparedMenu('blog_archive', [
 			'page' => $selected,
-			'entity' => elgg_get_page_owner_entity(),
+			'entity' => $page_owner,
 			'show_blog_archive' => $event->getParam('show_blog_archive'),
 			'blog_archive_url' => $event->getParam('blog_archive_url'),
 			'blog_archive_options' => $event->getParam('blog_archive_options'),
@@ -86,7 +95,7 @@ class Filter {
 		$return = $event->getValue();
 		
 		$return[] = \ElggMenuItem::factory([
-			'name' => 'collection:object:blog:group:archive',
+			'name' => 'collection:object:blog:archive',
 			'text' => elgg_echo('blog:archives'),
 			'href' => false,
 			'child_menu' => [
@@ -104,7 +113,7 @@ class Filter {
 		foreach ($items as $menu_item) {
 			if (!$menu_item->getParentName()) {
 				// years need a parent
-				$menu_item->setParentName('collection:object:blog:group:archive');
+				$menu_item->setParentName('collection:object:blog:archive');
 			}
 			
 			$return[] = $menu_item;
